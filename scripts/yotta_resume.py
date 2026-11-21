@@ -2,9 +2,12 @@
 """yotta-resume: local resume analysis, follow-up questions, and document export."""
 
 import argparse
+import errno
 import hashlib
 import html
+import importlib.util
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -23,8 +26,10 @@ except Exception:
     pass
 
 
-VERSION = "0.1.2"
+SKILL_ROOT = Path(__file__).resolve().parent.parent
+VERSION = "0.1.3"
 SCHEMA_VERSION = "1.1"
+JD_LEXICON_VERSION = "2026-11-21.2"
 
 _PHONE_RE = re.compile(r"(?<!\d)1[3-9]\d{9}(?!\d)")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
@@ -37,16 +42,66 @@ _PLACEHOLDER_RE = re.compile(
 _LONG_TOKEN_RE = re.compile(r"\b[A-Za-z0-9_]{18,}\b")
 
 _JD_KEYWORDS = (
+    "SOC",
     "SIEM",
+    "SOAR",
+    "EDR",
+    "XDR",
+    "IDS",
+    "IPS",
+    "WAF",
+    "NGFW",
+    "VPN",
+    "PKI",
+    "TLS",
+    "IAM",
+    "零信任",
+    "安全基线",
+    "日志分析",
+    "告警研判",
+    "误报治理",
+    "威胁狩猎",
+    "威胁情报",
+    "事件响应",
     "Python",
     "SQL",
     "Linux",
+    "Windows",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "OpenTelemetry",
+    "AWS",
+    "Azure",
+    "GCP",
     "MITRE ATT&CK",
     "OWASP",
-    "SOC",
-    "EDR",
+    "OWASP Top 10",
+    "WSTG",
+    "CWE",
+    "CISA KEV",
     "应急响应",
     "漏洞管理",
+    "渗透测试",
+    "红队",
+    "蓝队",
+    "代码审计",
+    "应用安全",
+    "安全研发",
+    "供应链安全",
+    "云安全",
+    "数据安全",
+    "数据分类分级",
+    "个人信息保护",
+    "风险评估",
+    "安全合规",
+    "等保",
+    "访问控制",
+    "备份恢复",
+    "变更管理",
+    "取证分析",
+    "恶意样本",
+    "逆向分析",
 )
 
 _SECTION_ALIASES = {
@@ -280,6 +335,15 @@ def _has_metric(text):
     )
 
 
+def _keyword_in_text(keyword, text):
+    if keyword.isascii():
+        pattern = r"(?<![A-Za-z0-9]){}(?![A-Za-z0-9])".format(
+            re.escape(keyword)
+        )
+        return re.search(pattern, text, re.IGNORECASE) is not None
+    return keyword.casefold() in text.casefold()
+
+
 def _jd_match(resume, jd):
     if not jd.strip():
         return {
@@ -288,14 +352,17 @@ def _jd_match(resume, jd):
             "coverage": None,
             "status": "not_provided",
             "note": "未提供目标 JD，不能判断岗位匹配。",
+            "lexicon_version": JD_LEXICON_VERSION,
+            "limitations": (
+                "固定关键词词表只检查明确术语，不做语义匹配、岗位排名或招聘竞争力判断。"
+            ),
         }
-    haystack = resume.lower()
     matched = []
     missing = []
     for keyword in _JD_KEYWORDS:
-        if keyword.lower() in haystack:
+        if _keyword_in_text(keyword, resume):
             matched.append(keyword)
-        elif jd and keyword.lower() in jd.lower():
+        elif _keyword_in_text(keyword, jd):
             missing.append(keyword)
     total = len(matched) + len(missing)
     coverage = round(100 * len(matched) / total, 1) if total else 0.0
@@ -305,6 +372,123 @@ def _jd_match(resume, jd):
         "coverage": coverage,
         "status": "matched",
         "note": "",
+        "lexicon_version": JD_LEXICON_VERSION,
+        "limitations": (
+            "固定关键词词表只检查明确术语，不做语义匹配、岗位排名或招聘竞争力判断；"
+            "未收录的同义表达可能漏检。"
+        ),
+    }
+
+
+def _industry_registry():
+    path = SKILL_ROOT / "data" / "industry-registry.json"
+    try:
+        registry = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise RuntimeError("行业注册表不可用：{}".format(error)) from error
+    if not isinstance(registry, dict) or not isinstance(registry.get("industries"), list):
+        raise RuntimeError("行业注册表格式无效。")
+    return registry
+
+
+def detect_industry(resume, registry=None):
+    """Detect an industry profile with deterministic keyword scoring."""
+    registry = registry or _industry_registry()
+    industries = [
+        item for item in registry.get("industries", [])
+        if isinstance(item, dict) and item.get("id")
+    ]
+    fallback_id = registry.get("default_industry", "generic")
+    fallback = next(
+        (item for item in industries if item.get("id") == fallback_id),
+        {
+            "id": "generic",
+            "display_name": "通用",
+            "evidence_dimensions": [],
+            "question_dimensions": [],
+            "role_map_ref": None,
+        },
+    )
+    detection = registry.get("detection") or {}
+    min_high = int(detection.get("min_high_confidence_hits", 4))
+    ambiguity_margin = int(detection.get("ambiguity_margin", 1))
+
+    scored = []
+    for industry in industries:
+        if industry.get("is_fallback"):
+            continue
+        matched = [
+            keyword for keyword in industry.get("keywords", [])
+            if isinstance(keyword, str) and _keyword_in_text(keyword, resume)
+        ]
+        if matched:
+            scored.append({
+                "id": industry["id"],
+                "display_name": industry.get("display_name", industry["id"]),
+                "matched_count": len(matched),
+                "matched_keywords": matched,
+                "evidence_dimensions": industry.get("evidence_dimensions", []),
+                "question_dimensions": industry.get("question_dimensions", []),
+                "role_map_ref": industry.get("role_map_ref"),
+            })
+
+    scored.sort(key=lambda item: (-item["matched_count"], item["id"]))
+    base = {
+        "registry_contract_version": registry.get("contract_version"),
+        "detection_strategy": detection.get("strategy", "keyword_score_v1"),
+        "matched_keywords": sorted({
+            keyword
+            for item in scored
+            for keyword in item["matched_keywords"]
+        }),
+        "candidates": scored[:5],
+    }
+    if not scored:
+        return {
+            **base,
+            "status": "fallback",
+            "primary_industry": fallback_id,
+            "display_name": fallback.get("display_name"),
+            "confidence": "low",
+            "needs_confirmation": True,
+            "evidence_dimensions": fallback.get("evidence_dimensions", []),
+            "question_dimensions": fallback.get("question_dimensions", []),
+            "role_map_ref": fallback.get("role_map_ref"),
+            "reason": "未命中已登记行业的明确关键词，使用通用简历证据维度。",
+        }
+
+    top = scored[0]
+    second = scored[1] if len(scored) > 1 else None
+    if second and top["matched_count"] - second["matched_count"] <= ambiguity_margin:
+        return {
+            **base,
+            "status": "ambiguous",
+            "primary_industry": None,
+            "display_name": None,
+            "confidence": "low",
+            "needs_confirmation": True,
+            "evidence_dimensions": fallback.get("evidence_dimensions", []),
+            "question_dimensions": fallback.get("question_dimensions", []),
+            "role_map_ref": fallback.get("role_map_ref"),
+            "reason": "多个行业信号接近，需用户确认目标行业后再应用行业专属规则。",
+        }
+
+    confidence = (
+        "high" if top["matched_count"] >= min_high
+        else "medium" if top["matched_count"] >= 2
+        else "low"
+    )
+    return {
+        **base,
+        "status": "detected",
+        "primary_industry": top["id"],
+        "display_name": top["display_name"],
+        "confidence": confidence,
+        "needs_confirmation": confidence == "low",
+        "evidence_dimensions": top["evidence_dimensions"],
+        "question_dimensions": top["question_dimensions"],
+        "role_map_ref": top["role_map_ref"],
+        "reason": "基于简历明确关键词命中识别，未使用受保护个人属性。",
     }
 
 
@@ -649,6 +833,7 @@ def audit_resume(markdown, jd="", source_manifest=None, parse_warnings=None):
         source_manifest=manifest,
     )
     jd_match = _jd_match(markdown, jd)
+    industry_detection = detect_industry(markdown)
     readiness = _build_structure_check(
         sections,
         len(bullets),
@@ -661,6 +846,10 @@ def audit_resume(markdown, jd="", source_manifest=None, parse_warnings=None):
         unknowns.append("未提供目标 JD，无法判断岗位关键词匹配和岗位适配度。")
     if int(manifest.get("images") or 0) > 0:
         unknowns.append("输入文件包含图片，未执行 OCR；图片内的信息未进入分析。")
+    if industry_detection.get("status") == "ambiguous":
+        unknowns.append("行业识别存在多个接近信号，需确认目标行业后再使用行业专属规则。")
+    elif industry_detection.get("needs_confirmation"):
+        unknowns.append("行业识别置信度较低，需确认目标行业。")
     unknowns.append("规则引擎无法判断招聘竞争力、面试通过率或 Offer 结果，需人工复核。")
 
     return {
@@ -678,6 +867,7 @@ def audit_resume(markdown, jd="", source_manifest=None, parse_warnings=None):
         "questions": _build_questions(issues, jd),
         "suggestions": _build_suggestions(issues, jd_match),
         "jd_match": jd_match,
+        "industry_detection": industry_detection,
         "readiness": readiness,
         "unknowns": unknowns,
         "disclaimer": "分析仅识别结构、证据与岗位匹配度，不承诺 ATS、面试或 Offer 结果，也不替代人工判断。",
@@ -705,6 +895,30 @@ def render_audit_markdown(report):
         lines.append("- 解析提示：{}".format(warning))
     lines.append("")
 
+    lines.append("## 行业识别")
+    industry = report.get("industry_detection", {})
+    if industry.get("primary_industry"):
+        lines.append("- 主行业：{}（{} / {}）".format(
+            industry.get("display_name") or industry.get("primary_industry"),
+            industry.get("primary_industry"),
+            industry.get("confidence", "low"),
+        ))
+    else:
+        lines.append("- 主行业：待确认（多个行业信号接近）")
+    if industry.get("matched_keywords"):
+        lines.append("- 命中关键词：{}".format(
+            "、".join(industry["matched_keywords"])
+        ))
+    if industry.get("role_map_ref"):
+        lines.append("- 岗位映射：{}".format(industry["role_map_ref"]))
+    if industry.get("evidence_dimensions"):
+        lines.append("- 行业证据维度：{}".format(
+            "、".join(industry["evidence_dimensions"])
+        ))
+    if industry.get("reason"):
+        lines.append("- 识别说明：{}".format(industry["reason"]))
+    lines.append("")
+
     lines.append("## 总览")
     lines.append("- {}：{} / 100（{}）".format(
         readiness.get("label", "结构准备度（规则分）"),
@@ -725,6 +939,11 @@ def render_audit_markdown(report):
         lines.append("- JD 匹配：未提供 JD，不能判断岗位匹配。")
     else:
         lines.append("- JD 关键词覆盖：{}%。".format(jd_match.get("coverage")))
+        lines.append("- JD 词表版本：{}。".format(
+            jd_match.get("lexicon_version", "unknown")
+        ))
+        if jd_match.get("limitations"):
+            lines.append("- JD 匹配边界：{}".format(jd_match["limitations"]))
     for dimension in readiness.get("dimensions", []):
         score = "未知" if dimension.get("score") is None else "{} / 100".format(dimension.get("score"))
         lines.append("- {}：{}；{}".format(
@@ -1099,6 +1318,78 @@ def export_pdf(model, output_path, browser_path=None):
     return output
 
 
+class ExportPlanError(ValueError):
+    """Invalid output path combination supplied by the user."""
+
+
+def _export_plan(args):
+    configured = []
+    for label, value in (
+        ("DOCX", args.docx),
+        ("HTML", args.html),
+        ("PDF", args.pdf),
+    ):
+        if not value:
+            continue
+        target = Path(value).expanduser().resolve()
+        configured.append((label, target))
+
+    if not configured:
+        raise ExportPlanError("未指定输出文件：请至少提供 --docx、--html 或 --pdf。")
+
+    seen = {}
+    for label, target in configured:
+        key = os.path.normcase(str(target))
+        if key in seen:
+            raise ExportPlanError(
+                "输出路径重复：{} 与 {} 指向同一文件：{}".format(
+                    seen[key],
+                    label,
+                    target,
+                )
+            )
+        seen[key] = label
+        if target.exists() and target.is_dir():
+            raise ExportPlanError("输出路径是目录，无法写入文件：{}".format(target))
+    return configured
+
+
+def _commit_export_outputs(staged, backup_dir):
+    def move_path(source, destination):
+        try:
+            os.replace(source, destination)
+        except OSError as error:
+            if error.errno != errno.EXDEV:
+                raise
+            shutil.move(str(source), str(destination))
+
+    backups = []
+    committed = []
+    try:
+        for index, (label, staged_path, target) in enumerate(staged):
+            target.parent.mkdir(parents=True, exist_ok=True)
+            backup = None
+            if target.exists():
+                backup = Path(backup_dir) / "{}-{}.bak".format(index, target.name)
+                move_path(target, backup)
+            backups.append((target, backup))
+            move_path(staged_path, target)
+            committed.append(target)
+    except OSError:
+        for target in reversed(committed):
+            try:
+                target.unlink()
+            except OSError:
+                pass
+        for target, backup in reversed(backups):
+            if backup is not None and backup.exists():
+                try:
+                    move_path(backup, target)
+                except OSError:
+                    pass
+        raise
+
+
 def cmd_audit(args):
     try:
         document = read_resume_document(args.resume)
@@ -1110,11 +1401,15 @@ def cmd_audit(args):
         print(str(error), file=sys.stderr)
         return error.exit_code
 
-    report = audit_resume(
-        document["text"],
-        jd,
-        source_manifest=document["manifest"],
-    )
+    try:
+        report = audit_resume(
+            document["text"],
+            jd,
+            source_manifest=document["manifest"],
+        )
+    except RuntimeError as error:
+        print(str(error), file=sys.stderr)
+        return 5
     if args.format == "json":
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:
@@ -1132,25 +1427,35 @@ def cmd_export(args):
         print(str(error), file=sys.stderr)
         return error.exit_code
 
-    model = parse_markdown_resume(document["text"])
-    outputs = []
-    if args.docx:
-        export_docx(model, args.docx)
-        outputs.append("DOCX")
-    if args.html:
-        export_html(model, args.html)
-        outputs.append("HTML")
-    if args.pdf:
-        try:
-            export_pdf(model, args.pdf)
-            outputs.append("PDF")
-        except RuntimeError as error:
-            print(str(error), file=sys.stderr)
-            return 4
-    if not outputs:
-        print("未指定输出文件：请至少提供 --docx、--html 或 --pdf。", file=sys.stderr)
+    try:
+        plan = _export_plan(args)
+    except ExportPlanError as error:
+        print(str(error), file=sys.stderr)
         return 2
-    print("已导出：" + "、".join(outputs))
+
+    model = parse_markdown_resume(document["text"])
+    try:
+        with tempfile.TemporaryDirectory(prefix="yotta-resume-export-") as tmp:
+            root = Path(tmp)
+            staged = []
+            for index, (label, target) in enumerate(plan):
+                staged_path = root / "output-{}{}".format(index, target.suffix)
+                if label == "DOCX":
+                    export_docx(model, staged_path)
+                elif label == "HTML":
+                    export_html(model, staged_path)
+                else:
+                    export_pdf(model, staged_path)
+                staged.append((label, staged_path, target))
+            _commit_export_outputs(staged, root / "backups")
+    except RuntimeError as error:
+        print(str(error), file=sys.stderr)
+        return 4
+    except OSError as error:
+        print("导出文件写入失败：{}".format(error), file=sys.stderr)
+        return 5
+
+    print("已导出：" + "、".join(label for label, _ in plan))
     return 0
 
 
@@ -1162,7 +1467,8 @@ def cmd_contracts(args):
         print("元简数据契约：{}".format("PASS" if report["ok"] else "FAIL"))
         print(
             "文件 {checked_files} / 岗位族 {role_family_count} / "
-            "职级 {level_count} / 题目 {question_count} / 来源 {source_count}".format(
+            "职级 {level_count} / 题目 {question_count} / 来源 {source_count} / "
+            "行业 {industry_count}".format(
                 **report
             )
         )
@@ -1172,6 +1478,135 @@ def cmd_contracts(args):
                 item["path"],
                 item["message"],
             ))
+    return 0 if report["ok"] else 6
+
+
+def _doctor_checks(root=None, today=None):
+    checks = []
+    errors = []
+    warnings = []
+
+    contract_report = validate_contracts(root, today)
+    contract_status = "PASS" if contract_report.get("ok") else "FAIL"
+    checks.append({
+        "id": "contracts",
+        "status": contract_status,
+        "message": "数据契约校验通过" if contract_report.get("ok") else "数据契约校验失败",
+    })
+    for item in contract_report.get("errors", []):
+        errors.append("[{}] {}: {}".format(
+            item.get("code", "CONTRACT"),
+            item.get("path", "data"),
+            item.get("message", "unknown error"),
+        ))
+
+    package_root = SKILL_ROOT
+    required_files = (
+        "SKILL.md",
+        "README.md",
+        "references/usage.md",
+        "references/faq.md",
+        "references/data-contracts.md",
+        "examples/resume.template.md",
+        "examples/jd.example.md",
+        "examples/audit-report.example.md",
+        "examples/audit-report.example.json",
+        "data/industry-registry.json",
+        "data/industry-registry.schema.json",
+        "scripts/yotta_resume.py",
+        "scripts/contract_validate.py",
+    )
+    missing = [name for name in required_files if not (package_root / name).is_file()]
+    checks.append({
+        "id": "package_files",
+        "status": "PASS" if not missing else "FAIL",
+        "message": (
+            "关键随包文件完整"
+            if not missing
+            else "缺少关键文件：{}".format(", ".join(missing))
+        ),
+    })
+    for name in missing:
+        errors.append("缺少关键随包文件：{}".format(name))
+
+    pdf_input = (
+        importlib.util.find_spec("pymupdf") is not None
+        or importlib.util.find_spec("fitz") is not None
+    )
+    checks.append({
+        "id": "pdf_input",
+        "status": "PASS" if pdf_input else "WARN",
+        "message": (
+            "PyMuPDF 可用，可读取文字层 PDF"
+            if pdf_input
+            else "未安装 PyMuPDF；PDF 输入不可用，可改用 Markdown/DOCX 或执行 pip install pymupdf"
+        ),
+    })
+    if not pdf_input:
+        warnings.append("PDF 输入需要 PyMuPDF；当前未检测到可用后端。")
+
+    browser = find_pdf_browser()
+    checks.append({
+        "id": "pdf_export",
+        "status": "PASS" if browser else "WARN",
+        "message": (
+            "PDF 导出浏览器可用：{}".format(browser)
+            if browser
+            else "未找到 Chromium/Chrome/Edge；PDF 导出不可用，仍可导出 DOCX/HTML"
+        ),
+    })
+    if not browser:
+        warnings.append("PDF 导出需要本机 Chromium、Chrome 或 Edge。")
+
+    temp_ok = False
+    try:
+        with tempfile.TemporaryDirectory(prefix="yotta-resume-doctor-") as tmp:
+            probe = Path(tmp) / "write-test.txt"
+            probe.write_text("ok", encoding="utf-8")
+            temp_ok = probe.read_text(encoding="utf-8") == "ok"
+    except OSError as error:
+        errors.append("临时目录不可写：{}".format(error))
+    checks.append({
+        "id": "temp_dir",
+        "status": "PASS" if temp_ok else "FAIL",
+        "message": "临时目录可读写" if temp_ok else "临时目录不可读写",
+    })
+
+    python_ok = sys.version_info >= (3, 8)
+    checks.append({
+        "id": "cli",
+        "status": "PASS" if python_ok else "FAIL",
+        "message": "Python {}.{}.{}".format(*sys.version_info[:3]),
+    })
+    if not python_ok:
+        errors.append("需要 Python 3.8 或更高版本。")
+
+    return {
+        "ok": not errors,
+        "version": VERSION,
+        "checks": checks,
+        "warnings": warnings,
+        "errors": errors,
+    }
+
+
+def cmd_doctor(args):
+    report = _doctor_checks(args.root, args.today)
+    if args.format == "json":
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    else:
+        print("元简自检：{}".format("PASS" if report["ok"] else "FAIL"))
+        print("版本：{}".format(report["version"]))
+        for item in report["checks"]:
+            print("- [{}] {}: {}".format(
+                item["status"],
+                item["id"],
+                item["message"],
+            ))
+        for item in report["warnings"]:
+            print("- WARN: {}".format(item))
+        for item in report["errors"]:
+            print("- FAIL: {}".format(item))
     return 0 if report["ok"] else 6
 
 
@@ -1200,6 +1635,12 @@ def build_parser():
     contracts.add_argument("--format", choices=("json", "text"), default="json")
     contracts.add_argument("--today", help="覆盖校验日期（YYYY-MM-DD），用于测试与回放")
     contracts.set_defaults(func=cmd_contracts)
+
+    doctor = sub.add_parser("doctor", help="检查随包文件、契约、PDF 依赖和输出环境")
+    doctor.add_argument("--root", help="data 目录或技能根目录；默认使用随包 data")
+    doctor.add_argument("--format", choices=("json", "text"), default="text")
+    doctor.add_argument("--today", help="覆盖校验日期（YYYY-MM-DD），用于测试与回放")
+    doctor.set_defaults(func=cmd_doctor)
     return parser
 
 

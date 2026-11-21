@@ -21,6 +21,8 @@ CONTRACT_FILES = (
     "evidence-ledger.schema.json",
     "dual-role-contract.json",
     "dual-role-contract.schema.json",
+    "industry-registry.json",
+    "industry-registry.schema.json",
 )
 
 REQUIRED_ROLE_IDS = {
@@ -538,6 +540,158 @@ def _validate_dual_role(data, errors):
         ))
 
 
+def _validate_industry_registry(data, errors):
+    filename = "industry-registry.json"
+    if data is None:
+        return 0
+    _validate_header(data, filename, errors)
+    extension = data.get("extensions")
+    if not isinstance(extension, dict) or extension.get("allow_new_profiles") is not True:
+        errors.append(_error(
+            "INDUSTRY_EXTENSION_INVALID",
+            filename,
+            "extensions 必须允许新增行业且将 allow_new_profiles 设为 true",
+        ))
+    elif not isinstance(extension.get("required_fields"), list) or not extension["required_fields"]:
+        errors.append(_error(
+            "INDUSTRY_EXTENSION_INVALID",
+            filename,
+            "extensions.required_fields 必须是非空数组",
+        ))
+
+    detection = data.get("detection")
+    if (
+        not isinstance(detection, dict)
+        or detection.get("strategy") != "keyword_score_v1"
+        or not isinstance(detection.get("min_high_confidence_hits"), int)
+        or detection.get("min_high_confidence_hits") < 1
+        or not isinstance(detection.get("ambiguity_margin"), int)
+        or detection.get("ambiguity_margin") < 0
+    ):
+        errors.append(_error(
+            "INDUSTRY_DETECTION_INVALID",
+            filename,
+            "detection 必须是有效的 keyword_score_v1 配置",
+        ))
+
+    industries = data.get("industries")
+    if not isinstance(industries, list) or len(industries) < 2:
+        errors.append(_error(
+            "INDUSTRY_INVALID",
+            filename,
+            "industries 至少需要两个行业配置",
+        ))
+        return 0
+
+    seen = set()
+    fallback_ids = []
+    required_fields = (
+        "id",
+        "display_name",
+        "keywords",
+        "evidence_dimensions",
+        "question_dimensions",
+        "role_map_ref",
+        "is_fallback",
+    )
+    for index, industry in enumerate(industries):
+        if not isinstance(industry, dict):
+            errors.append(_error(
+                "INDUSTRY_INVALID",
+                filename,
+                "行业 #{} 必须是对象".format(index),
+            ))
+            continue
+        industry_id = industry.get("id")
+        if (
+            not isinstance(industry_id, str)
+            or not industry_id
+            or not industry_id[0].islower()
+            or any(char not in "abcdefghijklmnopqrstuvwxyz0123456789_" for char in industry_id)
+        ):
+            errors.append(_error(
+                "INDUSTRY_ID_INVALID",
+                filename,
+                "行业 #{} 的 id 非法".format(index),
+            ))
+            continue
+        if industry_id in seen:
+            errors.append(_error(
+                "INDUSTRY_DUPLICATE",
+                filename,
+                "行业 ID 重复：{}".format(industry_id),
+            ))
+        seen.add(industry_id)
+        for field in required_fields:
+            if field not in industry:
+                errors.append(_error(
+                    "INDUSTRY_FIELD_MISSING",
+                    filename,
+                    "{} 缺少 {}".format(industry_id, field),
+                ))
+        if not isinstance(industry.get("display_name"), str) or not industry.get("display_name", "").strip():
+            errors.append(_error(
+                "INDUSTRY_FIELD_INVALID",
+                filename,
+                "{} display_name 必须是非空字符串".format(industry_id),
+            ))
+        keywords = industry.get("keywords")
+        if not isinstance(keywords, list) or any(
+            not isinstance(keyword, str) or not keyword.strip()
+            for keyword in keywords
+        ):
+            errors.append(_error(
+                "INDUSTRY_FIELD_INVALID",
+                filename,
+                "{} keywords 必须是字符串数组".format(industry_id),
+            ))
+        elif not industry.get("is_fallback") and not keywords:
+            errors.append(_error(
+                "INDUSTRY_FIELD_INVALID",
+                filename,
+                "{} 非兜底行业必须有识别关键词".format(industry_id),
+            ))
+        for field in ("evidence_dimensions", "question_dimensions"):
+            values = industry.get(field)
+            if not isinstance(values, list) or not values or any(
+                not isinstance(value, str) or not value.strip()
+                for value in values
+            ):
+                errors.append(_error(
+                    "INDUSTRY_FIELD_INVALID",
+                    filename,
+                    "{} {} 必须是非空字符串数组".format(industry_id, field),
+                ))
+        if not isinstance(industry.get("is_fallback"), bool):
+            errors.append(_error(
+                "INDUSTRY_FIELD_INVALID",
+                filename,
+                "{} is_fallback 必须是布尔值".format(industry_id),
+            ))
+        elif industry["is_fallback"]:
+            fallback_ids.append(industry_id)
+        role_map_ref = industry.get("role_map_ref")
+        if role_map_ref is not None and not isinstance(role_map_ref, str):
+            errors.append(_error(
+                "INDUSTRY_FIELD_INVALID",
+                filename,
+                "{} role_map_ref 必须是字符串或 null".format(industry_id),
+            ))
+
+    default_industry = data.get("default_industry")
+    if (
+        len(fallback_ids) != 1
+        or default_industry != fallback_ids[0]
+        or default_industry not in seen
+    ):
+        errors.append(_error(
+            "INDUSTRY_FALLBACK_INVALID",
+            filename,
+            "default_industry 必须指向唯一的兜底行业",
+        ))
+    return len(seen)
+
+
 def validate_contracts(root=None, today=None):
     """Return a deterministic, local-only contract validation report."""
     base = Path(root) if root else Path(__file__).resolve().parent.parent / "data"
@@ -556,6 +710,7 @@ def validate_contracts(root=None, today=None):
                 "level_count": 0,
                 "question_count": 0,
                 "source_count": 0,
+                "industry_count": 0,
                 "errors": [_error(
                     "TODAY_INVALID",
                     "--today",
@@ -598,6 +753,10 @@ def validate_contracts(root=None, today=None):
         loaded.get("dual-role-contract.json"),
         errors,
     )
+    industry_count = _validate_industry_registry(
+        loaded.get("industry-registry.json"),
+        errors,
+    )
 
     errors.sort(key=lambda item: (item["path"], item["code"], item["message"]))
     return {
@@ -608,6 +767,7 @@ def validate_contracts(root=None, today=None):
         "level_count": len(level_ids),
         "question_count": question_count,
         "source_count": len(sources),
+        "industry_count": industry_count,
         "errors": errors,
         "warnings": [],
     }
@@ -623,6 +783,7 @@ def _render_text(report):
         "职级：{}".format(report["level_count"]),
         "题目：{}".format(report["question_count"]),
         "来源：{}".format(report["source_count"]),
+        "行业：{}".format(report["industry_count"]),
     ]
     if report["errors"]:
         lines.append("错误：")
@@ -634,7 +795,7 @@ def _render_text(report):
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="contract-validate",
-        description="离线校验元简岗位族、证据账本、题库、来源与双角色权限契约。",
+        description="离线校验元简岗位族、证据账本、题库、来源、双角色权限与行业扩展契约。",
     )
     parser.add_argument(
         "--root",

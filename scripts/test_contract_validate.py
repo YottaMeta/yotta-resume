@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline contract tests for yotta-resume 0.1.2."""
+"""Offline contract tests for yotta-resume 0.1.3."""
 
 import hashlib
 import json
@@ -191,6 +191,54 @@ def valid_bundle():
             "title": "dual-role-contract",
             "type": "object",
         },
+        "industry-registry.json": {
+            "schema_version": "1.0",
+            "contract_version": "1.0",
+            "generated_at": TODAY,
+            "default_industry": "generic",
+            "detection": {
+                "strategy": "keyword_score_v1",
+                "min_high_confidence_hits": 4,
+                "ambiguity_margin": 1,
+            },
+            "extensions": {
+                "allow_new_profiles": True,
+                "required_fields": [
+                    "id",
+                    "display_name",
+                    "keywords",
+                    "evidence_dimensions",
+                    "question_dimensions",
+                    "role_map_ref",
+                    "is_fallback",
+                ],
+            },
+            "industries": [
+                {
+                    "id": "cybersecurity",
+                    "display_name": "网络安全",
+                    "keywords": ["SIEM", "SOC", "应急响应"],
+                    "evidence_dimensions": ["scope", "action", "result"],
+                    "question_dimensions": ["triage", "boundary"],
+                    "role_map_ref": "security-role-map.json",
+                    "is_fallback": False,
+                },
+                {
+                    "id": "generic",
+                    "display_name": "通用",
+                    "keywords": [],
+                    "evidence_dimensions": ["scope", "action", "result"],
+                    "question_dimensions": ["facts", "boundary"],
+                    "role_map_ref": None,
+                    "is_fallback": True,
+                },
+            ],
+        },
+        "industry-registry.schema.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "industry-registry",
+            "type": "object",
+        },
     }
 
 
@@ -255,12 +303,29 @@ class ContractFixture(unittest.TestCase):
 
 
 class ContractValidatorTest(ContractFixture):
-    def test_valid_bundle_checks_all_ten_release_files(self):
+    def test_valid_bundle_checks_all_twelve_release_files(self):
         completed, payload = self.run_json(VALIDATOR)
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertTrue(payload.get("ok"))
-        self.assertEqual(payload.get("checked_files"), 10)
+        self.assertEqual(payload.get("checked_files"), 12)
+        self.assertEqual(payload.get("industry_count"), 2)
         self.assertEqual(payload.get("errors"), [])
+
+    def test_duplicate_industry_id_is_rejected(self):
+        registry = self.bundle["industry-registry.json"]
+        registry["industries"].append(dict(registry["industries"][0]))
+        self.rewrite("industry-registry.json", registry)
+        completed, payload = self.run_json(VALIDATOR)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("INDUSTRY_DUPLICATE", self.error_codes(payload))
+
+    def test_missing_fallback_industry_is_rejected(self):
+        registry = self.bundle["industry-registry.json"]
+        registry["industries"][-1]["is_fallback"] = False
+        self.rewrite("industry-registry.json", registry)
+        completed, payload = self.run_json(VALIDATOR)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("INDUSTRY_FALLBACK_INVALID", self.error_codes(payload))
 
     def test_duplicate_role_family_is_rejected(self):
         role_map = self.bundle["security-role-map.json"]
@@ -473,10 +538,11 @@ class BundledContractTest(ContractFixture):
         completed = self.run_bundled()
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
-        self.assertEqual(payload["checked_files"], 10)
+        self.assertEqual(payload["checked_files"], 12)
         self.assertEqual(payload["role_family_count"], 6)
         self.assertEqual(payload["level_count"], 4)
-        self.assertEqual(payload["question_count"], 0)
+        self.assertEqual(payload["question_count"], 18)
+        self.assertEqual(payload["industry_count"], 5)
 
     def test_main_cli_contracts_command_succeeds(self):
         completed = subprocess.run(
@@ -552,7 +618,10 @@ class BundledContractTest(ContractFixture):
         files = {item["path"] for item in package["files"]}
         self.assertIn("data/security-role-map.json", files)
         self.assertIn("data/dual-role-contract.schema.json", files)
+        self.assertIn("data/industry-registry.json", files)
+        self.assertIn("data/industry-registry.schema.json", files)
         self.assertIn("references/data-contracts.md", files)
+        self.assertIn("examples/audit-report.example.md", files)
 
 
 if __name__ == "__main__":

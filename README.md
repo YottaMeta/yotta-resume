@@ -15,10 +15,11 @@
 ## What it is
 
 yotta-resume is a job-seeker resume analysis and export tool. It reads Markdown,
-UTF-8 text, DOCX, and text-layer PDF resumes, identifies sections, experience bullets,
-metrics, contact information, and JD keyword gaps, then returns high-value questions
-and improvement suggestions. After the job seeker confirms the facts, the same resume
-can be exported to DOCX, HTML, or PDF.
+UTF-8 text, DOCX, and text-layer PDF resumes, detects an industry from visible resume
+content, identifies sections, experience bullets, metrics, contact information, and
+JD keyword gaps, then returns high-value questions and improvement suggestions.
+After the job seeker confirms the facts, the same resume can be exported to DOCX,
+HTML, or PDF.
 
 The core analyzer uses the Python standard library. It makes no network requests,
 does not submit resumes, and never invents experience or numbers. PDF input uses
@@ -37,6 +38,9 @@ be parsed.
 ## Quick usage
 
 ```bash
+# Check the installed package and optional PDF capabilities
+python scripts/yotta_resume.py doctor
+
 # Analyze a resume and print a Markdown report
 python scripts/yotta_resume.py audit --resume resume.md
 
@@ -56,11 +60,20 @@ python scripts/yotta_resume.py contracts --format json
 PDF export requires a local Chromium, Chrome, or Edge browser. PDF input requires
 `pip install pymupdf`. Missing browsers, missing PDF dependencies, encrypted files,
 and image-only PDFs fail clearly instead of producing a misleading result.
+Multi-format export renders into a temporary area and commits only after every
+requested format succeeds, so a failed PDF does not leave new DOCX/HTML partial files.
 
 The `readiness.score` field is a structural rule score only. It is not a recruiter
-score. When no JD is provided, job-match coverage is `null`.
+score. When no JD is provided, job-match coverage is `null`. JD matching uses a
+versioned fixed vocabulary and reports its limitations; it is not semantic matching
+or a hiring recommendation.
+
+Industry detection uses a versioned registry. Cybersecurity currently has the
+detailed role map and seed question bank; future industries can be added by extending
+`data/industry-registry.json` and its schema without changing the main analysis flow.
 
 See [references/usage.md](references/usage.md) for input format, fields, and exit codes.
+See [references/faq.md](references/faq.md) for common questions.
 See [references/data-contracts.md](references/data-contracts.md) for the bundled data contracts.
 
 ## Installation
@@ -97,18 +110,12 @@ bash install.sh --dir <skills-dir>
 bash install.sh --list
 ```
 
-## Development and validation
+## Validation
 
-```bash
-python scripts/test_yotta_resume.py
-python scripts/test_contract_validate.py
-python -m py_compile scripts/yotta_resume.py scripts/contract_validate.py scripts/test_yotta_resume.py scripts/test_contract_validate.py
-```
-
-The current suite has 50 tests covering analysis, masking, questions, suggestions,
-JD matching, Markdown/DOCX/PDF input, HTML escaping, PDF export, CLI behavior,
-source manifests, numeric-output guardrails, role contracts, question sources,
-evidence ledger rules, and dual-role permissions.
+Run `python scripts/yotta_resume.py doctor` after installation. It checks the bundled
+contracts, required files, optional PDF backends, browser availability, temporary
+directory access, and Python version. Full development tests live in the source
+repository and are not required to use the installed skill.
 
 ## License
 

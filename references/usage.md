@@ -39,6 +39,7 @@ python scripts/yotta_resume.py audit --resume resume.pdf --format json
 
 ```bash
 python scripts/yotta_resume.py --version
+python scripts/yotta_resume.py doctor --format json
 python scripts/yotta_resume.py audit --resume resume.md --format markdown
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 python scripts/yotta_resume.py export --input resume.md --docx resume.docx
@@ -55,13 +56,20 @@ python scripts/yotta_resume.py contracts --format json
 - `5`：PDF / DOCX 解析失败、扫描件不可提取、缺少 PDF 解析依赖或输入编码不支持。
 - `6`：数据契约校验失败。
 
+`doctor` 的 `PASS` 表示核心能力可用，`WARN` 表示可选依赖缺失但不阻断其他格式，
+`FAIL` 会导致退出码 `6`。默认 JSON 同时返回 `checks`、`warnings` 和 `errors`。
+
 ## 输出说明
 
 - `audit` 的 JSON 使用 `schema_version: "1.1"`。
 - `sections` 返回规范化章节名，如 `experience`、`projects`、`skills`、`education`。
+- `industry_detection` 返回识别状态、主行业、置信度、命中关键词、候选行业、
+  证据维度和岗位映射；信号接近时主行业为空并要求确认。
 - `questions` 用于向求职者追问缺失事实；`suggestions` 只提供改写方向，不提供虚构数字。
 - `jd_match` 包含 `matched`、`missing`、`coverage` 和 `status`；未提供 JD 时
   `coverage` 为 `null`。
+- `jd_match.lexicon_version` 标识固定词表版本，`limitations` 说明它不做语义匹配、
+  岗位排名或招聘竞争力判断。
 - `readiness.score` 是“结构准备度（规则分）”，不代表招聘竞争力或招聘结果。
 - `issues` 中的每项 finding 包含稳定 ID、严重度、来源类型和待确认标记。
 - `source_manifest`、`parse_warnings` 和 `unknowns` 用于说明输入质量与分析边界。
@@ -69,13 +77,20 @@ python scripts/yotta_resume.py contracts --format json
 
 ## 数据契约
 
-`contracts` 离线校验 5 个实际契约与 5 个 JSON Schema，包括岗位族、证据账本、
-来源 registry、题库和双角色权限。详细字段见
+`contracts` 离线校验 6 个实际契约与 6 个 JSON Schema，包括行业注册表、
+岗位族、证据账本、来源 registry、题库和双角色权限。新增行业只需扩展
+行业注册表与 Schema。详细字段见
 [data-contracts.md](data-contracts.md)。
 
 ## PDF 要求
 
 PDF 导出使用本机 Chromium、Chrome 或 Edge 的 headless 打印能力。没有浏览器时不会输出伪 PDF，请先安装任一受支持浏览器，或继续使用 DOCX/HTML。
+
+## 多格式导出
+
+DOCX / HTML / PDF 会先写入临时目录。所有请求格式成功后才提交到目标路径；
+任一格式失败时不会留下本次部分成品，已有同名文件也会保留。多个输出参数指向
+同一路径或目标路径是目录时，在写入前返回退出码 `2`。
 
 ## 数据边界
 
