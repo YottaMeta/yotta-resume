@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.tgz
+node_modules/
+.tmp/
+.workflow/
+.npmignore
+.git/
+scripts/test_*.py
