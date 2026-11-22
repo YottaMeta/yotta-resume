@@ -27,7 +27,7 @@ const PKG_ROOT = path.join(__dirname, '..');
 const TOP_SKIP = [
   'package.json', 'package-lock.json', 'bin', 'lib', 'test',
   '.github', '.git', '.gitignore', '.npmignore', '.gitattributes',
-  '.yotta', '.tmp', 'install.sh', 'node_modules',
+  '.yotta', '.tmp', 'install.sh', 'node_modules', 'tools',
 ];
 const TOP_SKIP_SET = new Set(TOP_SKIP);
 // 缓存 / 编译产物：任意层级跳过，安装时同样清理。

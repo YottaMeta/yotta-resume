@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression tests for the SkillHub TRACE optimization in 0.1.3."""
+"""Regression tests for the SkillHub TRACE and R2 question-bank work."""
 
 import hashlib
 import io
@@ -18,7 +18,7 @@ from unittest import mock
 HERE = Path(__file__).resolve().parent
 SKILL_DIR = HERE.parent
 CLI = HERE / "yotta_resume.py"
-TODAY = "2026-11-21"
+TODAY = "2026-11-22"
 sys.path.insert(0, str(HERE))
 
 import yotta_resume as yr  # noqa: E402
@@ -77,7 +77,7 @@ class DoctorTest(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
         self.assertTrue(payload["ok"])
-        self.assertEqual(payload["version"], "0.1.3")
+        self.assertEqual(payload["version"], "0.2.0")
         checks = {item["id"]: item for item in payload["checks"]}
         for check_id in (
             "contracts",
@@ -85,6 +85,7 @@ class DoctorTest(unittest.TestCase):
             "pdf_input",
             "pdf_export",
             "temp_dir",
+            "interview_state",
             "cli",
         ):
             self.assertIn(check_id, checks)
@@ -354,12 +355,13 @@ React, SIEM
 
 
 class BundledContentTest(unittest.TestCase):
-    def test_question_bank_has_three_seed_questions_per_role_family(self):
+    def test_question_bank_has_complete_mvp_distribution(self):
         bank = json.loads(
             (SKILL_DIR / "data" / "question-bank.json").read_text(encoding="utf-8")
         )
         questions = bank["questions"]
-        self.assertEqual(len(questions), 18)
+        self.assertEqual(bank["bank_version"], "0.2.0")
+        self.assertEqual(len(questions), 162)
         self.assertEqual(
             {
                 family: sum(1 for item in questions if item["role_family"] == family)
@@ -373,14 +375,27 @@ class BundledContentTest(unittest.TestCase):
                 }
             },
             {
-                "soc": 3,
-                "incident_response": 3,
-                "offensive_security": 3,
-                "appsec": 3,
-                "security_engineering": 3,
-                "grc_data_security": 3,
+                "soc": 27,
+                "incident_response": 27,
+                "offensive_security": 27,
+                "appsec": 27,
+                "security_engineering": 27,
+                "grc_data_security": 27,
             },
         )
+        self.assertEqual(
+            {
+                kind: sum(1 for item in questions if item["kind"] == kind)
+                for kind in ("knowledge", "resume_followup", "scenario")
+            },
+            {
+                "knowledge": 120,
+                "resume_followup": 30,
+                "scenario": 12,
+            },
+        )
+        self.assertEqual(len({item["question_id"] for item in questions}), 162)
+        self.assertEqual(len({item["prompt"] for item in questions}), 162)
         self.assertEqual(
             {item["kind"] for item in questions},
             {"knowledge", "scenario", "resume_followup"},
@@ -389,6 +404,23 @@ class BundledContentTest(unittest.TestCase):
             self.assertEqual(question["content_hash"], question_hash(question))
             self.assertEqual(question["status"], "active")
             self.assertTrue(question["source_refs"])
+
+    def test_question_bank_matches_source_generator(self):
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(SKILL_DIR / "tools" / "build_question_bank.py"),
+                "--check",
+            ],
+            cwd=str(SKILL_DIR),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
 
     def test_evidence_ledger_contains_only_safe_example_entry(self):
         ledger = json.loads(
@@ -407,6 +439,8 @@ class BundledContentTest(unittest.TestCase):
             "examples/jd.example.md",
             "examples/audit-report.example.md",
             "examples/audit-report.example.json",
+            "examples/interview-session.example.json",
+            "examples/interview-review.example.md",
             "references/faq.md",
             "references/trigger-examples.md",
             "references/workflow-examples.md",

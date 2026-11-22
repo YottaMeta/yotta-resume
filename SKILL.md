@@ -1,7 +1,7 @@
 ---
 name: yotta-resume
-description: "元简 — 本地求职者简历诊断、分析、修改与成品导出技能：分析简历结构、经历证据、量化指标、岗位匹配和风险，向用户追问缺失事实，给出逐条合理化修改建议，并把确认后的内容导出为 DOCX/PDF。触发：简历诊断、简历分析、改简历、简历追问、JD匹配、导出Word/PDF。边界：不编造经历，不承诺ATS、面试或Offer结果；不自动投递；不处理复杂设计作品集排版；默认本地处理且不联网。"
-version: 0.1.3
+description: "元简 — 本地求职者简历诊断、单轮模拟面试与成品导出技能：分析简历结构、经历证据、量化指标、岗位匹配和风险，向用户追问缺失事实，给出逐条合理化修改建议，并运行由简历证据、JD 缺口和来源题库共同驱动的模拟面试与复盘，把确认后的内容导出为 DOCX/PDF。触发：简历诊断、改简历、简历追问、JD匹配、模拟面试、面试复盘、导出Word/PDF。边界：不编造经历，不承诺ATS、面试或Offer结果；不自动投递；不处理复杂设计作品集排版；默认本地处理且不联网。"
+version: 0.2.0
 license: MIT
 metadata:
   zh_name: "元简"
@@ -60,7 +60,24 @@ python scripts/yotta_resume.py export --input revised.md --docx revised.docx --h
    任一格式失败时不会留下本次部分成品，也不会覆盖原有同名文件。
    PDF 依赖本机 Chromium、Chrome 或 Edge；未找到浏览器时命令会明确失败，不会生成伪 PDF。
 
-7. 需要单独校验随包岗位族、证据账本、题库、来源和双角色权限契约时运行：
+7. 需要模拟面试时运行：
+
+```bash
+python scripts/yotta_resume.py interview start \
+  --resume resume.md --jd jd.txt --role-family soc --level mid \
+  --session interview-session.json --format markdown
+python scripts/yotta_resume.py interview answer \
+  --session interview-session.json --answer answer.md --format markdown
+python scripts/yotta_resume.py interview review \
+  --session interview-session.json --format markdown
+```
+
+`interview` 默认一轮 6 个主题，每题最多 1 次追问。题目来自版本化题库，
+选择依据同时引用简历规则发现、JD 明确关键词缺口和岗位族维度。会话只写入
+用户显式指定的本地文件，可中断恢复，不调用模型、不联网、不写长期记忆。
+回答状态只使用“证据充分 / 部分 / 缺失”，不生成面试分数、通过率或竞争力判断。
+
+8. 需要单独校验随包岗位族、证据账本、题库、来源和双角色权限契约时运行：
 
 ```bash
 python scripts/yotta_resume.py contracts --format json
@@ -70,12 +87,14 @@ python scripts/yotta_resume.py contracts --format json
 
 - `audit`：JSON 或 Markdown，包含文件来源清单、解析提示、行业识别、章节识别、
   要点统计、工具发现、未知项、追问、修改建议、JD 匹配、结构准备度和边界声明。
+- `interview`：计划、当前问题、回答记录、追问路径和证据缺口复盘。会话状态
+  只保存在显式 `--session` 文件中；不包含整份简历原文。
 - `export`：DOCX / HTML / PDF。三者来自同一份 Markdown 内容模型，联系方式保留在成品简历中。
-- `contracts`：离线校验 `data/` 下的 6 个实际契约与 6 个 JSON Schema，
+- `contracts`：离线校验 `data/` 下的 7 个实际契约与 8 个 JSON Schema，
   失败返回退出码 `6`，不写文件、不联网。
 - `doctor`：返回 `PASS / WARN / FAIL`，核心文件或契约失败返回退出码 `6`；
   PyMuPDF 或浏览器缺失只记为 `WARN`，不阻断 DOCX / HTML 路径。
-- 分析报告：手机号和邮箱会被打码；不承诺 ATS、面试或 Offer 结果。
+- 分析报告：手机号、邮箱、URL、IP 和客户名会被打码；不承诺 ATS、面试或 Offer 结果。
 
 ## 评分与数字护栏
 
@@ -95,7 +114,8 @@ python scripts/yotta_resume.py contracts --format json
 
 - `industry_detection` 根据简历明确关键词识别行业，只使用可见内容，不读取受保护属性。
 - 当前可区分网络安全、软件研发、数据与人工智能、业务运营和通用兜底。
-- 网络安全已有 6 个岗位族和 18 道种子题；其他行业暂用通用证据与追问维度。
+- 网络安全已有 6 个岗位族和 162 项结构化题库：120 道知识题、
+  30 条简历追问、12 个情景案例；其他行业暂用通用证据与追问维度。
 - 新增行业时扩展 `data/industry-registry.json` 及 Schema，不需要修改主分析流程。
 - 多个行业信号接近时 `status=ambiguous`，不得自行猜测行业。
 

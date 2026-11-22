@@ -43,9 +43,39 @@ python scripts/yotta_resume.py export --input revised.md --docx revised.docx --h
 
 全部格式成功后才会写入目标路径。任一格式失败时保留原有文件，不留下本次半成品。
 
-## 6. 交付检查
+## 6. 单轮模拟面试
+
+```bash
+python scripts/yotta_resume.py interview start \
+  --resume resume.md --jd jd.txt --role-family soc --level mid \
+  --session interview-session.json
+```
+
+把当前问题回答写入临时 Markdown 文件，再执行：
+
+```bash
+python scripts/yotta_resume.py interview answer \
+  --session interview-session.json --answer answer.md
+```
+
+证据不足时工具会返回一次题库追问；回答后自动进入下一题。全部主题完成后运行：
+
+```bash
+python scripts/yotta_resume.py interview review \
+  --session interview-session.json --format markdown
+```
+
+复盘只展示证据状态、缺口、简历改写方向和来源化学习重点，不生成主观分数。
+
+## 7. 交付检查
 
 - 核对 `doctor`、目标和实际文件名。
 - DOCX / PDF 必须可打开，PDF 应包含文字层。
 - 报告联系方式已打码，成品按用户确认保留。
+- 模拟面试会话只在用户显式指定的文件中保存；不需要时直接删除该文件。
 - 不承诺 ATS、面试或 Offer 结果。
+
+## 8. 离线边界
+
+分析、模拟面试、导出、`doctor` 和 `contracts` 只读取本地文件。
+发布包不包含来源抓取或题库维护命令。

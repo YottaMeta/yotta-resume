@@ -18,8 +18,10 @@ from pathlib import Path
 from xml.etree import ElementTree
 
 from contract_validate import validate_contracts
+import interview_engine as interview
 
 try:
+    sys.stdin.reconfigure(encoding="utf-8")
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 except Exception:
@@ -27,12 +29,21 @@ except Exception:
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.1.3"
+VERSION = "0.2.0"
 SCHEMA_VERSION = "1.1"
 JD_LEXICON_VERSION = "2026-11-21.2"
 
 _PHONE_RE = re.compile(r"(?<!\d)1[3-9]\d{9}(?!\d)")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_URL_RE = re.compile(r"https?://[^\s，。；;、）)]+", re.IGNORECASE)
+_IPV4_RE = re.compile(
+    r"(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])"
+)
+_CLIENT_NAME_RE = re.compile(
+    r"(?P<prefix>客户\s*[:：]?\s*|委托方\s*[:：]?\s*|服务对象\s*[:：]?\s*|负责\s*)"
+    r"(?P<name>[\u4e00-\u9fffA-Za-z0-9·]{2,30}"
+    r"(?:公司|集团|银行|大学|医院|政府|中心|平台))"
+)
 _HEADING_RE = re.compile(r"^(#{1,6})\s+(.+?)\s*#*\s*$")
 _BULLET_RE = re.compile(r"^\s*(?:[-*+]\s+|\d+[.、)]\s+)(.+)$")
 _PLACEHOLDER_RE = re.compile(
@@ -133,7 +144,13 @@ class ResumeInputError(Exception):
 def _mask_contact(text):
     """Mask direct contact channels while retaining useful diagnostic wording."""
     text = _PHONE_RE.sub("[电话]", text)
-    return _EMAIL_RE.sub("[邮箱]", text)
+    text = _EMAIL_RE.sub("[邮箱]", text)
+    text = _URL_RE.sub("[URL]", text)
+    text = _IPV4_RE.sub("[IP]", text)
+    return _CLIENT_NAME_RE.sub(
+        lambda match: match.group("prefix") + "[客户名]",
+        text,
+    )
 
 
 def _masked(original):
@@ -1511,10 +1528,16 @@ def _doctor_checks(root=None, today=None):
         "examples/jd.example.md",
         "examples/audit-report.example.md",
         "examples/audit-report.example.json",
+        "examples/interview-session.example.json",
+        "examples/interview-review.example.md",
         "data/industry-registry.json",
         "data/industry-registry.schema.json",
+        "data/interview-session.schema.json",
+        "data/source-watch-state.json",
+        "data/source-watch-state.schema.json",
         "scripts/yotta_resume.py",
         "scripts/contract_validate.py",
+        "scripts/interview_engine.py",
     )
     missing = [name for name in required_files if not (package_root / name).is_file()]
     checks.append({
@@ -1572,6 +1595,21 @@ def _doctor_checks(root=None, today=None):
         "message": "临时目录可读写" if temp_ok else "临时目录不可读写",
     })
 
+    interview_state_ok = False
+    try:
+        interview_state_ok = interview.probe_state_support()
+    except (OSError, ValueError) as error:
+        errors.append("面试会话写入不可用：{}".format(error))
+    checks.append({
+        "id": "interview_state",
+        "status": "PASS" if interview_state_ok else "FAIL",
+        "message": (
+            "面试会话可原子写入"
+            if interview_state_ok
+            else "面试会话原子写入不可用"
+        ),
+    })
+
     python_ok = sys.version_info >= (3, 8)
     checks.append({
         "id": "cli",
@@ -1610,6 +1648,114 @@ def cmd_doctor(args):
     return 0 if report["ok"] else 6
 
 
+def _read_interview_answer(source):
+    if source == "-":
+        return sys.stdin.read()
+    try:
+        return Path(source).read_text(encoding="utf-8")
+    except FileNotFoundError as error:
+        raise interview.InterviewError(
+            "回答文件不存在：{}".format(source),
+            exit_code=3,
+        ) from error
+    except (OSError, UnicodeDecodeError) as error:
+        raise interview.InterviewError(
+            "回答文件无法读取：{}".format(error),
+            exit_code=5,
+        ) from error
+
+
+def cmd_interview_start(args):
+    target = Path(args.session)
+    if target.exists() and not args.force:
+        print(
+            "会话文件已存在：{}；如需覆盖请显式追加 --force。".format(target),
+            file=sys.stderr,
+        )
+        return 2
+    try:
+        document = read_resume_document(args.resume)
+        jd = read_resume_document(args.jd)["text"] if args.jd else ""
+    except FileNotFoundError as error:
+        print(str(error), file=sys.stderr)
+        return 3
+    except ResumeInputError as error:
+        print(str(error), file=sys.stderr)
+        return error.exit_code
+    try:
+        report = audit_resume(
+            document["text"],
+            jd,
+            source_manifest=document["manifest"],
+        )
+        session = interview.build_session(
+            document["text"],
+            jd,
+            report,
+            role_family=args.role_family,
+            level=args.level,
+            count=args.count,
+            seed=args.seed,
+            today=args.today,
+        )
+        interview.write_session_atomic(target, session)
+    except interview.InterviewError as error:
+        print(str(error), file=sys.stderr)
+        return error.exit_code
+    except RuntimeError as error:
+        print(str(error), file=sys.stderr)
+        return 5
+    except OSError as error:
+        print("会话状态写入失败：{}".format(error), file=sys.stderr)
+        return 5
+    if args.format == "json":
+        print(json.dumps(session, ensure_ascii=False, indent=2))
+    else:
+        print(interview.render_session_markdown(session))
+    return 0
+
+
+def cmd_interview_answer(args):
+    try:
+        bank = interview.load_question_bank()
+        session = interview.load_session(
+            args.session,
+            bank_version=bank.get("bank_version"),
+        )
+        answer = _read_interview_answer(args.answer)
+        updated = interview.record_answer(session, answer)
+        interview.write_session_atomic(args.session, updated)
+    except interview.InterviewError as error:
+        print(str(error), file=sys.stderr)
+        return error.exit_code
+    except OSError as error:
+        print("会话状态写入失败：{}".format(error), file=sys.stderr)
+        return 5
+    if args.format == "json":
+        print(json.dumps(updated, ensure_ascii=False, indent=2))
+    else:
+        print(interview.render_session_markdown(updated))
+    return 0
+
+
+def cmd_interview_review(args):
+    try:
+        bank = interview.load_question_bank()
+        session = interview.load_session(
+            args.session,
+            bank_version=bank.get("bank_version"),
+        )
+        review = interview.build_review(session)
+    except interview.InterviewError as error:
+        print(str(error), file=sys.stderr)
+        return error.exit_code
+    if args.format == "json":
+        print(json.dumps(review, ensure_ascii=False, indent=2))
+    else:
+        print(interview.render_review_markdown(review))
+    return 0
+
+
 def build_parser():
     parser = argparse.ArgumentParser(
         prog="yotta-resume",
@@ -1641,6 +1787,66 @@ def build_parser():
     doctor.add_argument("--format", choices=("json", "text"), default="text")
     doctor.add_argument("--today", help="覆盖校验日期（YYYY-MM-DD），用于测试与回放")
     doctor.set_defaults(func=cmd_doctor)
+
+    interview_parser = sub.add_parser(
+        "interview",
+        help="运行本地单轮模拟面试并生成证据复盘",
+    )
+    interview_sub = interview_parser.add_subparsers(dest="interview_command")
+    interview_sub.required = True
+
+    interview_start = interview_sub.add_parser("start", help="开始或覆盖一轮模拟面试")
+    interview_start.add_argument("--resume", required=True, help="简历文件")
+    interview_start.add_argument("--jd", help="目标岗位 JD 文本文件")
+    interview_start.add_argument("--role-family", help="显式指定安全岗位族")
+    interview_start.add_argument(
+        "--level",
+        choices=("junior", "mid", "senior", "lead"),
+        help="求职目标职级；缺省为 mid",
+    )
+    interview_start.add_argument(
+        "--count",
+        type=int,
+        default=interview.DEFAULT_COUNT,
+        help="主题数量，默认 6，范围 3-10",
+    )
+    interview_start.add_argument("--seed", help="固定选题 seed，便于复算")
+    interview_start.add_argument(
+        "--session",
+        required=True,
+        help="本地会话 JSON 文件；必须显式指定",
+    )
+    interview_start.add_argument("--force", action="store_true", help="覆盖已有会话")
+    interview_start.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="markdown",
+    )
+    interview_start.add_argument("--today", help="覆盖校验日期 YYYY-MM-DD")
+    interview_start.set_defaults(func=cmd_interview_start)
+
+    interview_answer = interview_sub.add_parser("answer", help="记录当前问题的回答")
+    interview_answer.add_argument("--session", required=True, help="会话 JSON 文件")
+    interview_answer.add_argument(
+        "--answer",
+        required=True,
+        help="回答文本文件；传 - 表示从 stdin 读取",
+    )
+    interview_answer.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="markdown",
+    )
+    interview_answer.set_defaults(func=cmd_interview_answer)
+
+    interview_review = interview_sub.add_parser("review", help="查看证据缺口复盘")
+    interview_review.add_argument("--session", required=True, help="会话 JSON 文件")
+    interview_review.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="markdown",
+    )
+    interview_review.set_defaults(func=cmd_interview_review)
     return parser
 
 

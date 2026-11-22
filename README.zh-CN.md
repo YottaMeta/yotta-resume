@@ -27,6 +27,7 @@ PDF 输入需要本地 PyMuPDF；未安装、扫描件或文件损坏时会明�
 - 需要诊断简历结构、经历证据或量化指标。
 - 需要根据目标岗位 JD 判断关键词覆盖。
 - 需要整理应向求职者追问的高价值问题。
+- 需要运行由简历证据、JD 缺口和岗位题库驱动的单轮模拟面试与复盘。
 - 需要把已确认的简历导出为 DOCX/PDF。
 
 **不要使用**：代投简历、编造经历、预测面试或 Offer 结果、评估受保护个人属性，或制作复杂设计作品集排版。
@@ -46,6 +47,14 @@ python scripts/yotta_resume.py audit --resume resume.pdf
 # 结合 JD 分析，输出 JSON
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 
+# 开始本地单轮模拟面试
+python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt \
+  --role-family soc --level mid --session interview-session.json
+
+# 记录回答并查看证据缺口复盘
+python scripts/yotta_resume.py interview answer --session interview-session.json --answer answer.md
+python scripts/yotta_resume.py interview review --session interview-session.json
+
 # 导出 DOCX、HTML 和 PDF
 python scripts/yotta_resume.py export --input revised.md --docx revised.docx --html revised.html --pdf revised.pdf
 
@@ -58,11 +67,15 @@ PDF 输出需要本机 Chromium、Chrome 或 Edge。没有浏览器时命令会�
 多格式导出会先写入临时区，全部成功后再提交；PDF 失败不会留下本次 DOCX / HTML
 半成品，也不会覆盖原有同名文件。
 
+`interview` 会同时使用简历规则发现、JD 明确关键词缺口和版本化安全题库。
+会话只写入显式传入的本地文件，可中断恢复，不联网、不调用模型、不写长期记忆。
+回答只标记“证据充分 / 部分 / 缺失”，复盘不生成面试分数、通过概率或录用建议。
+
 报告中的 `readiness.score` 只表示“结构准备度（规则分）”，不代表招聘方评分；
 未提供 JD 时岗位覆盖为 `null`。JD 匹配使用版本化固定词表，会公开限制说明；
 它不是语义匹配、岗位排名或招聘建议。不得把该分数改写成其他数值或主观数字区间。
 
-行业识别使用版本化注册表。网络安全已有详细岗位族和种子题库；后续新增行业时
+行业识别使用版本化注册表。网络安全已有详细岗位族和 162 项题库；后续新增行业时
 扩展 `data/industry-registry.json` 及 Schema 即可，不需要改主分析流程。
 
 输入格式、字段和退出码见 [references/usage.md](references/usage.md)；

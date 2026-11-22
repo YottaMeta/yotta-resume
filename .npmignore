@@ -8,3 +8,4 @@ node_modules/
 .npmignore
 .git/
 scripts/test_*.py
+data/history/

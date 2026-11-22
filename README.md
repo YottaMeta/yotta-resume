@@ -31,6 +31,7 @@ be parsed.
 - Review resume structure, evidence, and measurable outcomes.
 - Compare a resume with a target job description.
 - Prepare focused follow-up questions for missing facts.
+- Run a deterministic, evidence-driven single-round mock interview and review.
 - Export a confirmed resume as DOCX/PDF.
 
 **Do not use it** to submit applications, fabricate experience, predict interviews or offers, evaluate protected personal attributes, or create complex design portfolios.
@@ -50,6 +51,14 @@ python scripts/yotta_resume.py audit --resume resume.pdf
 # Analyze with a JD and output JSON
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 
+# Start a local single-round interview
+python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt \
+  --role-family soc --level mid --session interview-session.json
+
+# Record an answer, then review the evidence gaps
+python scripts/yotta_resume.py interview answer --session interview-session.json --answer answer.md
+python scripts/yotta_resume.py interview review --session interview-session.json
+
 # Export DOCX, HTML, and PDF
 python scripts/yotta_resume.py export --input revised.md --docx revised.docx --html revised.html --pdf revised.pdf
 
@@ -63,13 +72,19 @@ and image-only PDFs fail clearly instead of producing a misleading result.
 Multi-format export renders into a temporary area and commits only after every
 requested format succeeds, so a failed PDF does not leave new DOCX/HTML partial files.
 
+The interview command uses resume findings, explicit JD gaps, and the versioned
+security question bank. It keeps state only in the session file you explicitly pass,
+supports interruption and resume, and never writes long-term memory. Answers are
+labelled as sufficient, partial, or missing evidence; the review does not produce
+an interview score, pass probability, or hiring recommendation.
+
 The `readiness.score` field is a structural rule score only. It is not a recruiter
 score. When no JD is provided, job-match coverage is `null`. JD matching uses a
 versioned fixed vocabulary and reports its limitations; it is not semantic matching
 or a hiring recommendation.
 
 Industry detection uses a versioned registry. Cybersecurity currently has the
-detailed role map and seed question bank; future industries can be added by extending
+detailed role map and 162-item question bank; future industries can be added by extending
 `data/industry-registry.json` and its schema without changing the main analysis flow.
 
 See [references/usage.md](references/usage.md) for input format, fields, and exit codes.

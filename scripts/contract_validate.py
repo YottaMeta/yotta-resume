@@ -15,6 +15,8 @@ CONTRACT_FILES = (
     "security-role-map.schema.json",
     "source-registry.json",
     "source-registry.schema.json",
+    "source-watch-state.json",
+    "source-watch-state.schema.json",
     "question-bank.json",
     "question-bank.schema.json",
     "evidence-ledger.json",
@@ -23,6 +25,7 @@ CONTRACT_FILES = (
     "dual-role-contract.schema.json",
     "industry-registry.json",
     "industry-registry.schema.json",
+    "interview-session.schema.json",
 )
 
 REQUIRED_ROLE_IDS = {
@@ -277,6 +280,73 @@ def _validate_sources(data, today, errors):
     return by_id
 
 
+def _validate_source_watch_state(data, sources, errors):
+    filename = "source-watch-state.json"
+    if data is None:
+        return 0
+    _validate_header(data, filename, errors)
+    entries = data.get("sources")
+    if not isinstance(entries, list):
+        errors.append(_error(
+            "SOURCE_STATE_INVALID",
+            filename,
+            "sources 必须是数组",
+        ))
+        return 0
+
+    seen = set()
+    for index, entry in enumerate(entries):
+        if not isinstance(entry, dict):
+            errors.append(_error(
+                "SOURCE_STATE_INVALID",
+                filename,
+                "来源指纹 #{} 必须是对象".format(index),
+            ))
+            continue
+        source_id = entry.get("source_id")
+        if not isinstance(source_id, str) or not source_id:
+            errors.append(_error(
+                "SOURCE_STATE_INVALID",
+                filename,
+                "来源指纹 #{} 缺少 source_id".format(index),
+            ))
+            continue
+        if source_id in seen:
+            errors.append(_error(
+                "SOURCE_STATE_DUPLICATE",
+                filename,
+                "来源指纹重复：{}".format(source_id),
+            ))
+        seen.add(source_id)
+        if source_id not in sources:
+            errors.append(_error(
+                "SOURCE_STATE_UNKNOWN",
+                filename,
+                "来源指纹引用了未登记来源 {}".format(source_id),
+            ))
+        content_hash = entry.get("content_sha256")
+        if (
+            not isinstance(content_hash, str)
+            or len(content_hash) != 64
+            or any(char not in "0123456789abcdef" for char in content_hash)
+        ):
+            errors.append(_error(
+                "SOURCE_STATE_HASH_INVALID",
+                filename,
+                "{} content_sha256 必须是 64 位小写十六进制".format(source_id),
+            ))
+        _parse_date(entry.get("checked_at"), filename, "checked_at", errors)
+        for field in ("etag", "last_modified"):
+            value = entry.get(field)
+            if value is not None and not isinstance(value, str):
+                errors.append(_error(
+                    "SOURCE_STATE_FIELD_INVALID",
+                    filename,
+                    "{} {} 必须是字符串或 null".format(source_id, field),
+                ))
+    return len(seen)
+
+
 def _validate_questions(data, role_ids, level_ids, sources, today, errors):
     filename = "question-bank.json"
     if data is None:
@@ -288,6 +358,7 @@ def _validate_questions(data, role_ids, level_ids, sources, today, errors):
         return 0
 
     seen = set()
+    prompts = {}
     for index, question in enumerate(questions):
         if not isinstance(question, dict):
             errors.append(_error("QUESTION_INVALID", filename, "题目 #{} 必须是对象".format(index)))
@@ -311,6 +382,16 @@ def _validate_questions(data, role_ids, level_ids, sources, today, errors):
         for field in ("dimension", "prompt", "answer_boundary"):
             if not isinstance(question.get(field), str) or not question[field].strip():
                 errors.append(_error("QUESTION_FIELD_MISSING", filename, "{} 缺少 {}".format(question_id, field)))
+        prompt = question.get("prompt")
+        if isinstance(prompt, str) and prompt.strip():
+            if prompt in prompts:
+                errors.append(_error(
+                    "QUESTION_PROMPT_DUPLICATE",
+                    filename,
+                    "{} 与 {} 题干重复".format(question_id, prompts[prompt]),
+                ))
+            else:
+                prompts[prompt] = question_id
         for field in ("expected_evidence", "followups", "source_refs"):
             if not isinstance(question.get(field), list):
                 errors.append(_error("QUESTION_FIELD_MISSING", filename, "{} 缺少 {}".format(question_id, field)))
@@ -692,6 +773,54 @@ def _validate_industry_registry(data, errors):
     return len(seen)
 
 
+def _validate_interview_schema(data, errors):
+    filename = "interview-session.schema.json"
+    if data is None:
+        return
+    properties = data.get("properties")
+    if not isinstance(properties, dict):
+        errors.append(_error(
+            "INTERVIEW_SCHEMA_INVALID",
+            filename,
+            "缺少 properties",
+        ))
+        return
+    schema_version = properties.get("schema_version")
+    if not isinstance(schema_version, dict) or schema_version.get("const") != "1.0":
+        errors.append(_error(
+            "INTERVIEW_SCHEMA_INVALID",
+            filename,
+            "schema_version 必须固定为 1.0",
+        ))
+    required = data.get("required")
+    required_fields = {
+        "session_id",
+        "status",
+        "inputs",
+        "selection",
+        "questions",
+        "answers",
+        "current_question_id",
+        "current_phase",
+    }
+    if not isinstance(required, list) or not required_fields.issubset(set(required)):
+        errors.append(_error(
+            "INTERVIEW_SCHEMA_INVALID",
+            filename,
+            "缺少面试会话必需字段",
+        ))
+    status = properties.get("status")
+    if not isinstance(status, dict) or set(status.get("enum", [])) != {
+        "in_progress",
+        "completed",
+    }:
+        errors.append(_error(
+            "INTERVIEW_SCHEMA_INVALID",
+            filename,
+            "status 枚举必须覆盖进行中和已完成",
+        ))
+
+
 def validate_contracts(root=None, today=None):
     """Return a deterministic, local-only contract validation report."""
     base = Path(root) if root else Path(__file__).resolve().parent.parent / "data"
@@ -710,6 +839,7 @@ def validate_contracts(root=None, today=None):
                 "level_count": 0,
                 "question_count": 0,
                 "source_count": 0,
+                "watch_state_count": 0,
                 "industry_count": 0,
                 "errors": [_error(
                     "TODAY_INVALID",
@@ -736,6 +866,11 @@ def validate_contracts(root=None, today=None):
         current,
         errors,
     )
+    watch_state_count = _validate_source_watch_state(
+        loaded.get("source-watch-state.json"),
+        sources,
+        errors,
+    )
     question_count = _validate_questions(
         loaded.get("question-bank.json"),
         role_ids,
@@ -757,6 +892,10 @@ def validate_contracts(root=None, today=None):
         loaded.get("industry-registry.json"),
         errors,
     )
+    _validate_interview_schema(
+        loaded.get("interview-session.schema.json"),
+        errors,
+    )
 
     errors.sort(key=lambda item: (item["path"], item["code"], item["message"]))
     return {
@@ -767,6 +906,7 @@ def validate_contracts(root=None, today=None):
         "level_count": len(level_ids),
         "question_count": question_count,
         "source_count": len(sources),
+        "watch_state_count": watch_state_count,
         "industry_count": industry_count,
         "errors": errors,
         "warnings": [],
@@ -783,6 +923,7 @@ def _render_text(report):
         "职级：{}".format(report["level_count"]),
         "题目：{}".format(report["question_count"]),
         "来源：{}".format(report["source_count"]),
+        "来源指纹：{}".format(report["watch_state_count"]),
         "行业：{}".format(report["industry_count"]),
     ]
     if report["errors"]:

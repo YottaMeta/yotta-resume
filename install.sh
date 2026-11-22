@@ -146,7 +146,7 @@ assert_no_nested_links() {
 
 # 清理旧版安装残留（fail-closed 白名单）：仅在目标目录已存在且含 SKILL.md 时触发；
 # 只删顶层开发项 + 任意层级缓存；不整目录删除、不跟随符号链接。
-DEV_SKIP="package.json package-lock.json bin lib test .github .git .gitignore .npmignore .gitattributes .yotta .tmp install.sh node_modules"
+DEV_SKIP="package.json package-lock.json bin lib test .github .git .gitignore .npmignore .gitattributes .yotta .tmp install.sh node_modules tools"
 clean_residue() {
   local dest="$1" name p
   [ -d "$dest" ] || return 0

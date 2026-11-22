@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline contract tests for yotta-resume 0.1.3."""
+"""Offline contract tests for yotta-resume 0.2.0."""
 
 import hashlib
 import json
@@ -109,6 +109,23 @@ def valid_bundle():
         "source-registry.schema.json": {
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "title": "source-registry",
+            "type": "object",
+        },
+        "source-watch-state.json": {
+            "schema_version": "1.0",
+            "contract_version": "1.0",
+            "generated_at": TODAY,
+            "sources": [{
+                "source_id": "nist-nice",
+                "content_sha256": "a" * 64,
+                "etag": None,
+                "last_modified": None,
+                "checked_at": TODAY,
+            }],
+        },
+        "source-watch-state.schema.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "source-watch-state",
             "type": "object",
         },
         "question-bank.json": {
@@ -239,6 +256,32 @@ def valid_bundle():
             "title": "industry-registry",
             "type": "object",
         },
+        "interview-session.schema.json": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "title": "interview-session",
+            "type": "object",
+            "required": [
+                "session_id",
+                "status",
+                "inputs",
+                "selection",
+                "questions",
+                "answers",
+                "current_question_id",
+                "current_phase"
+            ],
+            "properties": {
+                "schema_version": {
+                    "const": "1.0"
+                },
+                "status": {
+                    "enum": [
+                        "in_progress",
+                        "completed"
+                    ]
+                }
+            }
+        },
     }
 
 
@@ -303,11 +346,11 @@ class ContractFixture(unittest.TestCase):
 
 
 class ContractValidatorTest(ContractFixture):
-    def test_valid_bundle_checks_all_twelve_release_files(self):
+    def test_valid_bundle_checks_all_fifteen_release_files(self):
         completed, payload = self.run_json(VALIDATOR)
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertTrue(payload.get("ok"))
-        self.assertEqual(payload.get("checked_files"), 12)
+        self.assertEqual(payload.get("checked_files"), 15)
         self.assertEqual(payload.get("industry_count"), 2)
         self.assertEqual(payload.get("errors"), [])
 
@@ -334,6 +377,17 @@ class ContractValidatorTest(ContractFixture):
         completed, payload = self.run_json(VALIDATOR)
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("ROLE_DUPLICATE", self.error_codes(payload))
+
+    def test_duplicate_question_prompt_is_rejected(self):
+        bank = self.bundle["question-bank.json"]
+        duplicate = dict(bank["questions"][0])
+        duplicate["question_id"] = "sec-soc-mid-0002"
+        duplicate["content_hash"] = _question_hash(duplicate)
+        bank["questions"].append(duplicate)
+        self.rewrite("question-bank.json", bank)
+        completed, payload = self.run_json(VALIDATOR)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("QUESTION_PROMPT_DUPLICATE", self.error_codes(payload))
 
     def test_unknown_level_is_rejected(self):
         bank = self.bundle["question-bank.json"]
@@ -377,6 +431,22 @@ class ContractValidatorTest(ContractFixture):
         completed, payload = self.run_json(VALIDATOR)
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("QUESTION_STALE", self.error_codes(payload))
+
+    def test_source_watch_state_cannot_reference_unknown_source(self):
+        state = self.bundle["source-watch-state.json"]
+        state["sources"][0]["source_id"] = "missing-source"
+        self.rewrite("source-watch-state.json", state)
+        completed, payload = self.run_json(VALIDATOR)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("SOURCE_STATE_UNKNOWN", self.error_codes(payload))
+
+    def test_source_watch_state_hash_must_be_sha256(self):
+        state = self.bundle["source-watch-state.json"]
+        state["sources"][0]["content_sha256"] = "not-a-hash"
+        self.rewrite("source-watch-state.json", state)
+        completed, payload = self.run_json(VALIDATOR)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("SOURCE_STATE_HASH_INVALID", self.error_codes(payload))
 
     def test_unconfirmed_evidence_cannot_be_exported(self):
         ledger = self.bundle["evidence-ledger.json"]
@@ -504,6 +574,30 @@ class ContractValidatorTest(ContractFixture):
         self.assertIn("TODAY_INVALID", {item["code"] for item in payload["errors"]})
         self.assertNotIn("Traceback", completed.stderr)
 
+    def test_invalid_today_text_output_has_no_traceback(self):
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(VALIDATOR),
+                "--root",
+                str(self.root),
+                "--format",
+                "text",
+                "--today",
+                "not-a-date",
+            ],
+            cwd=str(SKILL_DIR),
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 2)
+        self.assertIn("TODAY_INVALID", completed.stdout)
+        self.assertNotIn("Traceback", completed.stderr)
+
     def test_validator_output_is_deterministic(self):
         first_completed, first = self.run_json(VALIDATOR)
         second_completed, second = self.run_json(VALIDATOR)
@@ -538,10 +632,10 @@ class BundledContractTest(ContractFixture):
         completed = self.run_bundled()
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
-        self.assertEqual(payload["checked_files"], 12)
+        self.assertEqual(payload["checked_files"], 15)
         self.assertEqual(payload["role_family_count"], 6)
         self.assertEqual(payload["level_count"], 4)
-        self.assertEqual(payload["question_count"], 18)
+        self.assertEqual(payload["question_count"], 162)
         self.assertEqual(payload["industry_count"], 5)
 
     def test_main_cli_contracts_command_succeeds(self):
@@ -620,8 +714,44 @@ class BundledContractTest(ContractFixture):
         self.assertIn("data/dual-role-contract.schema.json", files)
         self.assertIn("data/industry-registry.json", files)
         self.assertIn("data/industry-registry.schema.json", files)
+        self.assertIn("data/interview-session.schema.json", files)
+        self.assertIn("data/source-watch-state.json", files)
+        self.assertIn("data/source-watch-state.schema.json", files)
+        self.assertNotIn("scripts/source_watch.py", files)
+        self.assertNotIn("scripts/bank_pipeline.py", files)
+        self.assertNotIn("references/source-updates.md", files)
         self.assertIn("references/data-contracts.md", files)
         self.assertIn("examples/audit-report.example.md", files)
+
+    def test_npm_package_excludes_history_and_candidate_directories(self):
+        npm = shutil.which("npm.cmd") or shutil.which("npm")
+        self.assertTrue(npm, "npm executable not found")
+        history = SKILL_DIR / "data" / "history"
+        probe = history / "package-probe.json"
+        history.mkdir(exist_ok=True)
+        probe.write_text("{}\n", encoding="utf-8")
+        try:
+            completed = subprocess.run(
+                [npm, "pack", "--dry-run", "--json", "--ignore-scripts"],
+                cwd=str(SKILL_DIR),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                check=False,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            payload = json.loads(completed.stdout)
+            package = payload[0] if isinstance(payload, list) else next(iter(payload.values()))
+            files = {item["path"] for item in package["files"]}
+            self.assertNotIn("data/history/package-probe.json", files)
+        finally:
+            probe.unlink(missing_ok=True)
+            try:
+                history.rmdir()
+            except OSError:
+                pass
 
 
 if __name__ == "__main__":
