@@ -290,7 +290,8 @@ class GoldCliE2ETest(unittest.TestCase):
                 output_root = Path(output_tmp)
                 input_drive = os.path.splitdrive(str(input_root))[0].casefold()
                 output_drive = os.path.splitdrive(str(output_root))[0].casefold()
-                self.assertNotEqual(input_drive, output_drive)
+                if os.name == "nt":
+                    self.assertNotEqual(input_drive, output_drive)
 
                 resume = input_root / "resume.md"
                 jd = input_root / "jd.md"
