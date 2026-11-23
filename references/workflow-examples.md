@@ -3,18 +3,22 @@
 ## 1. 一次快速开始
 
 ```bash
-python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt \
+  --out-dir yotta-resume-action-pack
 ```
 
-先确认自检 PASS，再阅读分析报告和下一步提示。需要 JSON 时追加 `--format json`。
+先确认自检 PASS，再阅读分析报告、表达清晰度追问和用户级下一步。
+需要 JSON 时追加 `--format json`；行动包包含 `action-plan.md`、
+`audit-report.md` 和 `action-pack.json`。
 
 ## 2. 安装后自检
 
 ```bash
-python scripts/yotta_resume.py doctor --format json
+python scripts/yotta_resume.py selftest --quick
+python scripts/yotta_resume.py selftest --full --json
 ```
 
-核心契约或随包文件失败时停止并修复；PyMuPDF 或浏览器缺失只影响对应格式。
+自检不读取用户简历。`WARN` 只影响可选能力，`FAIL` 时停止并修复。
 
 ## 3. 分析
 
@@ -75,7 +79,7 @@ python scripts/yotta_resume.py interview review \
 
 复盘只展示证据状态、缺口、简历改写方向和来源化学习重点，不生成主观分数。
 
-非安全行业可省略 `--role-family`，工具会自动使用 `generic`：
+非安全行业可省略 `--role-family`，工具会自动映射对应岗位族：
 
 ```bash
 python scripts/yotta_resume.py interview start \
@@ -84,7 +88,7 @@ python scripts/yotta_resume.py interview start \
 
 ## 8. 交付检查
 
-- 核对 `doctor`、目标和实际文件名。
+- 核对 `selftest`、行动包、目标和实际文件名。
 - DOCX / PDF 必须可打开，PDF 应包含文字层。
 - 报告联系方式已打码，成品按用户确认保留。
 - 模拟面试会话只在用户显式指定的文件中保存；不需要时直接删除该文件。
@@ -92,5 +96,5 @@ python scripts/yotta_resume.py interview start \
 
 ## 9. 离线边界
 
-分析、模拟面试、导出、`doctor` 和 `contracts` 只读取本地文件。
+分析、模拟面试、导出、`selftest`、`doctor`、`contracts` 和行动包生成只读取本地文件。
 发布包不包含来源抓取或题库维护命令。

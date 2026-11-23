@@ -14,7 +14,7 @@ from contract_validate import validate_contracts
 
 
 SCHEMA_VERSION = "1.0"
-SKILL_VERSION = "0.2.1"
+SKILL_VERSION = "0.2.2-dev.1"
 REQUIRED_CONFIRMATIONS = ("facts", "role", "level", "boundary", "rights")
 _SEMVER_RE = re.compile(
     r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
@@ -656,9 +656,9 @@ def validate_candidate(candidate_dir, data_root, today=None):
         for item in candidate_bank.get("questions", [])
         if isinstance(item, dict) and item.get("status") == "active"
     ]
-    if len(active_questions) < 189:
+    if len(active_questions) < 270:
         raise BankPipelineError(
-            "候选至少需要保留 189 道 active 题目，当前 {} 道。".format(
+            "候选至少需要保留 270 道 active 题目，当前 {} 道。".format(
                 len(active_questions)
             ),
             exit_code=7,

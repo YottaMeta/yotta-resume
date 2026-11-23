@@ -29,9 +29,15 @@ _METRIC_RE = re.compile(
 class InterviewError(Exception):
     """A controlled interview input or state failure."""
 
-    def __init__(self, message, exit_code=2):
+    def __init__(
+        self,
+        message,
+        exit_code=2,
+        error_code="YRS-INTERVIEW-001",
+    ):
         super().__init__(message)
         self.exit_code = exit_code
+        self.error_code = error_code
 
 
 def _now_iso(value=None):
@@ -562,6 +568,17 @@ def build_session(
             jd_text,
             role_map=role_map,
         )
+    elif industry in {
+        "software_engineering",
+        "data_ai",
+        "business_operations",
+    }:
+        role_choice = {
+            "role_family": industry,
+            "role_source": "industry_mapping",
+            "score": None,
+            "candidates": [],
+        }
     else:
         role_choice = {
             "role_family": "generic",

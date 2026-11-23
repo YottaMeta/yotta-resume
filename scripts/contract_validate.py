@@ -35,6 +35,9 @@ REQUIRED_ROLE_IDS = {
     "appsec",
     "security_engineering",
     "grc_data_security",
+    "software_engineering",
+    "data_ai",
+    "business_operations",
     "generic",
 }
 REQUIRED_LEVELS = {"junior", "mid", "senior", "lead"}

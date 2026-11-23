@@ -39,11 +39,13 @@ be parsed.
 ## Quick usage
 
 ```bash
-# Run doctor, analysis, and next-step guidance in one command
-python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+# Self-check, analysis, next-step guidance, and an action pack in one command
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt \
+  --out-dir yotta-resume-action-pack
 
-# Check the installed package and optional PDF capabilities
-python scripts/yotta_resume.py doctor
+# Validate the installed package without reading a user resume
+python scripts/yotta_resume.py selftest --quick
+python scripts/yotta_resume.py selftest --full --json
 
 # Analyze a resume and print a Markdown report
 python scripts/yotta_resume.py audit --resume resume.md
@@ -61,7 +63,7 @@ python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format jso
 python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt \
   --role-family soc --level mid --session interview-session.json
 
-# Non-security industries automatically use the generic role family
+# Non-security industries automatically map to their dedicated role family
 python scripts/yotta_resume.py interview start --resume software.md \
   --session software-session.json
 
@@ -84,8 +86,9 @@ Multi-format export renders into a temporary area and commits only after every
 requested format succeeds, so a failed PDF does not leave new DOCX/HTML partial files.
 
 The interview command uses resume findings, explicit JD gaps, and the versioned
-question bank. Non-security industries automatically use the `generic` role family;
-ambiguous industry signals still require explicit confirmation. It keeps state only in the session file you explicitly pass,
+question bank. Software engineering, data/AI, and business operations map to dedicated
+role families; `generic` remains a controlled fallback. Ambiguous industry signals
+still require explicit confirmation. It keeps state only in the session file you explicitly pass,
 supports interruption and resume, and never writes long-term memory. Answers are
 labelled as sufficient, partial, or missing evidence; the review does not produce
 an interview score, pass probability, or hiring recommendation.
@@ -95,9 +98,9 @@ score. When no JD is provided, job-match coverage is `null`. JD matching uses a
 versioned fixed vocabulary and reports its limitations; it is not semantic matching
 or a hiring recommendation.
 
-Industry detection uses a versioned registry. The bundled bank has 189 items:
-six cybersecurity role families with 27 items each and one generic role family
-with 27 items. Future industries can be added by extending
+Industry detection uses a versioned registry. The bundled bank has 270 items:
+six cybersecurity role families plus software engineering, data/AI, business
+operations, and one generic role family, each with 27 items. Future industries can be added by extending
 `data/industry-registry.json` and its schema without changing the main analysis flow.
 
 See [references/usage.md](references/usage.md) for input format, fields, and exit codes.
@@ -114,8 +117,8 @@ Choose one of the methods below. Skill files are distributed through **npm**; Gi
 ### Method 1: npm one-liner (recommended)
 
 ```text
-npx -y @yottameta/yotta-resume --agent <agent-name>
-npx -y @yottameta/yotta-resume --dir <agent-skills-dir>
+npx -y @yottameta/yotta-resume@0.2.2-dev.1 --agent <agent-name>
+npx -y @yottameta/yotta-resume@0.2.2-dev.1 --dir <agent-skills-dir>
 ```
 
 - `--agent <name>` installs to that agent's default user-level skills directory.
@@ -143,10 +146,11 @@ bash install.sh --list
 
 ## Validation
 
-Run `python scripts/yotta_resume.py doctor` after installation. It checks the bundled
-contracts, required files, optional PDF backends, browser availability, temporary
-directory access, and Python version. Full development tests live in the source
-repository and are not required to use the installed skill.
+Run `python scripts/yotta_resume.py selftest --quick` after installation. It checks
+the bundled contracts, analysis, interview state machine, DOCX/HTML export,
+transaction rollback, and temporary-directory cleanup without reading a user resume.
+`selftest --full` also checks expression boundaries, special input handling, and the
+optional PDF path. `doctor` remains available for a lighter environment check.
 
 ## License
 

@@ -232,6 +232,134 @@
       ]
     },
     {
+      "id": "software_engineering",
+      "display_name": "软件研发 / 后端与全栈",
+      "aliases": [
+        "软件工程师",
+        "后端工程师",
+        "前端工程师",
+        "全栈工程师",
+        "研发工程师"
+      ],
+      "nice_work_roles": [
+        "Software Development",
+        "Software Engineering",
+        "Application Development"
+      ],
+      "evidence_dimensions": [
+        "业务场景与用户规模",
+        "系统边界与技术栈",
+        "个人设计与实现",
+        "测试和质量证据",
+        "发布、监控与回滚",
+        "故障复盘和结果"
+      ],
+      "interview_dimensions": [
+        "需求与边界",
+        "架构取舍",
+        "代码实现",
+        "质量验证",
+        "线上稳定性"
+      ],
+      "risk_rules": [
+        "只列技术栈而不说明个人实现、系统规模和质量结果时不得拔高。",
+        "不得把团队交付、演示项目或教程复现写成生产成果。"
+      ],
+      "resume_evidence_requirements": [
+        "业务场景",
+        "系统边界",
+        "个人动作",
+        "质量验证",
+        "上线结果"
+      ]
+    },
+    {
+      "id": "data_ai",
+      "display_name": "数据与人工智能 / 算法与数据工程",
+      "aliases": [
+        "数据工程师",
+        "数据分析师",
+        "算法工程师",
+        "机器学习工程师",
+        "AI 工程师"
+      ],
+      "nice_work_roles": [
+        "Data Science",
+        "Machine Learning",
+        "Data Engineering",
+        "AI Engineering"
+      ],
+      "evidence_dimensions": [
+        "业务问题和数据授权",
+        "数据范围与质量",
+        "个人负责的模型或管道",
+        "基线和评估口径",
+        "上线、监控和人工复核",
+        "风险和业务收益"
+      ],
+      "interview_dimensions": [
+        "问题定义",
+        "数据质量",
+        "评估方法",
+        "上线一致性",
+        "风险与复核"
+      ],
+      "risk_rules": [
+        "离线指标、演示效果或未经业务验证的提升不得写成真实收益。",
+        "不得推断受保护个人属性，不得使用未授权的数据来源。"
+      ],
+      "resume_evidence_requirements": [
+        "业务问题",
+        "数据范围",
+        "方法和个人责任",
+        "评估基线",
+        "上线与风险"
+      ]
+    },
+    {
+      "id": "business_operations",
+      "display_name": "业务运营 / 用户增长与客户成功",
+      "aliases": [
+        "运营经理",
+        "用户运营",
+        "活动运营",
+        "增长运营",
+        "客户成功"
+      ],
+      "nice_work_roles": [
+        "Marketing Operations",
+        "Customer Success",
+        "Business Operations",
+        "Growth Operations"
+      ],
+      "evidence_dimensions": [
+        "业务目标和约束",
+        "用户或客户规模",
+        "个人负责的动作",
+        "渠道、预算和协作边界",
+        "基线与结果口径",
+        "复盘和长期质量"
+      ],
+      "interview_dimensions": [
+        "目标拆解",
+        "用户分层",
+        "执行动作",
+        "指标归因",
+        "风险与复盘"
+      ],
+      "risk_rules": [
+        "不得把团队业绩、渠道自然增长或短期透支写成个人成果。",
+        "收入、转化和留存结论必须说明口径、时间窗和归因限制。"
+      ],
+      "resume_evidence_requirements": [
+        "业务目标",
+        "用户规模",
+        "个人动作",
+        "指标口径",
+        "结果与复盘"
+      ]
+    },
+    {
       "id": "generic",
       "display_name": "通用岗位 / 非安全行业",
       "aliases": [

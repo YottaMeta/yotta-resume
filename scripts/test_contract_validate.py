@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline contract tests for yotta-resume 0.2.1."""
+"""Offline contract tests for yotta-resume 0.2.2-dev.1."""
 
 import hashlib
 import json
@@ -24,6 +24,9 @@ ROLE_IDS = (
     "appsec",
     "security_engineering",
     "grc_data_security",
+    "software_engineering",
+    "data_ai",
+    "business_operations",
     "generic",
 )
 LEVELS = ("junior", "mid", "senior", "lead")
@@ -634,9 +637,9 @@ class BundledContractTest(ContractFixture):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
         self.assertEqual(payload["checked_files"], 15)
-        self.assertEqual(payload["role_family_count"], 7)
+        self.assertEqual(payload["role_family_count"], 10)
         self.assertEqual(payload["level_count"], 4)
-        self.assertEqual(payload["question_count"], 189)
+        self.assertEqual(payload["question_count"], 270)
         self.assertEqual(payload["industry_count"], 5)
 
     def test_main_cli_contracts_command_succeeds(self):

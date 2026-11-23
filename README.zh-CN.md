@@ -35,11 +35,13 @@ PDF 输入需要本地 PyMuPDF；未安装、扫描件或文件损坏时会明�
 ## 快速使用
 
 ```bash
-# 一次完成自检、分析和下一步提示
-python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+# 一次完成自检、分析、下一步提示和行动包
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt \
+  --out-dir yotta-resume-action-pack
 
-# 检查随包文件、契约和可选 PDF 依赖
-python scripts/yotta_resume.py doctor
+# 不读取用户简历，校验安装副本
+python scripts/yotta_resume.py selftest --quick
+python scripts/yotta_resume.py selftest --full --json
 
 # 分析简历，输出 Markdown 报告
 python scripts/yotta_resume.py audit --resume resume.md
@@ -57,7 +59,7 @@ python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format jso
 python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt \
   --role-family soc --level mid --session interview-session.json
 
-# 非安全行业可省略岗位族，自动使用 generic
+# 非安全行业可省略岗位族，自动映射对应岗位族
 python scripts/yotta_resume.py interview start --resume software.md \
   --session software-session.json
 
@@ -79,7 +81,8 @@ PDF 输出需要本机 Chromium、Chrome 或 Edge。没有浏览器时命令会�
 半成品，也不会覆盖原有同名文件。
 
 `interview` 会同时使用简历规则发现、JD 明确关键词缺口和版本化题库。
-非安全行业自动使用 `generic` 通用岗位族；行业信号冲突时仍要求确认。
+软件研发、数据与 AI、业务运营会映射到对应岗位族；`generic` 只作受控回退。
+行业信号冲突时仍要求确认。
 会话只写入显式传入的本地文件，可中断恢复，不联网、不调用模型、不写长期记忆。
 回答只标记“证据充分 / 部分 / 缺失”，复盘不生成面试分数、通过概率或录用建议。
 
@@ -87,8 +90,8 @@ PDF 输出需要本机 Chromium、Chrome 或 Edge。没有浏览器时命令会�
 未提供 JD 时岗位覆盖为 `null`。JD 匹配使用版本化固定词表，会公开限制说明；
 它不是语义匹配、岗位排名或招聘建议。不得把该分数改写成其他数值或主观数字区间。
 
-行业识别使用版本化注册表。题库共 189 项，网络安全 6 个岗位族各 27 项，
-另有 1 个通用岗位族 27 项；后续新增行业时
+行业识别使用版本化注册表。题库共 270 项：网络安全 6 个岗位族，加上软件研发、
+数据与 AI、业务运营和通用岗位族，各 27 项；后续新增行业时
 扩展 `data/industry-registry.json` 及 Schema 即可，不需要改主分析流程。
 
 输入格式、字段和退出码见 [references/usage.md](references/usage.md)；
@@ -105,8 +108,8 @@ DOCX / HTML / PDF 成品样例见 [examples/export-samples](examples/export-samp
 ### 方式一：npm 一行装（推荐）
 
 ```text
-npx -y @yottameta/yotta-resume --agent <智能体名称>
-npx -y @yottameta/yotta-resume --dir <智能体的技能目录>
+npx -y @yottameta/yotta-resume@0.2.2-dev.1 --agent <智能体名称>
+npx -y @yottameta/yotta-resume@0.2.2-dev.1 --dir <智能体的技能目录>
 ```
 
 - `--agent <name>` 安装到该智能体默认用户级技能目录。
@@ -134,9 +137,10 @@ bash install.sh --list
 
 ## 安装后校验
 
-安装后运行 `python scripts/yotta_resume.py doctor`。它会检查随包契约、关键文件、
-可选 PDF 后端、PDF 浏览器、临时目录和 Python 版本。完整开发测试只存在于源码
-仓库，不要求终端用户运行。
+安装后运行 `python scripts/yotta_resume.py selftest --quick`。它使用合成数据检查
+随包契约、分析、面试状态机、DOCX / HTML 导出、事务回滚和临时目录清理，不读取
+用户简历。`selftest --full` 额外检查表达边界、特殊输入和可选 PDF；`doctor`
+保留为轻量环境检查。
 
 ## 许可证
 

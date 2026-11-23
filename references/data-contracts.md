@@ -4,12 +4,13 @@
 起提供来源指纹状态与候选更新流水线：
 
 - `data/industry-registry.json`：行业注册表、关键词、证据维度和扩展接口。
-- `data/security-role-map.json`：6 个安全岗位族、1 个 `generic` 通用岗位族与 4 个职级。
+- `data/security-role-map.json`：6 个安全岗位族、软件研发、数据与 AI、
+  业务运营、1 个 `generic` 通用岗位族与 4 个职级。
 - `data/evidence-ledger.json`：简历证据账本，记录责任、动作、规模、结果和边界。
 - `data/source-registry.json`：来源层级、日期、刷新周期、失效周期和许可复核状态。
 - `data/source-watch-state.json`：来源内容哈希、ETag、Last-Modified 和最近检查日期。
-- `data/question-bank.json`：189 项结构化原创题库；6 个安全岗位族各 27 项，
-  另有 1 个通用岗位族 27 项；合计 140 道知识题、35 条简历追问和 14 个情景案例。
+- `data/question-bank.json`：270 项结构化原创题库；10 个岗位族各 27 项；
+  合计 200 道知识题、50 条简历追问和 20 个情景案例。
 - `data/dual-role-contract.json`：求职者和 HR 的数据访问、导出及受保护属性边界。
 - `data/interview-session.schema.json`：本地模拟面试的会话、题目、回答和复盘结构。
 
@@ -28,8 +29,9 @@
 - 全表只保留一个 `is_fallback=true` 的兜底行业；
 - 扩展后运行 `contracts` 和 `doctor`。
 
-网络安全行业有 6 个详细岗位族；非安全行业在信号明确时使用 `generic`
-通用岗位族与 27 道通用证据题。后续可按同一结构增加行业专属岗位族与题库。
+网络安全行业有 6 个详细岗位族；软件研发、数据与 AI、业务运营各有一个
+27 题岗位族，并在行业信号明确时自动映射。`generic` 只作受控回退；
+行业信号冲突时仍要求确认。
 
 ## 校验
 

@@ -78,7 +78,7 @@ class DoctorTest(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
         self.assertTrue(payload["ok"])
-        self.assertEqual(payload["version"], "0.2.1")
+        self.assertEqual(payload["version"], "0.2.2-dev.1")
         checks = {item["id"]: item for item in payload["checks"]}
         for check_id in (
             "contracts",
@@ -387,8 +387,8 @@ class BundledContentTest(unittest.TestCase):
             (SKILL_DIR / "data" / "question-bank.json").read_text(encoding="utf-8")
         )
         questions = bank["questions"]
-        self.assertEqual(bank["bank_version"], "0.2.1")
-        self.assertEqual(len(questions), 189)
+        self.assertEqual(bank["bank_version"], "0.2.2-dev.1")
+        self.assertEqual(len(questions), 270)
         self.assertEqual(
             {
                 family: sum(1 for item in questions if item["role_family"] == family)
@@ -400,6 +400,9 @@ class BundledContentTest(unittest.TestCase):
                     "security_engineering",
                     "grc_data_security",
                     "generic",
+                    "software_engineering",
+                    "data_ai",
+                    "business_operations",
                 }
             },
             {
@@ -410,6 +413,9 @@ class BundledContentTest(unittest.TestCase):
                 "security_engineering": 27,
                 "grc_data_security": 27,
                 "generic": 27,
+                "software_engineering": 27,
+                "data_ai": 27,
+                "business_operations": 27,
             },
         )
         self.assertEqual(
@@ -418,13 +424,13 @@ class BundledContentTest(unittest.TestCase):
                 for kind in ("knowledge", "resume_followup", "scenario")
             },
             {
-                "knowledge": 140,
-                "resume_followup": 35,
-                "scenario": 14,
+                "knowledge": 200,
+                "resume_followup": 50,
+                "scenario": 20,
             },
         )
-        self.assertEqual(len({item["question_id"] for item in questions}), 189)
-        self.assertEqual(len({item["prompt"] for item in questions}), 189)
+        self.assertEqual(len({item["question_id"] for item in questions}), 270)
+        self.assertEqual(len({item["prompt"] for item in questions}), 270)
         self.assertEqual(
             {item["kind"] for item in questions},
             {"knowledge", "scenario", "resume_followup"},

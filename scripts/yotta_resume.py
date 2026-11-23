@@ -18,7 +18,9 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree
 
+from clarity_review import build_clarity_review
 from contract_validate import validate_contracts
+from error_codes import error_details, format_controlled_error
 import interview_engine as interview
 
 try:
@@ -30,7 +32,7 @@ except Exception:
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.2.1"
+VERSION = "0.2.2-dev.1"
 SCHEMA_VERSION = "1.1"
 JD_LEXICON_VERSION = "2026-11-21.2"
 
@@ -137,9 +139,10 @@ _SECTION_ALIASES = {
 class ResumeInputError(Exception):
     """A controlled, user-facing input parse failure."""
 
-    def __init__(self, message, exit_code=5):
+    def __init__(self, message, exit_code=5, error_code="YRS-INPUT-002"):
         super().__init__(message)
         self.exit_code = exit_code
+        self.error_code = error_code
 
 
 def _mask_contact(text):
@@ -881,6 +884,10 @@ def audit_resume(markdown, jd="", source_manifest=None, parse_warnings=None):
     """Analyze a resume and return an auditable JSON-safe diagnostic report."""
     model = parse_markdown_resume(markdown)
     bullets = list(_bullet_texts(model))
+    clarity_review = build_clarity_review(
+        (section, heading, _masked(text))
+        for section, heading, text in bullets
+    )
     metric_count = sum(1 for _, _, bullet in bullets if _has_metric(bullet))
     sections = {
         _SECTION_ALIASES.get(section.get("title"), section.get("title"))
@@ -944,6 +951,7 @@ def audit_resume(markdown, jd="", source_manifest=None, parse_warnings=None):
             "issue_count": len(issues),
         },
         "issues": issues,
+        "clarity_review": clarity_review,
         "questions": _build_questions(issues, jd, industry_detection),
         "suggestions": _build_suggestions(issues, jd_match, industry_detection),
         "jd_match": jd_match,
@@ -1046,6 +1054,27 @@ def render_audit_markdown(report):
             lines.append("  - {}".format(issue.get("reason", "")))
     else:
         lines.append("- 未发现当前规则可确定的问题。")
+    lines.append("")
+
+    lines.append("## 表达清晰度")
+    clarity = report.get("clarity_review", {})
+    lines.append("- 状态：{}".format(
+        "需确认" if clarity.get("status") == "attention" else "未发现显式模糊项"
+    ))
+    if clarity.get("signals"):
+        for item in clarity.get("signals", []):
+            lines.append("- **[{}][{}]** {}：{}".format(
+                item.get("id", ""),
+                item.get("code", ""),
+                item.get("original", ""),
+                item.get("reason", ""),
+            ))
+    if clarity.get("questions"):
+        lines.append("- 确认追问：")
+        for item in clarity.get("questions", []):
+            lines.append("  - {}".format(item.get("question", "")))
+    if clarity.get("limitations"):
+        lines.append("- 规则边界：{}".format(clarity["limitations"]))
     lines.append("")
 
     lines.append("## 高价值追问")
@@ -1319,7 +1348,8 @@ def read_resume_document(path):
     if suffix == ".doc":
         raise ResumeInputError(
             "暂不支持旧版 .doc；请另存为 .docx、PDF 或 Markdown，"
-            "也可以先复制正文并用 --resume-text - 从 stdin 读取。"
+            "也可以先复制正文并用 --resume-text - 从 stdin 读取。",
+            error_code="YRS-INPUT-003",
         )
     try:
         raw_text = source.read_text(encoding="utf-8")
@@ -1545,10 +1575,16 @@ def cmd_audit(args):
         document = _load_resume_input(args)
         jd = read_resume_document(args.jd)["text"] if args.jd else ""
     except FileNotFoundError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-INPUT-001", str(error)),
+            file=sys.stderr,
+        )
         return 3
     except ResumeInputError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
 
     try:
@@ -1558,7 +1594,10 @@ def cmd_audit(args):
             source_manifest=document["manifest"],
         )
     except RuntimeError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-DATA-002", str(error)),
+            file=sys.stderr,
+        )
         return 5
     if args.format == "json":
         print(json.dumps(report, ensure_ascii=False, indent=2))
@@ -1571,16 +1610,25 @@ def cmd_export(args):
     try:
         document = read_resume_document(args.input)
     except FileNotFoundError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-INPUT-001", str(error)),
+            file=sys.stderr,
+        )
         return 3
     except ResumeInputError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
 
     try:
         plan = _export_plan(args)
     except ExportPlanError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-EXPORT-001", str(error)),
+            file=sys.stderr,
+        )
         return 2
 
     model = parse_markdown_resume(document["text"])
@@ -1599,10 +1647,20 @@ def cmd_export(args):
                 staged.append((label, staged_path, target))
             _commit_export_outputs(staged, root / "backups")
     except RuntimeError as error:
-        print(str(error), file=sys.stderr)
+        code = "YRS-PDF-002" if "PDF" in str(error) else "YRS-EXPORT-002"
+        print(
+            format_controlled_error(code, str(error)),
+            file=sys.stderr,
+        )
         return 4
     except OSError as error:
-        print("导出文件写入失败：{}".format(error), file=sys.stderr)
+        print(
+            format_controlled_error(
+                "YRS-EXPORT-002",
+                "导出文件写入失败：{}".format(error),
+            ),
+            file=sys.stderr,
+        )
         return 5
 
     print("已导出：" + "、".join(label for label, _ in plan))
@@ -1781,37 +1839,580 @@ def cmd_doctor(args):
     return 0 if report["ok"] else 6
 
 
+_SELFTEST_RESUME = """# 示例候选人
+
+## 个人简介
+后端工程师，使用 TypeScript、Node.js 和 REST API 交付微服务。
+
+## 工作经历
+### 示例科技 | 后端工程师 | 2023.01 - 2025.06
+- 主导订单接口优化，覆盖 12 个服务，将平均响应时间从 320ms 降到 180ms，
+  抽样验证 2000 次请求，故障率下降 35%。
+- 负责数据交付流程，覆盖 30 张核心表，使用自动化校验发现 8 类异常。
+
+## 技能
+TypeScript, Node.js, REST API, Docker, CI/CD
+
+## 教育背景
+示例大学 | 软件工程 | 本科 | 2019.09 - 2023.06
+"""
+
+_SELFTEST_JD = """岗位职责：
+- 负责 TypeScript API、REST API 设计和 Docker 部署。
+- 参与服务性能优化和自动化测试。
+"""
+
+
+def _selftest_check(check_id, status, message, code=None):
+    item = {
+        "id": check_id,
+        "status": status,
+        "message": message,
+        "code": code,
+        "impact": None,
+        "next_action": None,
+    }
+    if code:
+        details = error_details(code)
+        item["impact"] = details["impact"]
+        item["next_action"] = details["next_action"]
+    return item
+
+
+def _selftest_contracts(root, today):
+    report = validate_contracts(root, today)
+    if report.get("ok"):
+        return _selftest_check(
+            "contracts",
+            "PASS",
+            "数据契约校验通过：{} 个文件。".format(report.get("checked_files")),
+        )
+    messages = "；".join(
+        "[{}] {}: {}".format(
+            item.get("code"),
+            item.get("path"),
+            item.get("message"),
+        )
+        for item in report.get("errors", [])[:5]
+    )
+    return _selftest_check(
+        "contracts",
+        "FAIL",
+        messages or "数据契约校验失败。",
+        "YRS-DATA-001",
+    )
+
+
+def _selftest_audit():
+    report = audit_resume(_SELFTEST_RESUME, _SELFTEST_JD)
+    if report.get("schema_version") != SCHEMA_VERSION:
+        raise AssertionError("schema_version 不一致")
+    if not report.get("industry_detection", {}).get("primary_industry"):
+        raise AssertionError("行业识别没有返回主行业")
+    if "clarity_review" not in report:
+        raise AssertionError("缺少表达清晰度结果")
+    if not report.get("suggestions"):
+        raise AssertionError("没有生成修改建议")
+    return _selftest_check(
+        "audit_analysis",
+        "PASS",
+        "内置合成简历完成分析、行业识别和建议生成。",
+    )
+
+
+def _selftest_interview(today):
+    report = audit_resume(_SELFTEST_RESUME, _SELFTEST_JD)
+    with tempfile.TemporaryDirectory(prefix="yotta-resume-selftest-") as tmp:
+        session_path = Path(tmp) / "session.json"
+        session = interview.build_session(
+            _SELFTEST_RESUME,
+            _SELFTEST_JD,
+            report,
+            role_family="generic",
+            level="mid",
+            count=3,
+            seed="package-selftest",
+            today=today,
+            now="2026-11-24T00:00:00Z",
+        )
+        interview.write_session_atomic(session_path, session)
+        loaded = interview.load_session(
+            session_path,
+            bank_version=session["inputs"]["bank_version"],
+        )
+        updated = interview.record_answer(
+            loaded,
+            "我负责响应时间优化，覆盖 12 个服务，使用 2000 次抽样验证，"
+            "将响应时间从 320ms 降到 180ms；未确认部分没有写入简历。",
+            now="2026-11-24T00:01:00Z",
+        )
+        interview.write_session_atomic(session_path, updated)
+        reloaded = interview.load_session(
+            session_path,
+            bank_version=updated["inputs"]["bank_version"],
+        )
+        if len(reloaded.get("answers", [])) != 1:
+            raise AssertionError("面试会话写入后回读不一致")
+    return _selftest_check(
+        "interview_roundtrip",
+        "PASS",
+        "模拟面试可创建、原子写入、回答并中断恢复。",
+    )
+
+
+def _selftest_export_docx_html():
+    model = parse_markdown_resume(_SELFTEST_RESUME)
+    with tempfile.TemporaryDirectory(prefix="yotta-resume-selftest-") as tmp:
+        docx = Path(tmp) / "resume.docx"
+        html = Path(tmp) / "resume.html"
+        export_docx(model, docx)
+        export_html(model, html)
+        if not docx.read_bytes().startswith(b"PK"):
+            raise AssertionError("DOCX 文件头无效")
+        html_text = html.read_text(encoding="utf-8")
+        if "<!doctype html>" not in html_text or "示例候选人" not in html_text:
+            raise AssertionError("HTML 内容不完整")
+    return _selftest_check(
+        "export_docx_html",
+        "PASS",
+        "DOCX 与 HTML 正常生成并通过文件头 / 内容回读。",
+    )
+
+
+def _selftest_export_rollback():
+    with tempfile.TemporaryDirectory(prefix="yotta-resume-selftest-") as tmp:
+        root = Path(tmp)
+        target = root / "resume.docx"
+        staged_ok = root / "staged-ok.docx"
+        staged_fail = root / "staged-fail.docx"
+        target.write_bytes(b"old-docx")
+        staged_ok.write_bytes(b"new-docx")
+        staged_fail.write_bytes(b"new-html")
+        real_replace = os.replace
+        failed = False
+
+        def fail_second(source, destination):
+            if Path(source) == staged_fail:
+                raise OSError("simulated second-output failure")
+            return real_replace(source, destination)
+
+        try:
+            os.replace = fail_second
+            try:
+                _commit_export_outputs(
+                    [
+                        ("DOCX", staged_ok, target),
+                        ("HTML", staged_fail, root / "resume.html"),
+                    ],
+                    root / "backups",
+                )
+            except OSError:
+                failed = True
+        finally:
+            os.replace = real_replace
+
+        if not failed:
+            raise AssertionError("模拟写入失败没有触发回滚")
+        if target.read_bytes() != b"old-docx":
+            raise AssertionError("失败回滚没有恢复原文件")
+        if (root / "resume.html").exists():
+            raise AssertionError("失败回滚留下了半成品")
+    return _selftest_check(
+        "export_rollback",
+        "PASS",
+        "第二个输出失败时，第一个输出已回滚且原文件保留。",
+    )
+
+
+def _selftest_temp_cleanup():
+    probe_path = None
+    with tempfile.TemporaryDirectory(prefix="yotta-resume-selftest-") as tmp:
+        probe_path = Path(tmp)
+        (probe_path / "probe.txt").write_text("ok", encoding="utf-8")
+        if not (probe_path / "probe.txt").is_file():
+            raise AssertionError("临时目录不可写")
+    if probe_path.exists():
+        raise AssertionError("临时目录没有清理")
+    return _selftest_check(
+        "temp_cleanup",
+        "PASS",
+        "临时目录可写，并在离开作用域后清理。",
+    )
+
+
+def _selftest_clarity():
+    vague = audit_resume(
+        "# 示例\n\n## 工作经历\n- 优化流程，显著提升系统稳定性，效果良好。"
+    )
+    clear = audit_resume(_SELFTEST_RESUME)
+    if vague["clarity_review"]["status"] != "attention":
+        raise AssertionError("模糊结果没有触发表达清晰度提示")
+    if clear["clarity_review"]["status"] != "clear":
+        raise AssertionError("量化证据被误判为模糊结果")
+    return _selftest_check(
+        "clarity_boundary",
+        "PASS",
+        "模糊结果与量化结果的清晰度边界符合预期。",
+    )
+
+
+def _selftest_legacy_input():
+    with tempfile.TemporaryDirectory(prefix="yotta-resume-selftest-") as tmp:
+        source = Path(tmp) / "legacy.doc"
+        source.write_bytes(b"\xd0\xcf\x11\xe0legacy")
+        try:
+            read_resume_document(source)
+        except ResumeInputError as error:
+            if error.error_code != "YRS-INPUT-003":
+                raise AssertionError("旧版 DOC 没有返回稳定错误码")
+        else:
+            raise AssertionError("旧版 DOC 被错误接受")
+    return _selftest_check(
+        "input_boundary",
+        "PASS",
+        "旧版 DOC 被受控拒绝，并给出 --resume-text 降级路径。",
+    )
+
+
+def _selftest_pdf(browser_path=None):
+    browser = browser_path or find_pdf_browser()
+    if not browser:
+        return _selftest_check(
+            "pdf_export",
+            "WARN",
+            "未找到 Chromium / Chrome / Edge；DOCX / HTML 可用，PDF 不可用。",
+            "YRS-PDF-001",
+        )
+    model = parse_markdown_resume(_SELFTEST_RESUME)
+    try:
+        with tempfile.TemporaryDirectory(prefix="yotta-resume-selftest-") as tmp:
+            target = Path(tmp) / "resume.pdf"
+            export_pdf(model, target, browser_path=browser, retries=1)
+            if not target.read_bytes().startswith(b"%PDF"):
+                raise RuntimeError("浏览器输出不是有效 PDF")
+    except RuntimeError as error:
+        return _selftest_check(
+            "pdf_export",
+            "WARN",
+            str(error),
+            "YRS-PDF-002",
+        )
+    return _selftest_check(
+        "pdf_export",
+        "PASS",
+        "本机浏览器成功生成有效 PDF。",
+    )
+
+
+def run_selftest(mode="quick", root=None, today=None, browser_path=None):
+    """Run deterministic package-level checks without reading user files."""
+    if mode not in {"quick", "full"}:
+        raise ValueError("selftest mode must be quick or full")
+    checks = []
+    for runner in (
+        lambda: _selftest_contracts(root, today),
+        _selftest_audit,
+        lambda: _selftest_interview(today),
+        _selftest_export_docx_html,
+        _selftest_export_rollback,
+        _selftest_temp_cleanup,
+    ):
+        try:
+            checks.append(runner())
+        except Exception as error:
+            checks.append(_selftest_check(
+                "internal_check",
+                "FAIL",
+                "{}: {}".format(type(error).__name__, error),
+                "YRS-SELFTEST-001",
+            ))
+
+    if mode == "full":
+        for runner in (
+            _selftest_clarity,
+            _selftest_legacy_input,
+            lambda: _selftest_pdf(browser_path),
+        ):
+            try:
+                checks.append(runner())
+            except Exception as error:
+                checks.append(_selftest_check(
+                    "internal_check",
+                    "FAIL",
+                    "{}: {}".format(type(error).__name__, error),
+                    "YRS-SELFTEST-001",
+                ))
+
+    counts = {
+        "PASS": sum(1 for item in checks if item["status"] == "PASS"),
+        "WARN": sum(1 for item in checks if item["status"] == "WARN"),
+        "FAIL": sum(1 for item in checks if item["status"] == "FAIL"),
+    }
+    warnings = [
+        "[{}] {}".format(item["code"], item["message"])
+        for item in checks
+        if item["status"] == "WARN"
+    ]
+    return {
+        "schema_version": "1.0",
+        "version": VERSION,
+        "mode": mode,
+        "ok": counts["FAIL"] == 0,
+        "checks": checks,
+        "warnings": warnings,
+        "summary": {
+            "check_count": len(checks),
+            "pass_count": counts["PASS"],
+            "warn_count": counts["WARN"],
+            "fail_count": counts["FAIL"],
+        },
+        "boundary": (
+            "selftest 只使用随包合成数据和临时目录，不读取用户简历，"
+            "不联网；PDF 属于可选能力，缺失时记为 WARN。"
+        ),
+    }
+
+
+def render_selftest_markdown(report):
+    lines = [
+        "# 元简随包自检",
+        "",
+        "- 状态：{}".format("PASS" if report["ok"] else "FAIL"),
+        "- 版本：{}".format(report["version"]),
+        "- 模式：{}".format(report["mode"]),
+        "- 检查：{} 项（PASS {} / WARN {} / FAIL {}）".format(
+            report["summary"]["check_count"],
+            report["summary"]["pass_count"],
+            report["summary"]["warn_count"],
+            report["summary"]["fail_count"],
+        ),
+        "",
+        "## 检查结果",
+    ]
+    for item in report["checks"]:
+        code = " [{}]".format(item["code"]) if item.get("code") else ""
+        lines.append("- [{}]{} {}：{}".format(
+            item["status"],
+            code,
+            item["id"],
+            item["message"],
+        ))
+        if item["status"] in {"WARN", "FAIL"}:
+            lines.append("  - 影响：{}".format(item.get("impact")))
+            lines.append("  - 下一步：{}".format(item.get("next_action")))
+    lines.extend(["", "## 边界", "", report["boundary"]])
+    return "\n".join(lines)
+
+
+def cmd_selftest(args):
+    try:
+        report = run_selftest(
+            mode=args.mode,
+            root=args.root,
+            today=args.today,
+        )
+    except (OSError, ValueError, RuntimeError) as error:
+        print(
+            format_controlled_error("YRS-SELFTEST-001", str(error)),
+            file=sys.stderr,
+        )
+        return 6
+    if args.json:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+    else:
+        print(render_selftest_markdown(report))
+    return 0 if report["ok"] else 6
+
+
 def _quickstart_next_steps(report):
     steps = [
-        "核对 source_manifest、parse_warnings、industry_detection、issues、"
-        "questions、unknowns 和 jd_match。",
-        "只把用户确认的事实写入 Markdown，不补造数字、职责或结果。",
-        "python scripts/yotta_resume.py export --input revised.md "
-        "--docx revised.docx --html revised.html --pdf revised.pdf",
+        "先确认行业识别、输入解析提示和无法判断项是否符合实际情况。",
+        "逐条回答表达清晰度追问和高价值追问，只提供可以证明的事实。",
+        "按个人责任、规模、方法、结果和证据的顺序修改简历，不补造数字。",
+        "需要成品时再让智能体导出 DOCX、HTML 或 PDF，并检查文件可打开。",
     ]
-    industry = report.get("industry_detection", {}).get("primary_industry")
-    if industry and industry != "cybersecurity":
+    clarity = report.get("clarity_review", {})
+    if clarity.get("status") == "attention":
         steps.append(
-            "如需模拟面试，运行 interview start；非安全行业会自动使用 generic 岗位族。"
+            "先处理表达清晰度提示，避免“效果良好”“参与项目”等没有证据的结论。"
         )
     return steps
+
+
+def _quickstart_advanced_commands():
+    return [
+        "python scripts/yotta_resume.py selftest --quick",
+        "python scripts/yotta_resume.py export --input revised.md "
+        "--docx revised.docx --html revised.html --pdf revised.pdf",
+        "python scripts/yotta_resume.py interview start --resume revised.md "
+        "--session interview-session.json",
+    ]
+
+
+class ActionPackError(RuntimeError):
+    """A controlled quickstart action-pack output failure."""
+
+
+def _action_pack_files(report, next_steps, advanced_commands, today=None):
+    industry = report.get("industry_detection", {})
+    clarity = report.get("clarity_review", {})
+    issues = list(report.get("issues", []))
+    severity_rank = {"high": 0, "medium": 1, "low": 2}
+    issues.sort(key=lambda item: (
+        severity_rank.get(item.get("severity"), 9),
+        item.get("id", ""),
+    ))
+    lines = [
+        "# 元简行动包",
+        "",
+        "- 生成日期：{}".format(today or time.strftime("%Y-%m-%d")),
+        "- 行业：{}（{}）".format(
+            industry.get("display_name") or "待确认",
+            industry.get("primary_industry") or "unknown",
+        ),
+        "- 行业置信度：{}".format(industry.get("confidence", "low")),
+        "- 表达清晰度：{}".format(
+            "需确认" if clarity.get("status") == "attention" else "未发现显式模糊项"
+        ),
+        "",
+        "## 先确认",
+    ]
+    questions = list(report.get("questions", []))
+    questions.extend(clarity.get("questions", []))
+    if questions:
+        for index, item in enumerate(questions, 1):
+            lines.append("{}. {}".format(index, item.get("question", "")))
+    else:
+        lines.append("- 当前规则没有生成新的追问，仍需人工复核事实。")
+    lines.extend(["", "## 高优先级修改"])
+    if issues:
+        for item in issues[:10]:
+            lines.append("- [{}][{}] {}：{}".format(
+                item.get("id", ""),
+                item.get("severity", "medium"),
+                item.get("code", ""),
+                item.get("reason", ""),
+            ))
+    else:
+        lines.append("- 未发现当前规则可确定的结构问题。")
+    lines.extend(["", "## JD 缺口"])
+    jd_match = report.get("jd_match", {})
+    if jd_match.get("missing"):
+        lines.append("- 明确关键词缺口：{}".format(
+            "、".join(jd_match["missing"])
+        ))
+        lines.append("- 只补写真实项目中出现过的关键词，不做关键词堆砌。")
+    else:
+        lines.append("- 未提供 JD，或当前固定词表未发现明确缺口。")
+    lines.extend(["", "## 下一步"])
+    lines.extend(
+        "{}. {}".format(index, item)
+        for index, item in enumerate(next_steps, 1)
+    )
+    lines.extend([
+        "",
+        "## 高级命令",
+        "",
+        "- 这些命令由智能体按需执行，普通用户不需要先理解。",
+    ])
+    lines.extend("- `{}`".format(item) for item in advanced_commands)
+    lines.extend([
+        "",
+        "## 边界",
+        "",
+        report.get("disclaimer", ""),
+    ])
+    plan = "\n".join(lines) + "\n"
+    audit_report = render_audit_markdown(report) + "\n"
+    manifest = {
+        "schema_version": "1.0",
+        "product": "yotta-resume",
+        "version": VERSION,
+        "generated_on": today or time.strftime("%Y-%m-%d"),
+        "industry": {
+            "id": industry.get("primary_industry"),
+            "display_name": industry.get("display_name"),
+            "confidence": industry.get("confidence"),
+            "needs_confirmation": industry.get("needs_confirmation"),
+        },
+        "clarity_status": clarity.get("status"),
+        "source_manifest": report.get("source_manifest", {}),
+        "next_steps": list(next_steps),
+        "advanced_commands": list(advanced_commands),
+        "boundary": report.get("disclaimer", ""),
+    }
+    return {
+        "action-plan.md": plan,
+        "audit-report.md": audit_report,
+        "action-pack.json": (
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+        ),
+    }
+
+
+def _write_action_pack(output_dir, files):
+    target = Path(output_dir).expanduser().resolve()
+    if target.exists():
+        if not target.is_dir():
+            raise ActionPackError("行动包目标不是目录：{}".format(target))
+        if any(target.iterdir()):
+            raise ActionPackError("行动包目标目录非空：{}".format(target))
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temp_dir = Path(tempfile.mkdtemp(
+        prefix="yotta-resume-action-pack-",
+        dir=str(target.parent),
+    ))
+    try:
+        for name, text in files.items():
+            (temp_dir / name).write_text(
+                text,
+                encoding="utf-8",
+                newline="\n",
+            )
+        if target.exists():
+            target.rmdir()
+        os.replace(str(temp_dir), str(target))
+        temp_dir = None
+    except OSError as error:
+        raise ActionPackError("行动包写入失败：{}".format(error)) from error
+    finally:
+        if temp_dir is not None and temp_dir.exists():
+            shutil.rmtree(temp_dir, ignore_errors=True)
+    return [
+        {
+            "name": name,
+            "path": str((target / name).resolve()),
+            "sha256": _sha256_file(target / name),
+        }
+        for name in files
+    ]
 
 
 def cmd_quickstart(args):
     doctor_report = _doctor_checks(args.root, args.today)
     if not doctor_report["ok"]:
-        print("元简自检未通过，先修复以下问题：", file=sys.stderr)
-        for item in doctor_report.get("errors", []):
-            print("- {}".format(item), file=sys.stderr)
+        detail = "元简自检未通过：{}".format(
+            "；".join(doctor_report.get("errors", []))
+        )
+        print(
+            format_controlled_error("YRS-DATA-001", detail),
+            file=sys.stderr,
+        )
         return 6
     try:
         document = _load_resume_input(args)
         jd = read_resume_document(args.jd)["text"] if args.jd else ""
     except FileNotFoundError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-INPUT-001", str(error)),
+            file=sys.stderr,
+        )
         return 3
     except ResumeInputError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
     try:
         report = audit_resume(
@@ -1820,13 +2421,41 @@ def cmd_quickstart(args):
             source_manifest=document["manifest"],
         )
     except RuntimeError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-DATA-002", str(error)),
+            file=sys.stderr,
+        )
         return 5
     payload = {
         "doctor": doctor_report,
         "audit": report,
         "next_steps": _quickstart_next_steps(report),
+        "advanced_commands": _quickstart_advanced_commands(),
+        "action_pack": None,
     }
+    if args.out_dir:
+        files = _action_pack_files(
+            report,
+            payload["next_steps"],
+            payload["advanced_commands"],
+            today=args.today,
+        )
+        try:
+            written = _write_action_pack(args.out_dir, files)
+        except ActionPackError as error:
+            print(
+                format_controlled_error("YRS-EXPORT-003", str(error)),
+                file=sys.stderr,
+            )
+            return 2
+        payload["action_pack"] = {
+            "status": "created",
+            "output_dir": str(Path(args.out_dir).expanduser().resolve()),
+            "industry": report.get("industry_detection", {}).get(
+                "primary_industry"
+            ),
+            "files": written,
+        }
     if args.format == "json":
         rendered = json.dumps(payload, ensure_ascii=False, indent=2)
     else:
@@ -1844,6 +2473,13 @@ def cmd_quickstart(args):
             "",
         ]
         lines.extend("- {}".format(item) for item in payload["next_steps"])
+        if payload["action_pack"]:
+            lines.extend(["", "## 行动包", ""])
+            lines.append("- 目录：{}".format(
+                payload["action_pack"]["output_dir"]
+            ))
+            for item in payload["action_pack"]["files"]:
+                lines.append("- {}：`{}`".format(item["name"], item["path"]))
         rendered = "\n".join(lines)
     if args.out:
         target = Path(args.out)
@@ -1862,11 +2498,13 @@ def _read_interview_answer(source):
         raise interview.InterviewError(
             "回答文件不存在：{}".format(source),
             exit_code=3,
+            error_code="YRS-INPUT-001",
         ) from error
     except (OSError, UnicodeDecodeError) as error:
         raise interview.InterviewError(
             "回答文件无法读取：{}".format(error),
             exit_code=5,
+            error_code="YRS-INPUT-002",
         ) from error
 
 
@@ -1874,7 +2512,12 @@ def cmd_interview_start(args):
     target = Path(args.session)
     if target.exists() and not args.force:
         print(
-            "会话文件已存在：{}；如需覆盖请显式追加 --force。".format(target),
+            format_controlled_error(
+                "YRS-INTERVIEW-002",
+                "会话文件已存在：{}；如需覆盖请显式追加 --force。".format(
+                    target
+                ),
+            ),
             file=sys.stderr,
         )
         return 2
@@ -1882,10 +2525,16 @@ def cmd_interview_start(args):
         document = _load_resume_input(args)
         jd = read_resume_document(args.jd)["text"] if args.jd else ""
     except FileNotFoundError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-INPUT-001", str(error)),
+            file=sys.stderr,
+        )
         return 3
     except ResumeInputError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
     try:
         report = audit_resume(
@@ -1905,13 +2554,25 @@ def cmd_interview_start(args):
         )
         interview.write_session_atomic(target, session)
     except interview.InterviewError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
     except RuntimeError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error("YRS-DATA-002", str(error)),
+            file=sys.stderr,
+        )
         return 5
     except OSError as error:
-        print("会话状态写入失败：{}".format(error), file=sys.stderr)
+        print(
+            format_controlled_error(
+                "YRS-ENV-001",
+                "会话状态写入失败：{}".format(error),
+            ),
+            file=sys.stderr,
+        )
         return 5
     if args.format == "json":
         print(json.dumps(session, ensure_ascii=False, indent=2))
@@ -1931,10 +2592,19 @@ def cmd_interview_answer(args):
         updated = interview.record_answer(session, answer)
         interview.write_session_atomic(args.session, updated)
     except interview.InterviewError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
     except OSError as error:
-        print("会话状态写入失败：{}".format(error), file=sys.stderr)
+        print(
+            format_controlled_error(
+                "YRS-ENV-001",
+                "会话状态写入失败：{}".format(error),
+            ),
+            file=sys.stderr,
+        )
         return 5
     if args.format == "json":
         print(json.dumps(updated, ensure_ascii=False, indent=2))
@@ -1952,7 +2622,10 @@ def cmd_interview_review(args):
         )
         review = interview.build_review(session)
     except interview.InterviewError as error:
-        print(str(error), file=sys.stderr)
+        print(
+            format_controlled_error(error.error_code, str(error)),
+            file=sys.stderr,
+        )
         return error.exit_code
     if args.format == "json":
         print(json.dumps(review, ensure_ascii=False, indent=2))
@@ -2000,6 +2673,31 @@ def build_parser():
     doctor.add_argument("--today", help="覆盖校验日期（YYYY-MM-DD），用于测试与回放")
     doctor.set_defaults(func=cmd_doctor)
 
+    selftest = sub.add_parser(
+        "selftest",
+        help="运行随包离线自检；不读取用户简历或联网",
+    )
+    selftest_mode = selftest.add_mutually_exclusive_group()
+    selftest_mode.add_argument(
+        "--quick",
+        dest="mode",
+        action="store_const",
+        const="quick",
+        help="运行核心路径检查（默认）",
+    )
+    selftest_mode.add_argument(
+        "--full",
+        dest="mode",
+        action="store_const",
+        const="full",
+        help="增加表达、输入边界和可选 PDF 检查",
+    )
+    selftest.set_defaults(mode="quick")
+    selftest.add_argument("--json", action="store_true", help="输出 JSON")
+    selftest.add_argument("--root", help="data 目录或技能根目录")
+    selftest.add_argument("--today", help="覆盖校验日期 YYYY-MM-DD")
+    selftest.set_defaults(func=cmd_selftest)
+
     quickstart = sub.add_parser(
         "quickstart",
         help="自检、分析并输出下一步命令",
@@ -2017,6 +2715,10 @@ def build_parser():
         default="markdown",
     )
     quickstart.add_argument("--out", help="把结果写入本地文件")
+    quickstart.add_argument(
+        "--out-dir",
+        help="创建单入口行动包目录；目录必须不存在或为空",
+    )
     quickstart.add_argument("--root", help="data 目录或技能根目录")
     quickstart.add_argument("--today", help="覆盖校验日期 YYYY-MM-DD")
     quickstart.set_defaults(func=cmd_quickstart)

@@ -59,7 +59,11 @@
               "offensive_security",
               "appsec",
               "security_engineering",
-              "grc_data_security"
+              "grc_data_security",
+              "software_engineering",
+              "data_ai",
+              "business_operations",
+              "generic"
             ]
           },
           "level": {

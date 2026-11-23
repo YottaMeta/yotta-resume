@@ -2,6 +2,7 @@
 """Regression tests for the user package and source-only maintenance surface."""
 
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -24,6 +25,7 @@ USER_COMMANDS = {
     "contracts",
     "doctor",
     "quickstart",
+    "selftest",
 }
 MAINTENANCE_COMMANDS = {"sources", "bank"}
 
@@ -115,6 +117,23 @@ class ReleaseSurfaceTest(unittest.TestCase):
             self.assertFalse((installed / "tools").exists())
             self.assertFalse((installed / "scripts" / "source_watch.py").exists())
             self.assertFalse((installed / "scripts" / "bank_pipeline.py").exists())
+
+    def test_readme_npx_install_examples_use_an_exact_version(self):
+        version = json.loads(
+            (SKILL_DIR / "package.json").read_text(encoding="utf-8")
+        )["version"]
+        for name in ("README.md", "README.zh-CN.md"):
+            text = (SKILL_DIR / name).read_text(encoding="utf-8")
+            self.assertNotRegex(
+                text,
+                r"npx\s+-y\s+@yottameta/yotta-resume(?!@)",
+                name,
+            )
+            self.assertIn(
+                "npx -y @yottameta/yotta-resume@{}".format(version),
+                text,
+                name,
+            )
 
 
 if __name__ == "__main__":

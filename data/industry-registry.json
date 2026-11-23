@@ -118,7 +118,7 @@
         "测试证据",
         "线上结果"
       ],
-      "role_map_ref": null,
+      "role_map_ref": "security-role-map.json",
       "is_fallback": false
     },
     {
@@ -161,7 +161,7 @@
         "指标口径",
         "上线和风险"
       ],
-      "role_map_ref": null,
+      "role_map_ref": "security-role-map.json",
       "is_fallback": false
     },
     {
@@ -204,7 +204,7 @@
         "执行方法",
         "结果归因"
       ],
-      "role_map_ref": null,
+      "role_map_ref": "security-role-map.json",
       "is_fallback": false
     },
     {

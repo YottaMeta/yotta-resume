@@ -684,7 +684,7 @@ class BankValidateTest(BankPipelineFixture):
 
         self.assertTrue(report["ok"])
         self.assertEqual(report["checked_files"], 15)
-        self.assertEqual(report["question_count"], 189)
+        self.assertEqual(report["question_count"], 270)
         validation = json.loads(
             (self.bank_candidate / "validation.json").read_text(encoding="utf-8")
         )
@@ -699,7 +699,7 @@ class BankValidateTest(BankPipelineFixture):
             official_before,
         )
 
-    def test_candidate_must_keep_at_least_189_active_questions(self):
+    def test_candidate_must_keep_at_least_270_active_questions(self):
         first_question_id = self.bank["questions"][0]["question_id"]
         self.propose({
             "add": [],
@@ -717,7 +717,7 @@ class BankValidateTest(BankPipelineFixture):
             reviewed_at="2026-11-24T12:00:00Z",
         )
 
-        with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "189"):
+        with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "270"):
             bank_pipeline.validate_candidate(
                 self.bank_candidate,
                 self.data,
@@ -823,7 +823,10 @@ class BankApplyRollbackTest(BankPipelineFixture):
         self.assertIn(b"0.2.2", raw)
         bank_path.write_bytes(raw.replace(b"0.2.2", b"0.2.3", 1))
 
-        with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "哈希"):
+        with self.assertRaisesRegex(
+            bank_pipeline.BankPipelineError,
+            "大小|哈希",
+        ):
             bank_pipeline.apply_candidate(
                 self.bank_candidate,
                 self.data,
@@ -848,10 +851,13 @@ class BankApplyRollbackTest(BankPipelineFixture):
             self.data / "history" / applied["snapshot_id"] / "question-bank.json"
         )
         raw = snapshot_bank.read_bytes()
-        self.assertIn(b"0.2.1", raw)
-        snapshot_bank.write_bytes(raw.replace(b"0.2.1", b"0.2.3", 1))
+        self.assertIn(b"0.2.2-dev.1", raw)
+        snapshot_bank.write_bytes(raw.replace(b"0.2.2-dev.1", b"0.2.3", 1))
 
-        with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "哈希"):
+        with self.assertRaisesRegex(
+            bank_pipeline.BankPipelineError,
+            "大小|哈希",
+        ):
             bank_pipeline.rollback(
                 applied["snapshot_id"],
                 self.data,
