@@ -501,7 +501,7 @@ class BankPipelineFixture(unittest.TestCase):
             self.source_candidate,
             patch_path,
             self.bank_candidate,
-            target_version="0.2.1",
+            target_version="0.2.2",
             today=TODAY,
         )
 
@@ -533,7 +533,7 @@ class BankProposeTest(BankPipelineFixture):
             self.source_candidate,
             patch_path,
             self.bank_candidate,
-            target_version="0.2.1",
+            target_version="0.2.2",
             today=TODAY,
         )
 
@@ -547,7 +547,7 @@ class BankProposeTest(BankPipelineFixture):
                 encoding="utf-8"
             )
         )
-        self.assertEqual(candidate_bank["bank_version"], "0.2.1")
+        self.assertEqual(candidate_bank["bank_version"], "0.2.2")
         candidate_question = next(
             item
             for item in candidate_bank["questions"]
@@ -684,7 +684,7 @@ class BankValidateTest(BankPipelineFixture):
 
         self.assertTrue(report["ok"])
         self.assertEqual(report["checked_files"], 15)
-        self.assertEqual(report["question_count"], 162)
+        self.assertEqual(report["question_count"], 189)
         validation = json.loads(
             (self.bank_candidate / "validation.json").read_text(encoding="utf-8")
         )
@@ -699,7 +699,7 @@ class BankValidateTest(BankPipelineFixture):
             official_before,
         )
 
-    def test_candidate_must_keep_at_least_162_active_questions(self):
+    def test_candidate_must_keep_at_least_189_active_questions(self):
         first_question_id = self.bank["questions"][0]["question_id"]
         self.propose({
             "add": [],
@@ -717,7 +717,7 @@ class BankValidateTest(BankPipelineFixture):
             reviewed_at="2026-11-24T12:00:00Z",
         )
 
-        with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "162"):
+        with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "189"):
             bank_pipeline.validate_candidate(
                 self.bank_candidate,
                 self.data,
@@ -740,7 +740,7 @@ class BankValidateTest(BankPipelineFixture):
         official = json.loads(
             (self.data / "question-bank.json").read_text(encoding="utf-8")
         )
-        official["bank_version"] = "0.2.1"
+        official["bank_version"] = "0.2.2"
         self.write_json(self.data / "question-bank.json", official)
 
         with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "基线版本"):
@@ -793,7 +793,7 @@ class BankApplyRollbackTest(BankPipelineFixture):
         updated_bank = json.loads(
             (self.data / "question-bank.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(updated_bank["bank_version"], "0.2.1")
+        self.assertEqual(updated_bank["bank_version"], "0.2.2")
         snapshot_dir = (
             self.data / "history" / applied["snapshot_id"]
         )
@@ -820,8 +820,8 @@ class BankApplyRollbackTest(BankPipelineFixture):
         official_before = (self.data / "question-bank.json").read_bytes()
         bank_path = self.bank_candidate / "question-bank.candidate.json"
         raw = bank_path.read_bytes()
-        self.assertIn(b"0.2.1", raw)
-        bank_path.write_bytes(raw.replace(b"0.2.1", b"0.2.2", 1))
+        self.assertIn(b"0.2.2", raw)
+        bank_path.write_bytes(raw.replace(b"0.2.2", b"0.2.3", 1))
 
         with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "哈希"):
             bank_pipeline.apply_candidate(
@@ -848,8 +848,8 @@ class BankApplyRollbackTest(BankPipelineFixture):
             self.data / "history" / applied["snapshot_id"] / "question-bank.json"
         )
         raw = snapshot_bank.read_bytes()
-        self.assertIn(b"0.2.0", raw)
-        snapshot_bank.write_bytes(raw.replace(b"0.2.0", b"0.2.2", 1))
+        self.assertIn(b"0.2.1", raw)
+        snapshot_bank.write_bytes(raw.replace(b"0.2.1", b"0.2.3", 1))
 
         with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "哈希"):
             bank_pipeline.rollback(
@@ -964,7 +964,7 @@ class BankApplyRollbackTest(BankPipelineFixture):
             "--root", str(self.data),
             "--source-candidate", str(self.source_candidate),
             "--patches", str(patch_path),
-            "--target-version", "0.2.1",
+            "--target-version", "0.2.2",
             "--out", str(self.bank_candidate),
             "--today", TODAY,
             "--format", "json",

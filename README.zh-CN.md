@@ -35,6 +35,9 @@ PDF 输入需要本地 PyMuPDF；未安装、扫描件或文件损坏时会明�
 ## 快速使用
 
 ```bash
+# 一次完成自检、分析和下一步提示
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+
 # 检查随包文件、契约和可选 PDF 依赖
 python scripts/yotta_resume.py doctor
 
@@ -44,12 +47,19 @@ python scripts/yotta_resume.py audit --resume resume.md
 # 直接分析文字层 PDF
 python scripts/yotta_resume.py audit --resume resume.pdf
 
+# 处理旧版文档或网页复制文本
+python scripts/yotta_resume.py audit --resume-text - < resume.txt
+
 # 结合 JD 分析，输出 JSON
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 
 # 开始本地单轮模拟面试
 python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt \
   --role-family soc --level mid --session interview-session.json
+
+# 非安全行业可省略岗位族，自动使用 generic
+python scripts/yotta_resume.py interview start --resume software.md \
+  --session software-session.json
 
 # 记录回答并查看证据缺口复盘
 python scripts/yotta_resume.py interview answer --session interview-session.json --answer answer.md
@@ -63,11 +73,13 @@ python scripts/yotta_resume.py contracts --format json
 ```
 
 PDF 输出需要本机 Chromium、Chrome 或 Edge。没有浏览器时命令会返回明确错误，
-不会生成伪 PDF。PDF 输入需要 `pip install pymupdf`。
+不会生成伪 PDF；导出会使用独立浏览器 profile 并做有界重试。PDF 输入需要
+`pip install pymupdf`。
 多格式导出会先写入临时区，全部成功后再提交；PDF 失败不会留下本次 DOCX / HTML
 半成品，也不会覆盖原有同名文件。
 
-`interview` 会同时使用简历规则发现、JD 明确关键词缺口和版本化安全题库。
+`interview` 会同时使用简历规则发现、JD 明确关键词缺口和版本化题库。
+非安全行业自动使用 `generic` 通用岗位族；行业信号冲突时仍要求确认。
 会话只写入显式传入的本地文件，可中断恢复，不联网、不调用模型、不写长期记忆。
 回答只标记“证据充分 / 部分 / 缺失”，复盘不生成面试分数、通过概率或录用建议。
 
@@ -75,12 +87,16 @@ PDF 输出需要本机 Chromium、Chrome 或 Edge。没有浏览器时命令会�
 未提供 JD 时岗位覆盖为 `null`。JD 匹配使用版本化固定词表，会公开限制说明；
 它不是语义匹配、岗位排名或招聘建议。不得把该分数改写成其他数值或主观数字区间。
 
-行业识别使用版本化注册表。网络安全已有详细岗位族和 162 项题库；后续新增行业时
+行业识别使用版本化注册表。题库共 189 项，网络安全 6 个岗位族各 27 项，
+另有 1 个通用岗位族 27 项；后续新增行业时
 扩展 `data/industry-registry.json` 及 Schema 即可，不需要改主分析流程。
 
 输入格式、字段和退出码见 [references/usage.md](references/usage.md)；
 常见问题见 [references/faq.md](references/faq.md)；
 数据契约见 [references/data-contracts.md](references/data-contracts.md)。
+
+软件研发行业示例见 [examples/software-engineer.example.md](examples/software-engineer.example.md)；
+DOCX / HTML / PDF 成品样例见 [examples/export-samples](examples/export-samples/)。
 
 ## 安装
 

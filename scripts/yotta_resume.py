@@ -13,6 +13,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
 from pathlib import Path
 from xml.etree import ElementTree
@@ -29,7 +30,7 @@ except Exception:
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 SCHEMA_VERSION = "1.1"
 JD_LEXICON_VERSION = "2026-11-21.2"
 
@@ -621,11 +622,34 @@ def _build_issues(model, bullets, has_jd, text="", source_manifest=None):
     return _assign_finding_ids(issues)
 
 
-def _build_questions(issues, jd):
+def _build_questions(issues, jd, industry_detection=None):
+    industry_id = (industry_detection or {}).get("primary_industry") or "generic"
+    impact_questions = {
+        "cybersecurity": (
+            "请补充这条工作的规模和结果：覆盖多少资产 / 日志量 / 告警量，"
+            "最终效率或风险指标变化多少？"
+        ),
+        "software_engineering": (
+            "请补充这条工作的业务场景、服务或用户规模、技术栈、个人实现和结果："
+            "覆盖多少接口 / 服务 / 用户，性能、质量或稳定性指标变化多少？"
+        ),
+        "data_ai": (
+            "请补充这条工作的数据规模、方法范围、个人实现和评估结果："
+            "覆盖多少数据 / 用户 / 任务，指标相对基线变化多少？"
+        ),
+        "business_operations": (
+            "请补充这条工作的业务目标、用户或渠道规模、个人动作和结果："
+            "转化、留存、收入或效率指标相对基线变化多少？"
+        ),
+        "generic": (
+            "请补充这条工作的场景、个人职责、动作、规模和结果："
+            "最终指标或交付质量相对基线变化多少？"
+        ),
+    }
     questions = [
         {
             "target": "impact",
-            "question": "请补充这条工作的规模和结果：覆盖多少资产 / 日志量 / 告警量，最终效率或风险指标变化多少？",
+            "question": impact_questions.get(industry_id, impact_questions["generic"]),
             "why": "把职责描述转为可验证证据。",
         },
         {
@@ -640,7 +664,11 @@ def _build_questions(issues, jd):
             "question": "导出的正式简历会保留联系方式，但分析报告会打码。请确认联系方式是否为本人真实信息。",
             "why": "防止误用他人联系方式或泄露敏感信息。",
         })
-    if jd and ("MITRE ATT&CK" in jd or "OWASP" in jd):
+    if (
+        industry_id == "cybersecurity"
+        and jd
+        and ("MITRE ATT&CK" in jd or "OWASP" in jd)
+    ):
         questions.append({
             "target": "jd_gap",
             "question": "JD 提到 MITRE ATT&CK / OWASP，你是否在真实项目里用过？请给出对应场景和动作。",
@@ -649,7 +677,37 @@ def _build_questions(issues, jd):
     return questions
 
 
-def _build_suggestions(issues, jd_match):
+def _build_suggestions(issues, jd_match, industry_detection=None):
+    industry_id = (industry_detection or {}).get("primary_industry") or "generic"
+    weak_claim_examples = {
+        "cybersecurity": (
+            "改写为「我的动作 + 工具/流程 + 规模 + 结果」，例如：独立处置 X 类告警 "
+            "Y 条/日，通过 Z 规则将重复告警降低 N%。"
+        ),
+        "software_engineering": (
+            "改写为「业务/用户场景 + 技术栈 + 个人动作 + 规模 + 质量或性能结果」，"
+            "例如：负责 X 个服务的接口迁移，覆盖 Y 个用户，将响应时间降低 N%。"
+        ),
+        "data_ai": (
+            "改写为「业务问题 + 数据规模 + 方法 + 评估指标 + 上线结果」，"
+            "例如：使用 X 方法处理 Y 条数据，将 Z 指标相对基线提升 N%。"
+        ),
+        "business_operations": (
+            "改写为「业务目标 + 用户/渠道规模 + 策略动作 + 转化或留存结果」，"
+            "例如：负责 X 渠道活动，覆盖 Y 名用户，将转化率提升 N%。"
+        ),
+        "generic": (
+            "改写为「场景 + 个人动作 + 规模 + 结果 + 证据」，"
+            "例如：负责 X 范围的工作，覆盖 Y 个对象，将 Z 指标改善 N%。"
+        ),
+    }
+    summary_examples = {
+        "cybersecurity": "安全方向",
+        "software_engineering": "技术方向",
+        "data_ai": "数据或 AI 方向",
+        "business_operations": "业务方向",
+        "generic": "目标岗位方向",
+    }
     suggestions = []
     for issue in issues:
         if issue["code"] == "weak_claim":
@@ -657,7 +715,10 @@ def _build_suggestions(issues, jd_match):
                 "code": "rewrite_weak_claim",
                 "finding_id": issue["id"],
                 "original": issue["original"],
-                "suggestion": "改写为「我的动作 + 工具/流程 + 规模 + 结果」，例如：独立处置 X 类告警 Y 条/日，通过 Z 规则将重复告警降低 N%。",
+                "suggestion": weak_claim_examples.get(
+                    industry_id,
+                    weak_claim_examples["generic"],
+                ),
                 "priority": "high",
             })
         elif issue["code"] == "missing_metric":
@@ -681,7 +742,9 @@ def _build_suggestions(issues, jd_match):
                 "code": "add_summary",
                 "finding_id": issue["id"],
                 "original": issue["original"],
-                "suggestion": "在简介写 2-3 句：安全方向、核心经验、代表性成果和目标岗位。",
+                "suggestion": "在简介写 2-3 句：{}、核心经验、代表性成果和目标岗位。".format(
+                    summary_examples.get(industry_id, summary_examples["generic"])
+                ),
                 "priority": "medium",
             })
         elif issue["code"] == "placeholder":
@@ -881,8 +944,8 @@ def audit_resume(markdown, jd="", source_manifest=None, parse_warnings=None):
             "issue_count": len(issues),
         },
         "issues": issues,
-        "questions": _build_questions(issues, jd),
-        "suggestions": _build_suggestions(issues, jd_match),
+        "questions": _build_questions(issues, jd, industry_detection),
+        "suggestions": _build_suggestions(issues, jd_match, industry_detection),
         "jd_match": jd_match,
         "industry_detection": industry_detection,
         "readiness": readiness,
@@ -1254,7 +1317,10 @@ def read_resume_document(path):
             },
         }
     if suffix == ".doc":
-        raise ResumeInputError("暂不支持旧版 .doc；请另存为 .docx、PDF 或 Markdown。")
+        raise ResumeInputError(
+            "暂不支持旧版 .doc；请另存为 .docx、PDF 或 Markdown，"
+            "也可以先复制正文并用 --resume-text - 从 stdin 读取。"
+        )
     try:
         raw_text = source.read_text(encoding="utf-8")
     except UnicodeDecodeError as error:
@@ -1273,6 +1339,41 @@ def read_resume_document(path):
             "warnings": [],
         },
     }
+
+
+def read_resume_text(value):
+    """Read pasted resume text directly or from stdin with a source manifest."""
+    if value == "-":
+        raw_text = sys.stdin.read()
+        filename = "<stdin>"
+    else:
+        raw_text = value
+        filename = "<inline-text>"
+    if not isinstance(raw_text, str) or not raw_text.strip():
+        raise ResumeInputError("--resume-text 不能为空。")
+    normalized = _normalise_plain_resume(raw_text)
+    encoded = normalized.encode("utf-8")
+    return {
+        "text": normalized,
+        "manifest": {
+            "type": "text",
+            "filename": filename,
+            "backend": "utf-8",
+            "pages": None,
+            "images": 0,
+            "text_chars": len(normalized),
+            "sha256": hashlib.sha256(encoded).hexdigest(),
+            "extraction_status": "text_loaded",
+            "warnings": [],
+        },
+    }
+
+
+def _load_resume_input(args):
+    resume_text = getattr(args, "resume_text", None)
+    if resume_text is not None:
+        return read_resume_text(resume_text)
+    return read_resume_document(args.resume)
 
 
 def extract_text(path):
@@ -1303,35 +1404,65 @@ def find_pdf_browser():
     return None
 
 
-def export_pdf(model, output_path, browser_path=None):
+def export_pdf(model, output_path, browser_path=None, retries=2):
     """Render the resume to PDF with a local Chromium-compatible browser."""
     browser = browser_path or find_pdf_browser()
     if not browser:
         raise RuntimeError("未找到本机 Chromium/Edge/Chrome，无法导出 PDF；请安装浏览器或改用 DOCX/HTML。")
+    if isinstance(retries, bool) or not isinstance(retries, int) or retries < 1:
+        raise RuntimeError("PDF 重试次数必须是大于等于 1 的整数。")
     output = Path(output_path).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="yotta-resume-") as tmp:
         page = Path(tmp) / "resume.html"
         export_html(model, page)
-        command = [
-            browser,
-            "--headless=new",
-            "--disable-gpu",
-            "--no-first-run",
-            "--disable-extensions",
-            "--print-to-pdf=" + str(output),
-            page.as_uri(),
-        ]
-        completed = subprocess.run(
-            command,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            timeout=90,
-            check=False,
+        last_detail = ""
+        for attempt in range(1, retries + 1):
+            if output.exists():
+                output.unlink()
+            profile_dir = Path(
+                tempfile.mkdtemp(prefix="yotta-resume-profile-", dir=tmp)
+            )
+            command = [
+                browser,
+                "--headless=new",
+                "--disable-gpu",
+                "--no-first-run",
+                "--disable-extensions",
+                "--user-data-dir=" + str(profile_dir),
+                "--print-to-pdf=" + str(output),
+                page.as_uri(),
+            ]
+            try:
+                completed = subprocess.run(
+                    command,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    timeout=90,
+                    check=False,
+                )
+                detail = completed.stderr.decode("utf-8", errors="replace").strip()
+                if (
+                    completed.returncode == 0
+                    and output.is_file()
+                    and output.read_bytes().startswith(b"%PDF")
+                ):
+                    return output
+                last_detail = detail or "未生成有效 PDF"
+            except subprocess.TimeoutExpired:
+                last_detail = "浏览器渲染超时"
+            except OSError as error:
+                last_detail = str(error)
+            if output.exists():
+                output.unlink()
+            if attempt < retries:
+                time.sleep(min(0.2 * attempt, 0.5))
+        raise RuntimeError(
+            "PDF 导出失败（已尝试 {} 次）：{}".format(
+                retries,
+                last_detail or "浏览器未生成有效 PDF",
+            )
         )
-        if completed.returncode != 0 or not output.is_file() or not output.read_bytes().startswith(b"%PDF"):
-            detail = completed.stderr.decode("utf-8", errors="replace").strip()
-            raise RuntimeError("PDF 导出失败（浏览器返回 {}）：{}".format(completed.returncode, detail or "未生成有效 PDF"))
     return output
 
 
@@ -1409,7 +1540,7 @@ def _commit_export_outputs(staged, backup_dir):
 
 def cmd_audit(args):
     try:
-        document = read_resume_document(args.resume)
+        document = _load_resume_input(args)
         jd = read_resume_document(args.jd)["text"] if args.jd else ""
     except FileNotFoundError as error:
         print(str(error), file=sys.stderr)
@@ -1648,6 +1779,78 @@ def cmd_doctor(args):
     return 0 if report["ok"] else 6
 
 
+def _quickstart_next_steps(report):
+    steps = [
+        "核对 source_manifest、parse_warnings、industry_detection、issues、"
+        "questions、unknowns 和 jd_match。",
+        "只把用户确认的事实写入 Markdown，不补造数字、职责或结果。",
+        "python scripts/yotta_resume.py export --input revised.md "
+        "--docx revised.docx --html revised.html --pdf revised.pdf",
+    ]
+    industry = report.get("industry_detection", {}).get("primary_industry")
+    if industry and industry != "cybersecurity":
+        steps.append(
+            "如需模拟面试，运行 interview start；非安全行业会自动使用 generic 岗位族。"
+        )
+    return steps
+
+
+def cmd_quickstart(args):
+    doctor_report = _doctor_checks(args.root, args.today)
+    if not doctor_report["ok"]:
+        print("元简自检未通过，先修复以下问题：", file=sys.stderr)
+        for item in doctor_report.get("errors", []):
+            print("- {}".format(item), file=sys.stderr)
+        return 6
+    try:
+        document = _load_resume_input(args)
+        jd = read_resume_document(args.jd)["text"] if args.jd else ""
+    except FileNotFoundError as error:
+        print(str(error), file=sys.stderr)
+        return 3
+    except ResumeInputError as error:
+        print(str(error), file=sys.stderr)
+        return error.exit_code
+    try:
+        report = audit_resume(
+            document["text"],
+            jd,
+            source_manifest=document["manifest"],
+        )
+    except RuntimeError as error:
+        print(str(error), file=sys.stderr)
+        return 5
+    payload = {
+        "doctor": doctor_report,
+        "audit": report,
+        "next_steps": _quickstart_next_steps(report),
+    }
+    if args.format == "json":
+        rendered = json.dumps(payload, ensure_ascii=False, indent=2)
+    else:
+        lines = [
+            "# 元简快速开始",
+            "",
+            "## 自检",
+            "",
+            "- 状态：PASS",
+            "- 版本：{}".format(doctor_report.get("version")),
+            "",
+            render_audit_markdown(report),
+            "",
+            "## 下一步",
+            "",
+        ]
+        lines.extend("- {}".format(item) for item in payload["next_steps"])
+        rendered = "\n".join(lines)
+    if args.out:
+        target = Path(args.out)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(rendered + "\n", encoding="utf-8", newline="\n")
+    print(rendered)
+    return 0
+
+
 def _read_interview_answer(source):
     if source == "-":
         return sys.stdin.read()
@@ -1674,7 +1877,7 @@ def cmd_interview_start(args):
         )
         return 2
     try:
-        document = read_resume_document(args.resume)
+        document = _load_resume_input(args)
         jd = read_resume_document(args.jd)["text"] if args.jd else ""
     except FileNotFoundError as error:
         print(str(error), file=sys.stderr)
@@ -1764,7 +1967,14 @@ def build_parser():
     sub = parser.add_subparsers(dest="command")
 
     audit = sub.add_parser("audit", help="分析简历并输出追问与建议")
-    audit.add_argument("--resume", required=True, help="简历 Markdown、文本、DOCX 或 PDF 文件")
+    audit_source = audit.add_mutually_exclusive_group(required=True)
+    audit_source.add_argument(
+        "--resume", help="简历 Markdown、文本、DOCX 或 PDF 文件"
+    )
+    audit_source.add_argument(
+        "--resume-text",
+        help="直接传入简历文本；传 - 表示从 stdin 读取",
+    )
     audit.add_argument("--jd", help="目标岗位 JD 文本文件")
     audit.add_argument("--format", choices=("json", "markdown"), default="markdown", help="输出格式")
     audit.set_defaults(func=cmd_audit)
@@ -1788,6 +1998,27 @@ def build_parser():
     doctor.add_argument("--today", help="覆盖校验日期（YYYY-MM-DD），用于测试与回放")
     doctor.set_defaults(func=cmd_doctor)
 
+    quickstart = sub.add_parser(
+        "quickstart",
+        help="自检、分析并输出下一步命令",
+    )
+    quickstart_source = quickstart.add_mutually_exclusive_group(required=True)
+    quickstart_source.add_argument("--resume", help="简历文件")
+    quickstart_source.add_argument(
+        "--resume-text",
+        help="直接传入简历文本；传 - 表示从 stdin 读取",
+    )
+    quickstart.add_argument("--jd", help="目标岗位 JD 文本文件")
+    quickstart.add_argument(
+        "--format",
+        choices=("json", "markdown"),
+        default="markdown",
+    )
+    quickstart.add_argument("--out", help="把结果写入本地文件")
+    quickstart.add_argument("--root", help="data 目录或技能根目录")
+    quickstart.add_argument("--today", help="覆盖校验日期 YYYY-MM-DD")
+    quickstart.set_defaults(func=cmd_quickstart)
+
     interview_parser = sub.add_parser(
         "interview",
         help="运行本地单轮模拟面试并生成证据复盘",
@@ -1796,9 +2027,17 @@ def build_parser():
     interview_sub.required = True
 
     interview_start = interview_sub.add_parser("start", help="开始或覆盖一轮模拟面试")
-    interview_start.add_argument("--resume", required=True, help="简历文件")
+    interview_source = interview_start.add_mutually_exclusive_group(required=True)
+    interview_source.add_argument("--resume", help="简历文件")
+    interview_source.add_argument(
+        "--resume-text",
+        help="直接传入简历文本；传 - 表示从 stdin 读取",
+    )
     interview_start.add_argument("--jd", help="目标岗位 JD 文本文件")
-    interview_start.add_argument("--role-family", help="显式指定安全岗位族")
+    interview_start.add_argument(
+        "--role-family",
+        help="显式指定岗位族；通用岗位用 generic",
+    )
     interview_start.add_argument(
         "--level",
         choices=("junior", "mid", "senior", "lead"),

@@ -41,6 +41,19 @@ JD = """岗位职责：
 3. 熟悉 MITRE ATT&CK、OWASP 与误报治理。
 """
 
+SOFTWARE_RESUME = """# 王五
+wangwu@example.com
+
+## 工作经历
+### 示例科技 | 后端工程师 | 2023.01 - 2026.01
+- 使用 TypeScript、Node.js 和 PostgreSQL 开发订单服务。
+- 负责 REST API、单元测试和 CI/CD 流水线。
+- 将接口平均响应时间从 320ms 降到 180ms。
+
+## 技能
+TypeScript, Node.js, PostgreSQL, Docker, CI/CD
+"""
+
 
 class InterviewEngineTest(unittest.TestCase):
     def build_session(self, count=6, seed="fixed-seed"):
@@ -283,6 +296,25 @@ class InterviewEngineTest(unittest.TestCase):
             for item in session["questions"]
         ))
 
+    def test_non_security_industry_falls_back_to_generic_role(self):
+        report = yr.audit_resume(SOFTWARE_RESUME)
+        session = ie.build_session(
+            SOFTWARE_RESUME,
+            "",
+            report,
+            count=3,
+            seed="generic-software",
+            today=TODAY,
+            now="2026-11-23T12:11:00Z",
+        )
+        self.assertEqual(session["inputs"]["industry"], "software_engineering")
+        self.assertEqual(session["inputs"]["role_family"], "generic")
+        self.assertEqual(session["inputs"]["role_source"], "industry_fallback")
+        self.assertEqual(
+            {item["role_family"] for item in session["questions"]},
+            {"generic"},
+        )
+
     def test_stale_or_inactive_questions_are_not_eligible(self):
         bank = ie.load_question_bank()
         source_registry = ie.load_source_registry()
@@ -333,7 +365,7 @@ class InterviewCliTest(unittest.TestCase):
     def test_version_is_final_r2(self):
         completed = self.run_cli(["--version"])
         self.assertEqual(completed.returncode, 0)
-        self.assertIn("0.2.0", completed.stdout)
+        self.assertIn("0.2.1", completed.stdout)
 
     def test_start_answer_review_cli_flow(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -413,6 +445,31 @@ class InterviewCliTest(unittest.TestCase):
         self.assertIn("不存在", completed.stderr)
         self.assertNotIn("Traceback", completed.stderr)
 
+    def test_start_accepts_resume_text_from_stdin_for_generic_role(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            session = Path(tmp) / "session.json"
+            completed = self.run_cli(
+                [
+                    "interview",
+                    "start",
+                    "--resume-text",
+                    "-",
+                    "--count",
+                    "3",
+                    "--seed",
+                    "generic-cli",
+                    "--session",
+                    str(session),
+                    "--format",
+                    "json",
+                ],
+                stdin=SOFTWARE_RESUME,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            payload = json.loads(completed.stdout)
+            self.assertEqual(payload["inputs"]["role_family"], "generic")
+            self.assertEqual(payload["inputs"]["role_source"], "industry_fallback")
+
     def test_existing_session_requires_force(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -445,7 +502,7 @@ class InterviewBundleTest(unittest.TestCase):
             self.assertTrue((SKILL_DIR / relative).is_file(), relative)
         session = ie.load_session(
             SKILL_DIR / "examples" / "interview-session.example.json",
-            bank_version="0.2.0-dev.3",
+            bank_version="0.2.1",
         )
         self.assertEqual(session["schema_version"], "1.0")
         self.assertEqual(session["inputs"]["role_family"], "soc")

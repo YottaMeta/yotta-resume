@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 from contextlib import redirect_stderr
 from pathlib import Path
 from unittest import mock
@@ -77,7 +78,7 @@ class DoctorTest(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
         self.assertTrue(payload["ok"])
-        self.assertEqual(payload["version"], "0.2.0")
+        self.assertEqual(payload["version"], "0.2.1")
         checks = {item["id"]: item for item in payload["checks"]}
         for check_id in (
             "contracts",
@@ -360,8 +361,8 @@ class BundledContentTest(unittest.TestCase):
             (SKILL_DIR / "data" / "question-bank.json").read_text(encoding="utf-8")
         )
         questions = bank["questions"]
-        self.assertEqual(bank["bank_version"], "0.2.0")
-        self.assertEqual(len(questions), 162)
+        self.assertEqual(bank["bank_version"], "0.2.1")
+        self.assertEqual(len(questions), 189)
         self.assertEqual(
             {
                 family: sum(1 for item in questions if item["role_family"] == family)
@@ -372,6 +373,7 @@ class BundledContentTest(unittest.TestCase):
                     "appsec",
                     "security_engineering",
                     "grc_data_security",
+                    "generic",
                 }
             },
             {
@@ -381,6 +383,7 @@ class BundledContentTest(unittest.TestCase):
                 "appsec": 27,
                 "security_engineering": 27,
                 "grc_data_security": 27,
+                "generic": 27,
             },
         )
         self.assertEqual(
@@ -389,13 +392,13 @@ class BundledContentTest(unittest.TestCase):
                 for kind in ("knowledge", "resume_followup", "scenario")
             },
             {
-                "knowledge": 120,
-                "resume_followup": 30,
-                "scenario": 12,
+                "knowledge": 140,
+                "resume_followup": 35,
+                "scenario": 14,
             },
         )
-        self.assertEqual(len({item["question_id"] for item in questions}), 162)
-        self.assertEqual(len({item["prompt"] for item in questions}), 162)
+        self.assertEqual(len({item["question_id"] for item in questions}), 189)
+        self.assertEqual(len({item["prompt"] for item in questions}), 189)
         self.assertEqual(
             {item["kind"] for item in questions},
             {"knowledge", "scenario", "resume_followup"},
@@ -404,6 +407,35 @@ class BundledContentTest(unittest.TestCase):
             self.assertEqual(question["content_hash"], question_hash(question))
             self.assertEqual(question["status"], "active")
             self.assertTrue(question["source_refs"])
+
+    def test_generic_role_and_internal_source_are_bundled(self):
+        role_map = json.loads(
+            (SKILL_DIR / "data" / "security-role-map.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        roles = {item["id"]: item for item in role_map["role_families"]}
+        self.assertIn("generic", roles)
+        self.assertTrue(roles["generic"]["evidence_dimensions"])
+
+        sources = json.loads(
+            (SKILL_DIR / "data" / "source-registry.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        source_ids = {item["source_id"] for item in sources["sources"]}
+        self.assertIn("yotta-evidence-interview-v1", source_ids)
+
+        bank = json.loads(
+            (SKILL_DIR / "data" / "question-bank.json").read_text(encoding="utf-8")
+        )
+        generic = [
+            item for item in bank["questions"] if item["role_family"] == "generic"
+        ]
+        self.assertEqual(len(generic), 27)
+        self.assertTrue(
+            all("yotta-evidence-interview-v1" in item["source_refs"] for item in generic)
+        )
 
     def test_question_bank_matches_source_generator(self):
         completed = subprocess.run(
@@ -441,6 +473,10 @@ class BundledContentTest(unittest.TestCase):
             "examples/audit-report.example.json",
             "examples/interview-session.example.json",
             "examples/interview-review.example.md",
+            "examples/software-engineer.example.md",
+            "examples/export-samples/resume.example.docx",
+            "examples/export-samples/resume.example.html",
+            "examples/export-samples/resume.example.pdf",
             "references/faq.md",
             "references/trigger-examples.md",
             "references/workflow-examples.md",
@@ -458,6 +494,34 @@ class BundledContentTest(unittest.TestCase):
             "data-contracts.md",
         ):
             self.assertIn(name, references)
+
+    def test_examples_use_current_bank_version(self):
+        bank = json.loads(
+            (SKILL_DIR / "data" / "question-bank.json").read_text(encoding="utf-8")
+        )
+        version = bank["bank_version"]
+        examples = (
+            SKILL_DIR / "examples" / "interview-session.example.json",
+            SKILL_DIR / "examples" / "interview-review.example.md",
+        )
+        for example in examples:
+            text = example.read_text(encoding="utf-8")
+            self.assertIn(version, text, example.name)
+            self.assertNotIn("0.2.0-dev.", text, example.name)
+
+    def test_export_samples_are_valid_files(self):
+        root = SKILL_DIR / "examples" / "export-samples"
+        html = (root / "resume.example.html").read_text(encoding="utf-8")
+        self.assertIn("<!doctype html>", html)
+        self.assertIn("示例候选人", html)
+
+        with zipfile.ZipFile(root / "resume.example.docx") as package:
+            document = package.read("word/document.xml").decode("utf-8")
+        self.assertIn("示例候选人", document)
+
+        pdf = (root / "resume.example.pdf").read_bytes()
+        self.assertTrue(pdf.startswith(b"%PDF"))
+        self.assertGreater(len(pdf), 1000)
 
     def test_user_docs_use_doctor_instead_of_packaged_test_commands(self):
         skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")

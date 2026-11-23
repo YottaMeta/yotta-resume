@@ -39,6 +39,9 @@ be parsed.
 ## Quick usage
 
 ```bash
+# Run doctor, analysis, and next-step guidance in one command
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+
 # Check the installed package and optional PDF capabilities
 python scripts/yotta_resume.py doctor
 
@@ -48,12 +51,19 @@ python scripts/yotta_resume.py audit --resume resume.md
 # Analyze a text-layer PDF directly
 python scripts/yotta_resume.py audit --resume resume.pdf
 
+# Analyze pasted text or an unsupported legacy document after copying its text
+python scripts/yotta_resume.py audit --resume-text - < resume.txt
+
 # Analyze with a JD and output JSON
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 
 # Start a local single-round interview
 python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt \
   --role-family soc --level mid --session interview-session.json
+
+# Non-security industries automatically use the generic role family
+python scripts/yotta_resume.py interview start --resume software.md \
+  --session software-session.json
 
 # Record an answer, then review the evidence gaps
 python scripts/yotta_resume.py interview answer --session interview-session.json --answer answer.md
@@ -67,13 +77,15 @@ python scripts/yotta_resume.py contracts --format json
 ```
 
 PDF export requires a local Chromium, Chrome, or Edge browser. PDF input requires
-`pip install pymupdf`. Missing browsers, missing PDF dependencies, encrypted files,
+`pip install pymupdf`. PDF export uses an isolated browser profile and bounded
+retries. Missing browsers, missing PDF dependencies, encrypted files,
 and image-only PDFs fail clearly instead of producing a misleading result.
 Multi-format export renders into a temporary area and commits only after every
 requested format succeeds, so a failed PDF does not leave new DOCX/HTML partial files.
 
 The interview command uses resume findings, explicit JD gaps, and the versioned
-security question bank. It keeps state only in the session file you explicitly pass,
+question bank. Non-security industries automatically use the `generic` role family;
+ambiguous industry signals still require explicit confirmation. It keeps state only in the session file you explicitly pass,
 supports interruption and resume, and never writes long-term memory. Answers are
 labelled as sufficient, partial, or missing evidence; the review does not produce
 an interview score, pass probability, or hiring recommendation.
@@ -83,13 +95,17 @@ score. When no JD is provided, job-match coverage is `null`. JD matching uses a
 versioned fixed vocabulary and reports its limitations; it is not semantic matching
 or a hiring recommendation.
 
-Industry detection uses a versioned registry. Cybersecurity currently has the
-detailed role map and 162-item question bank; future industries can be added by extending
+Industry detection uses a versioned registry. The bundled bank has 189 items:
+six cybersecurity role families with 27 items each and one generic role family
+with 27 items. Future industries can be added by extending
 `data/industry-registry.json` and its schema without changing the main analysis flow.
 
 See [references/usage.md](references/usage.md) for input format, fields, and exit codes.
 See [references/faq.md](references/faq.md) for common questions.
 See [references/data-contracts.md](references/data-contracts.md) for the bundled data contracts.
+See [examples/software-engineer.example.md](examples/software-engineer.example.md)
+and [examples/export-samples](examples/export-samples/) for non-security input and
+rendered DOCX / HTML / PDF samples.
 
 ## Installation
 

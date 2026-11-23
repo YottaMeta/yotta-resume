@@ -35,14 +35,25 @@ python scripts/yotta_resume.py audit --resume resume.pdf --format json
 报告会记录页数、图片数、文本字符数、SHA-256、解析后端和提示。加密、损坏或
 扫描件不会生成伪完整报告。当前不执行 OCR；图片内信息会列入未知项。
 
+旧版 `.doc`、网页或其它无法直接解析的内容，可先复制正文再传入：
+
+```bash
+python scripts/yotta_resume.py audit --resume-text - --format json < resume.txt
+python scripts/yotta_resume.py interview start --resume-text - \
+  --session session.json < resume.txt
+```
+
 ## CLI
 
 ```bash
 python scripts/yotta_resume.py --version
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
 python scripts/yotta_resume.py doctor --format json
 python scripts/yotta_resume.py audit --resume resume.md --format markdown
+python scripts/yotta_resume.py audit --resume-text - --format json < resume.txt
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 python scripts/yotta_resume.py interview start --resume resume.md --jd jd.txt --role-family soc --session session.json
+python scripts/yotta_resume.py interview start --resume software.md --session generic-session.json
 python scripts/yotta_resume.py interview answer --session session.json --answer answer.md
 python scripts/yotta_resume.py interview review --session session.json --format markdown
 python scripts/yotta_resume.py export --input resume.md --docx resume.docx
@@ -60,7 +71,8 @@ python scripts/yotta_resume.py contracts --format json
 - `6`：数据契约校验失败。
 
 `interview start` 的 `--count` 范围为 `3-10`，默认 `6`。`--role-family`
-无法唯一识别时必须显式传入；`--level` 缺省为 `mid` 并在会话中标记来源。
+无法唯一识别时必须显式传入；非安全行业自动使用 `generic`，行业信号冲突时
+仍要求确认；`--level` 缺省为 `mid` 并在会话中标记来源。
 `interview answer --answer -` 从 stdin 读取。会话文件已存在时默认拒绝覆盖，
 需要显式 `--force`。
 
@@ -95,6 +107,8 @@ python scripts/yotta_resume.py contracts --format json
 ## PDF 要求
 
 PDF 导出使用本机 Chromium、Chrome 或 Edge 的 headless 打印能力。没有浏览器时不会输出伪 PDF，请先安装任一受支持浏览器，或继续使用 DOCX/HTML。
+每次尝试使用独立浏览器 profile；瞬态失败会自动重试，重试耗尽仍按事务化规则
+清理半成品并保留原有同名文件。
 
 ## 多格式导出
 

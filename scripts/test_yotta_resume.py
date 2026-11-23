@@ -11,6 +11,7 @@ import unittest
 import zipfile
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
+from unittest import mock
 
 HERE = Path(__file__).resolve().parent
 CLI = HERE / "yotta_resume.py"
@@ -182,6 +183,22 @@ class AuditTest(unittest.TestCase):
         self.assertNotIn("13800138000", text)
         self.assertNotIn("zhangsan@example.com", text)
 
+    def test_non_security_audit_uses_generic_evidence_language(self):
+        software = (
+            SKILL_DIR / "examples" / "software-engineer.example.md"
+        ).read_text(encoding="utf-8")
+        report = yr.audit_resume(software)
+        questions = " ".join(item["question"] for item in report["questions"])
+        suggestions = " ".join(
+            item["suggestion"] for item in report["suggestions"]
+        )
+        combined = questions + " " + suggestions
+        for security_term in ("告警", "资产", "漏洞"):
+            self.assertNotIn(security_term, combined)
+        self.assertTrue(
+            any(term in combined for term in ("接口", "服务", "性能", "用户"))
+        )
+
     def test_markdown_report_is_human_readable(self):
         report = yr.audit_resume(RESUME, JD)
         text = yr.render_audit_markdown(report)
@@ -269,6 +286,75 @@ class ResumeModelTest(unittest.TestCase):
             self.assertTrue(target.read_bytes().startswith(b"%PDF"))
 
 
+class PdfRetryTest(unittest.TestCase):
+    def test_export_pdf_retries_with_isolated_profiles(self):
+        model = yr.parse_markdown_resume(RESUME)
+        calls = []
+
+        def fake_run(command, **kwargs):
+            calls.append(command)
+            target_arg = next(
+                item for item in command if item.startswith("--print-to-pdf=")
+            )
+            target = Path(target_arg.split("=", 1)[1])
+            if len(calls) == 1:
+                target.write_bytes(b"partial")
+                return subprocess.CompletedProcess(
+                    command, 1, stdout=b"", stderr=b"transient browser crash"
+                )
+            target.write_bytes(b"%PDF-1.4\n%%EOF\n")
+            return subprocess.CompletedProcess(
+                command, 0, stdout=b"", stderr=b""
+            )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "resume.pdf"
+            with mock.patch.object(yr.subprocess, "run", side_effect=fake_run), \
+                    mock.patch.object(yr.time, "sleep", return_value=None):
+                yr.export_pdf(
+                    model,
+                    target,
+                    browser_path="fake-browser",
+                    retries=2,
+                )
+            self.assertTrue(target.read_bytes().startswith(b"%PDF"))
+
+        self.assertEqual(len(calls), 2)
+        profiles = []
+        for command in calls:
+            matches = [
+                item for item in command if item.startswith("--user-data-dir=")
+            ]
+            self.assertEqual(len(matches), 1)
+            profiles.append(matches[0])
+        self.assertNotEqual(profiles[0], profiles[1])
+
+    def test_export_pdf_retry_exhaustion_removes_partial_file(self):
+        model = yr.parse_markdown_resume(RESUME)
+
+        def fake_run(command, **kwargs):
+            target_arg = next(
+                item for item in command if item.startswith("--print-to-pdf=")
+            )
+            Path(target_arg.split("=", 1)[1]).write_bytes(b"partial")
+            return subprocess.CompletedProcess(
+                command, 1, stdout=b"", stderr=b"browser failed"
+            )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "resume.pdf"
+            with mock.patch.object(yr.subprocess, "run", side_effect=fake_run), \
+                    mock.patch.object(yr.time, "sleep", return_value=None):
+                with self.assertRaises(RuntimeError):
+                    yr.export_pdf(
+                        model,
+                        target,
+                        browser_path="fake-browser",
+                        retries=2,
+                    )
+            self.assertFalse(target.exists())
+
+
 class CliTest(unittest.TestCase):
     def run_cli(self, argv):
         out, err = io.StringIO(), io.StringIO()
@@ -279,8 +365,8 @@ class CliTest(unittest.TestCase):
     def test_version(self):
         code, out, _ = self.run_cli(["--version"])
         self.assertEqual(code, 0)
-        self.assertEqual(yr.VERSION, "0.2.0")
-        self.assertIn("0.2.0", out)
+        self.assertEqual(yr.VERSION, "0.2.1")
+        self.assertIn("0.2.1", out)
 
     def test_audit_json(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -293,6 +379,30 @@ class CliTest(unittest.TestCase):
             ])
         self.assertEqual(code, 0)
         payload = json.loads(out)
+        self.assertEqual(payload["schema_version"], "1.1")
+
+    def test_audit_accepts_resume_text_from_stdin(self):
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(CLI),
+                "audit",
+                "--resume-text",
+                "-",
+                "--format",
+                "json",
+            ],
+            cwd=str(SKILL_DIR),
+            input=RESUME,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        payload = json.loads(completed.stdout)
         self.assertEqual(payload["schema_version"], "1.1")
 
     def test_audit_missing_file_returns_three(self):
@@ -312,6 +422,33 @@ class CliTest(unittest.TestCase):
         self.assertEqual(code, 5)
         self.assertIn("PDF", err)
         self.assertNotIn("Traceback", err)
+
+    def test_unsupported_extension_points_to_resume_text(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            resume = Path(tmp) / "resume.doc"
+            resume.write_bytes(b"\xd0\xcf\x11\xe0legacy-word")
+            code, _, err = self.run_cli([
+                "audit", "--resume", str(resume), "--format", "json"
+            ])
+        self.assertEqual(code, 5)
+        self.assertIn("--resume-text", err)
+
+    def test_quickstart_returns_doctor_audit_and_next_steps(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            resume = Path(tmp) / "resume.md"
+            resume.write_text(RESUME, encoding="utf-8")
+            code, out, err = self.run_cli([
+                "quickstart",
+                "--resume",
+                str(resume),
+                "--format",
+                "json",
+            ])
+        self.assertEqual(code, 0, err)
+        payload = json.loads(out)
+        self.assertTrue(payload["doctor"]["ok"])
+        self.assertEqual(payload["audit"]["schema_version"], "1.1")
+        self.assertTrue(payload["next_steps"])
 
     def test_export_docx_and_html(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -1,7 +1,7 @@
 ---
 name: yotta-resume
 description: "元简 — 本地求职者简历诊断、单轮模拟面试与成品导出技能：分析简历结构、经历证据、量化指标、岗位匹配和风险，向用户追问缺失事实，给出逐条合理化修改建议，并运行由简历证据、JD 缺口和来源题库共同驱动的模拟面试与复盘，把确认后的内容导出为 DOCX/PDF。触发：简历诊断、改简历、简历追问、JD匹配、模拟面试、面试复盘、导出Word/PDF。边界：不编造经历，不承诺ATS、面试或Offer结果；不自动投递；不处理复杂设计作品集排版；默认本地处理且不联网。"
-version: 0.2.0
+version: 0.2.1
 license: MIT
 metadata:
   zh_name: "元简"
@@ -11,6 +11,7 @@ metadata:
 
 元简先根据简历内容自动识别行业，再分析结构、经历证据和 JD 关键词覆盖，
 提出可回答的高价值问题，并按用户确认的事实导出 DOCX、HTML 或 PDF。
+无法直接解析的旧版文档或网页内容，可用 `--resume-text` 直接传入文本。
 
 ## 触发与边界
 
@@ -29,7 +30,13 @@ metadata:
 
 ## 核心流程
 
-1. 首次安装或排查环境时先运行：
+1. 最快路径：一次完成自检、分析和下一步提示：
+
+```bash
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+```
+
+2. 首次安装或排查环境时也可单独运行：
 
 ```bash
 python scripts/yotta_resume.py doctor
@@ -38,29 +45,31 @@ python scripts/yotta_resume.py doctor
 `doctor` 会检查随包文件、数据契约、PyMuPDF、PDF 浏览器、临时目录和 Python 版本。
 PDF 依赖是可选项：缺少时仍可使用 Markdown / DOCX 输入和 DOCX / HTML 输出。
 
-2. 读取简历文件。支持 UTF-8 Markdown、UTF-8 文本、DOCX 和文字层 PDF。
+3. 读取简历文件。支持 UTF-8 Markdown、UTF-8 文本、DOCX 和文字层 PDF；
+   特殊来源可运行 `audit --resume-text -` 从 stdin 读取复制文本。
    PDF 解析优先使用本地 PyMuPDF；缺少依赖、加密、损坏或扫描件时明确失败或降级，
    不生成伪完整报告。
-3. 运行分析，优先让用户提供目标岗位 JD：
+4. 运行分析，优先让用户提供目标岗位 JD：
 
 ```bash
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
 ```
 
-4. 阅读 `source_manifest`、`parse_warnings`、`issues`、`unknowns` 和 `questions`。
+5. 阅读 `source_manifest`、`parse_warnings`、`issues`、`unknowns` 和 `questions`。
    先确认输入解析质量、规模、个人边界、结果、日期和 JD 缺口，再修改简历。
    用户没有确认的事实不要写进简历。
-5. 按用户确认的信息修改 Markdown，再导出成品：
+6. 按用户确认的信息修改 Markdown，再导出成品：
 
 ```bash
 python scripts/yotta_resume.py export --input revised.md --docx revised.docx --html revised.html --pdf revised.pdf
 ```
 
-6. 核对输出文件存在且可打开。多格式导出会先写入临时区，全部成功后一次性提交；
+7. 核对输出文件存在且可打开。多格式导出会先写入临时区，全部成功后一次性提交；
    任一格式失败时不会留下本次部分成品，也不会覆盖原有同名文件。
-   PDF 依赖本机 Chromium、Chrome 或 Edge；未找到浏览器时命令会明确失败，不会生成伪 PDF。
+   PDF 依赖本机 Chromium、Chrome 或 Edge，并使用独立浏览器 profile 和有界重试；
+   未找到浏览器或重试耗尽时命令会明确失败，不会生成伪 PDF。
 
-7. 需要模拟面试时运行：
+8. 需要模拟面试时运行：
 
 ```bash
 python scripts/yotta_resume.py interview start \
@@ -76,8 +85,9 @@ python scripts/yotta_resume.py interview review \
 选择依据同时引用简历规则发现、JD 明确关键词缺口和岗位族维度。会话只写入
 用户显式指定的本地文件，可中断恢复，不调用模型、不联网、不写长期记忆。
 回答状态只使用“证据充分 / 部分 / 缺失”，不生成面试分数、通过率或竞争力判断。
+非安全行业自动使用 `generic` 通用岗位族；行业信号冲突时仍要求显式确认。
 
-8. 需要单独校验随包岗位族、证据账本、题库、来源和双角色权限契约时运行：
+9. 需要单独校验随包岗位族、证据账本、题库、来源和双角色权限契约时运行：
 
 ```bash
 python scripts/yotta_resume.py contracts --format json
@@ -87,6 +97,7 @@ python scripts/yotta_resume.py contracts --format json
 
 - `audit`：JSON 或 Markdown，包含文件来源清单、解析提示、行业识别、章节识别、
   要点统计、工具发现、未知项、追问、修改建议、JD 匹配、结构准备度和边界声明。
+- `quickstart`：自检结果、完整分析报告和下一步命令。
 - `interview`：计划、当前问题、回答记录、追问路径和证据缺口复盘。会话状态
   只保存在显式 `--session` 文件中；不包含整份简历原文。
 - `export`：DOCX / HTML / PDF。三者来自同一份 Markdown 内容模型，联系方式保留在成品简历中。
@@ -114,8 +125,8 @@ python scripts/yotta_resume.py contracts --format json
 
 - `industry_detection` 根据简历明确关键词识别行业，只使用可见内容，不读取受保护属性。
 - 当前可区分网络安全、软件研发、数据与人工智能、业务运营和通用兜底。
-- 网络安全已有 6 个岗位族和 162 项结构化题库：120 道知识题、
-  30 条简历追问、12 个情景案例；其他行业暂用通用证据与追问维度。
+- 题库共 189 项：6 个安全岗位族各 27 项，另有 1 个 `generic` 通用岗位族 27 项。
+  非安全行业按通用证据维度运行，不套用安全专属知识题。
 - 新增行业时扩展 `data/industry-registry.json` 及 Schema，不需要修改主分析流程。
 - 多个行业信号接近时 `status=ambiguous`，不得自行猜测行业。
 
@@ -126,6 +137,8 @@ python scripts/yotta_resume.py contracts --format json
 - 自然语言说法见 [references/trigger-examples.md](references/trigger-examples.md)。
 - 端到端工作流见 [references/workflow-examples.md](references/workflow-examples.md)。
 - 行业、岗位族、题库、来源与 HR 权限契约见 [references/data-contracts.md](references/data-contracts.md)。
+- 软件研发输入与三格式成品样例见 `examples/software-engineer.example.md`
+  和 `examples/export-samples/`。
 
 ## 自检
 

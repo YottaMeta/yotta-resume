@@ -84,13 +84,15 @@
             "offensive_security",
             "appsec",
             "security_engineering",
-            "grc_data_security"
+            "grc_data_security",
+            "generic"
           ]
         },
         "role_source": {
           "enum": [
             "user",
-            "detected"
+            "detected",
+            "industry_fallback"
           ]
         },
         "level": {

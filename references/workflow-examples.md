@@ -1,6 +1,14 @@
 # 端到端工作流示例
 
-## 1. 安装后自检
+## 1. 一次快速开始
+
+```bash
+python scripts/yotta_resume.py quickstart --resume resume.md --jd jd.txt
+```
+
+先确认自检 PASS，再阅读分析报告和下一步提示。需要 JSON 时追加 `--format json`。
+
+## 2. 安装后自检
 
 ```bash
 python scripts/yotta_resume.py doctor --format json
@@ -8,7 +16,7 @@ python scripts/yotta_resume.py doctor --format json
 
 核心契约或随包文件失败时停止并修复；PyMuPDF 或浏览器缺失只影响对应格式。
 
-## 2. 分析
+## 3. 分析
 
 ```bash
 python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format json
@@ -17,7 +25,7 @@ python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format jso
 读取 `source_manifest`、`parse_warnings`、`industry_detection`、`issues`、
 `questions`、`unknowns` 和 `jd_match`。先确认行业、输入质量和事实边界，再改简历。
 
-## 3. 追问与确认
+## 4. 追问与确认
 
 按问题的优先级向用户确认：
 
@@ -28,14 +36,14 @@ python scripts/yotta_resume.py audit --resume resume.md --jd jd.txt --format jso
 
 未确认的事实不写入简历。
 
-## 4. 修改 Markdown
+## 5. 修改 Markdown
 
 ```markdown
 ### 示例科技 | 安全运营工程师 | 2023.01 - 2026.01
 - 负责 6 个业务系统的 SIEM 规则维护，按周复盘 100 条脱敏样本，未公开真实告警数据。
 ```
 
-## 5. 事务化导出
+## 6. 事务化导出
 
 ```bash
 python scripts/yotta_resume.py export --input revised.md --docx revised.docx --html revised.html --pdf revised.pdf
@@ -43,7 +51,7 @@ python scripts/yotta_resume.py export --input revised.md --docx revised.docx --h
 
 全部格式成功后才会写入目标路径。任一格式失败时保留原有文件，不留下本次半成品。
 
-## 6. 单轮模拟面试
+## 7. 单轮模拟面试
 
 ```bash
 python scripts/yotta_resume.py interview start \
@@ -67,7 +75,14 @@ python scripts/yotta_resume.py interview review \
 
 复盘只展示证据状态、缺口、简历改写方向和来源化学习重点，不生成主观分数。
 
-## 7. 交付检查
+非安全行业可省略 `--role-family`，工具会自动使用 `generic`：
+
+```bash
+python scripts/yotta_resume.py interview start \
+  --resume software.md --session software-session.json
+```
+
+## 8. 交付检查
 
 - 核对 `doctor`、目标和实际文件名。
 - DOCX / PDF 必须可打开，PDF 应包含文字层。
@@ -75,7 +90,7 @@ python scripts/yotta_resume.py interview review \
 - 模拟面试会话只在用户显式指定的文件中保存；不需要时直接删除该文件。
 - 不承诺 ATS、面试或 Offer 结果。
 
-## 8. 离线边界
+## 9. 离线边界
 
 分析、模拟面试、导出、`doctor` 和 `contracts` 只读取本地文件。
 发布包不包含来源抓取或题库维护命令。

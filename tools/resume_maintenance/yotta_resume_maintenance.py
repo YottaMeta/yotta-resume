@@ -16,7 +16,7 @@ import bank_pipeline  # noqa: E402
 import source_watch  # noqa: E402
 
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 
 try:
     sys.stdin.reconfigure(encoding="utf-8")

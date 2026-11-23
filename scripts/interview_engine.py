@@ -542,23 +542,36 @@ def build_session(
     role_map = role_map or load_role_map()
     bank = bank or load_question_bank()
     source_registry = source_registry or load_source_registry()
-    role_choice = detect_role_family(
-        resume_text,
-        jd_text,
-        role_map=role_map,
-        explicit=role_family,
-    )
+    detection = audit_report.get("industry_detection", {}) or {}
+    industry = detection.get("primary_industry")
+    if role_family:
+        role_choice = detect_role_family(
+            resume_text,
+            jd_text,
+            role_map=role_map,
+            explicit=role_family,
+        )
+    elif detection.get("status") == "ambiguous" or detection.get("needs_confirmation"):
+        raise InterviewError(
+            "行业信号存在歧义，请显式传入 --role-family generic "
+            "或对应安全岗位族后再开始。"
+        )
+    elif industry == "cybersecurity":
+        role_choice = detect_role_family(
+            resume_text,
+            jd_text,
+            role_map=role_map,
+        )
+    else:
+        role_choice = {
+            "role_family": "generic",
+            "role_source": "industry_fallback",
+            "score": None,
+            "candidates": [],
+        }
     role_id = role_choice["role_family"]
     level_value, level_source = _normalise_level(level, role_map)
     count = _validate_count(count)
-    industry = (
-        audit_report.get("industry_detection", {}).get("primary_industry")
-    )
-    if not role_family and industry and industry != "cybersecurity":
-        raise InterviewError(
-            "当前行业不是网络安全，不能应用安全岗位专属题库；"
-            "如目标确为安全岗位，请传入 --role-family。"
-        )
     resume_hash = _sha256_text(resume_text)
     jd_provided = bool(jd_text.strip())
     jd_hash = _sha256_text(jd_text) if jd_provided else None

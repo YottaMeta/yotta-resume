@@ -17,7 +17,14 @@ sys.path.insert(0, str(HERE))
 import yotta_resume as yr  # noqa: E402
 
 
-USER_COMMANDS = {"audit", "export", "interview", "contracts", "doctor"}
+USER_COMMANDS = {
+    "audit",
+    "export",
+    "interview",
+    "contracts",
+    "doctor",
+    "quickstart",
+}
 MAINTENANCE_COMMANDS = {"sources", "bank"}
 
 

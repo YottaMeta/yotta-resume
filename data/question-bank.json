@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "contract_version": "1.0",
-  "bank_version": "0.2.0",
-  "generated_at": "2026-11-22",
+  "bank_version": "0.2.1",
+  "generated_at": "2026-11-23",
   "questions": [
     {
       "question_id": "sec-soc-knowledge-001",
@@ -27,10 +27,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2ea5071b09f49208981d7235ef377a15fdfe81a299311a2088d85b7feae65099"
+      "content_hash": "d2c6ee99189f3817eace7a1375c796a87c6f196d602cfd707d23caddfa1c6af1"
     },
     {
       "question_id": "sec-soc-knowledge-002",
@@ -55,10 +55,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "214a22c38f8ff83d46b5cdb85df9b84e3a7cd8549acb097c7ae086e97ad7a04c"
+      "content_hash": "91624420780d1c1a16cde5b0a09a177b24ed8e1ef521dfe48494d9109135b20e"
     },
     {
       "question_id": "sec-soc-knowledge-003",
@@ -83,10 +83,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ec63e41ec40d618217fbbc5c5318678034c69301e6c250a28fd8038d16583211"
+      "content_hash": "0bfd7a7c8ee202149aabf8864b1d4d8684c4589774c2d6d969b88010b043ac28"
     },
     {
       "question_id": "sec-soc-knowledge-004",
@@ -111,10 +111,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1a42a97b2886490bfed831c0b750a8074ad6429b79c704421f9d8d7807c676f6"
+      "content_hash": "70d85ab8f86719d584c039fda2f65fdeac0f878b4f9898ffcb5a1f8f154fafee"
     },
     {
       "question_id": "sec-soc-knowledge-005",
@@ -139,10 +139,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a9bfb593dabb15dddf6456185e28bca4d66bc17688199870b62256b0cfaa9e7e"
+      "content_hash": "6112ae6d2abb7a51cf950d4a797b3445c14630f6a7199fe4385d5f4eedbcc971"
     },
     {
       "question_id": "sec-soc-knowledge-006",
@@ -169,10 +169,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c207362d6e30e2bc83d2f339f09af47ea48d110b03f34205b453127bac9693a1"
+      "content_hash": "5b2061841abc397dca0c8c16ca8393d7de964a8ac5d0aff28d9c1f1e73d25c80"
     },
     {
       "question_id": "sec-soc-knowledge-007",
@@ -199,10 +199,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7b59bf4d1dd1d59c21f830599cdfad614b1fb6a5ae7f4f128237cd166c555328"
+      "content_hash": "814b36d6d5962d8239704c8b5e3a2a818ca38d60fe5798f7933257c66441ba0e"
     },
     {
       "question_id": "sec-soc-knowledge-008",
@@ -229,10 +229,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "dabde96c0b1f2b16433ad8b8041703631dc063424d21cfa09ca78e742a3d669f"
+      "content_hash": "065f6ada229c2efccce54625aac6257119673e769c60e8c5ee18803e4774d0b3"
     },
     {
       "question_id": "sec-soc-knowledge-009",
@@ -259,10 +259,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f44d7c6873f961fd2c7996debc3d8551e6d4d11e6cff8b0fa3798266d6dbe38a"
+      "content_hash": "bf28d7d11c7f5ba1840f480736d75d4ae853a59bdf0f652873ea2cc2b1fa7047"
     },
     {
       "question_id": "sec-soc-knowledge-010",
@@ -289,10 +289,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "07ba186b40c9dbafc69860f1d9fd82a5b10eac0622d8edaae75352927f1f756d"
+      "content_hash": "47bfff7879318773b0ba574dabee698eeffdd41afd32e30274f6dcfe82f1e17e"
     },
     {
       "question_id": "sec-soc-knowledge-011",
@@ -319,10 +319,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3fdda8a7cc54fc4aeeda00560405126ee7558fb3cb3d084f3a99a29342312ae1"
+      "content_hash": "be3e93a6747770ca34fc85c3b16c5f8f7bfd918a35fe93e9d299a1b438f50df6"
     },
     {
       "question_id": "sec-soc-knowledge-012",
@@ -349,10 +349,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ef4e1eca006d7717b4b5552c2e917fe3f62ea6b72b67f8c65ea8843f777b0064"
+      "content_hash": "65d3ebf5c052de1852d81457a0fab97876b12d9b113c1fceeef423d6cf8e47d6"
     },
     {
       "question_id": "sec-soc-knowledge-013",
@@ -379,10 +379,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5d1d42c81034b33ad9d998fe5cb63e30a49679d1ae8023ebdc4c7d3e4f03f06f"
+      "content_hash": "09f5142620d14719a91146932781533373992ecc073eea66883697a35e8d8886"
     },
     {
       "question_id": "sec-soc-knowledge-014",
@@ -409,10 +409,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e5fa870925e6e266da1b6138997747c6e0a3175b21b9b8f8d5f5e5ec0eadabb7"
+      "content_hash": "36cc18d86c4dc628cb24e17c362aa6829dd95dc133f4881d4ab625d1bfc50974"
     },
     {
       "question_id": "sec-soc-knowledge-015",
@@ -439,10 +439,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4bc5faabe8dcbbd0e6909a69f299be35503b4699a6aa7073a7b775993c0f41e1"
+      "content_hash": "d5ac9b9559a5b786208c8b3fc0d8815b8677a216b1f3dd06adf4d67f57d72671"
     },
     {
       "question_id": "sec-soc-knowledge-016",
@@ -469,10 +469,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "fb832b1a13f8e419337ef5edb76b49a12acff4d3feedfcbbe0464cf0199216ae"
+      "content_hash": "5bcfe4d9ed01ecac397e67ac515fef2d27b0c556105ecc4e9794955a3d1fa031"
     },
     {
       "question_id": "sec-soc-knowledge-017",
@@ -499,10 +499,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7c9e840e0edaa570c5da00c79fb8e6ceedb0fae698bcbad732ab36b5e9f86137"
+      "content_hash": "ab9c06cb15ea58c4076156917d00dded72361dc1b7c0a2ed70c9d0e10e6a7492"
     },
     {
       "question_id": "sec-soc-knowledge-018",
@@ -529,10 +529,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "23e9956c4b8e0b5f74ed84b64f2c249c8a583ed4628beda8c56665c1685bab0d"
+      "content_hash": "31478a8a4251b1034ad3fa93b42ce6f83851dd44cfb19b707b0bf8771e691836"
     },
     {
       "question_id": "sec-soc-knowledge-019",
@@ -559,10 +559,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3eaaedfbc9fe920abdbabe5037be663edebcc99cbb96ffcb373b3f7d8f2b8b9d"
+      "content_hash": "510181e0d2c35d4fd1433baec0cedc7489ffbb9c719422b0de6310dd8de61b46"
     },
     {
       "question_id": "sec-soc-knowledge-020",
@@ -589,10 +589,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d9bd4fa9f8697129961909a756b6b8d7b3920dc478192455dee0ec61ec26a45e"
+      "content_hash": "3fb6f7ec52c568ccc74607ebdd7ba8de209e1e4c5835eaa2c3914ef513f52f0c"
     },
     {
       "question_id": "sec-soc-resume-001",
@@ -617,10 +617,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "fe5918d10db364f7fd93981539a982fb01aad114c1a8cbbdeb4120c6f4d3c86f"
+      "content_hash": "68237b6587a327a7e1a95096e762beacb7d0cd0cbb66d281b79cb00dd827c1e1"
     },
     {
       "question_id": "sec-soc-resume-002",
@@ -644,10 +644,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5615b0bdc3c387f80cccf51de95f94e315acaa52c4f5623379715b7b22d2000b"
+      "content_hash": "d439d95de8ba6baf11b7fa0e6700ca5f1720f2d35d6b88c152b1978d350f099b"
     },
     {
       "question_id": "sec-soc-resume-003",
@@ -671,10 +671,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ca6e2e0f443cb445093a3ff216a738b5357a9a8f1b41fe8a5637d4d512db7134"
+      "content_hash": "46f83cf0ec9ca9d4e2d45e810ff08913af99ad011ac073cced7cf00a3f722e63"
     },
     {
       "question_id": "sec-soc-resume-004",
@@ -699,10 +699,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "abf53c0443c722a189633d4de5c513b7699fad12a9768ea86b1b537931e07bf5"
+      "content_hash": "1c0aed3ca7f34c0c63830d1fa745125d85c3ee66ca4cfebd88f69eafab6f1a88"
     },
     {
       "question_id": "sec-soc-resume-005",
@@ -726,10 +726,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8d3c0163381e93e34c79016512e054db19dfdc3b7b5354abcd4e73e98dcb60a7"
+      "content_hash": "6a97a1878c0570fb53d83096584a3ac86c1df01dec883caf202258d7edd6fe37"
     },
     {
       "question_id": "sec-soc-scenario-001",
@@ -754,10 +754,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "5e32d856bb05704d72892339c973eb161f5079038e77d7d5278098ff2f9fca7c"
+      "content_hash": "8300e0b8e3797ba6e820fdd645e8b56dc0dd34e5cd1bcb3e0302b38510dc1c85"
     },
     {
       "question_id": "sec-soc-scenario-002",
@@ -782,10 +782,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "9ce655bd83fd125fea0e69f2bc800c6631c7b13710f76c8a47b6d7bc9b72f390"
+      "content_hash": "a78e1848ee066c0bcf0879a884807f1cc0bd2a4dafe41dc63104881cfe9cbdc1"
     },
     {
       "question_id": "sec-ir-knowledge-001",
@@ -810,10 +810,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "37bff629d24ca286fca2d38ffd863145f3116e242b5c96b1a1bb41bc2ef6e4cf"
+      "content_hash": "71d7c9b92aafbcf30bd497643505806781e92a07d67031bdd0b3b5569f8b6c2e"
     },
     {
       "question_id": "sec-ir-knowledge-002",
@@ -838,10 +838,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8b8b827ca128f5b5231f715b84957c286ecc36b87f1768cd697cf62310ad88bd"
+      "content_hash": "fe1371219404a6807c176ffae1f4a3e9bcf7a3d20712df108114ae78a8374c3a"
     },
     {
       "question_id": "sec-ir-knowledge-003",
@@ -866,10 +866,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "cd206bd32288ae2e24646f917f91c0525a51144c4707d4382d456f7b4c778d32"
+      "content_hash": "2196cb25fd489941301fc5079555451c6888c0b1659e4693786abaeec9648fce"
     },
     {
       "question_id": "sec-ir-knowledge-004",
@@ -894,10 +894,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "325e883c4d47127458ae993ede091a77ea2674d0a14b77d0be1bfeafbd31bd3c"
+      "content_hash": "23c7197b9c8fa087de2551bca2254c16232f86851d170fc752ac3753947e0ab8"
     },
     {
       "question_id": "sec-ir-knowledge-005",
@@ -922,10 +922,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5c054514dd76988c29a7b07d66d3b2dd52662cec2523946e0c39593d5841bce8"
+      "content_hash": "2153db9bcb13c65072943a4b4bbdf0b736f19f5ab16332a583649057d05c9970"
     },
     {
       "question_id": "sec-ir-knowledge-006",
@@ -952,10 +952,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2e696e9c5442f8aa45a68204c5b673ced0a241efa41927d81cb5f9b35acc8676"
+      "content_hash": "4f56f3f172c901553dcf7df415e2fda3a986e51f9e54fa548e01a8c55e4060d8"
     },
     {
       "question_id": "sec-ir-knowledge-007",
@@ -982,10 +982,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "fac2f51980070da6db1f4da9e7546a344ebc30dae05eae940b45f9e5f790ee72"
+      "content_hash": "63bf5c2ca67bbe8d552e7022f1b7012b62075792452696f4146d97d935afa957"
     },
     {
       "question_id": "sec-ir-knowledge-008",
@@ -1012,10 +1012,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6ea1d529c9014a9589ae133f41c75bc9eeabf6c249b5d3fb96b0d753ab09f14a"
+      "content_hash": "3104c70bfb5538b7d4eef707be4743a9c55a4ad05b42e91861dc3853b44edcb1"
     },
     {
       "question_id": "sec-ir-knowledge-009",
@@ -1042,10 +1042,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f6c3268ce6e5758909a7cc2eebda804938867b904d57a376db7128717cd39e39"
+      "content_hash": "70840fcc84f76c86a1dcb85434788bdc87d8b419ae7c5c6dbd9d15ccdba2839c"
     },
     {
       "question_id": "sec-ir-knowledge-010",
@@ -1072,10 +1072,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8ed669e1cfad34091b958256fc23578e06f7c231177c4ac027d7831ed0e78199"
+      "content_hash": "a1926f22514027a5abb6670ccec218096e03870d71c2fb29161ce30dc8f0bd2a"
     },
     {
       "question_id": "sec-ir-knowledge-011",
@@ -1102,10 +1102,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "efc045dc4ec85edee39be346e4aa936c7699ccfe3226bde2bb80aa38e5f87f06"
+      "content_hash": "d53743c57b4e708762358a7bf3e9458f31b27efef8093d4d29a2b08abeb2a7d8"
     },
     {
       "question_id": "sec-ir-knowledge-012",
@@ -1132,10 +1132,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f0d270131dffa1a1d91f2593902ede15b8d0eb58fb598ba2d38f62c2bbbd03cd"
+      "content_hash": "64f181f536652ad79abec43beb2110bd498e617bec58ddfcfd4cfa45fd15b5c1"
     },
     {
       "question_id": "sec-ir-knowledge-013",
@@ -1162,10 +1162,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "49489da68baefab5fb96da69bdf46a704945ca8f6b94992f0564ba7d59a749ac"
+      "content_hash": "9c80020c4a4b06987b1eac47f4e2bda89f6848fb7cb470fbb7d88f2d653dd372"
     },
     {
       "question_id": "sec-ir-knowledge-014",
@@ -1192,10 +1192,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "21fedc82e389a56a4baa6b9077340b4f23da18a4f7b86bdc6179dbdb6458b1d6"
+      "content_hash": "82f2453ebd1010cbfa6f89013a9d1eeea638da8a20bf4ad91731eb10542bc8d4"
     },
     {
       "question_id": "sec-ir-knowledge-015",
@@ -1222,10 +1222,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c28c9880806e6a4cd44c0ccee847fbc30a93e32ba6ae7c16c09586b9377b98d1"
+      "content_hash": "9a3545e4939c31cd104721ede40657db900449a32524890b79c3620c958a4ced"
     },
     {
       "question_id": "sec-ir-knowledge-016",
@@ -1252,18 +1252,18 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7ed0690547b38ed0b01a2348ef2633ee9e0dfab7a2786be98601e32201fa9895"
+      "content_hash": "428571963478276e33c19dd4b08c7db4415b4e15a88de954e413e6ef37487bec"
     },
     {
       "question_id": "sec-ir-knowledge-017",
       "role_family": "incident_response",
       "level": "lead",
-      "dimension": "外部通报",
+      "dimension": "通报协作",
       "kind": "knowledge",
-      "prompt": "如果由你负责“外部通报、法务协作和披露边界”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "prompt": "如果由你负责“通报协作、法务协作和披露边界”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
       "expected_evidence": [
         "职责分工",
         "度量方式",
@@ -1282,10 +1282,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e9d63ca7e73b197a58fc78763a5ddbdd28372700be1e1a22c5e995aeee7aea32"
+      "content_hash": "2e9ccc6c797e1f39ce026b4f4051187a4fd13ec0369dfc7de2b71073791a9e69"
     },
     {
       "question_id": "sec-ir-knowledge-018",
@@ -1312,10 +1312,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "baf09a482b2d5dc30d133ef580ee2263862a8adcc0475cb34209e8abb6a0650a"
+      "content_hash": "3dfb45f2d688a24e1cbfd144fa4a9ab00aab2e69945e6e2fbb90fc8ba3b18509"
     },
     {
       "question_id": "sec-ir-knowledge-019",
@@ -1342,10 +1342,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f39cf0be2626775bacb9c434112d65a4e31c32e4d13f08750ea37f4c3287fd71"
+      "content_hash": "a9e60d4b5f95f773ad9d8c32346f5d0e5f7c1c806b66eeeef8b75c45c311f2b4"
     },
     {
       "question_id": "sec-ir-knowledge-020",
@@ -1372,10 +1372,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1ce9a25ec701eea4a4ddbb1eaacd1fda20020a2ab378eff507867efd71948cb6"
+      "content_hash": "c2618180bd61aa41ed262ad0ab181ab55dac7b11aa218b5f10b710cd8f8755df"
     },
     {
       "question_id": "sec-ir-resume-001",
@@ -1399,10 +1399,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "833d1c593285ae5b7f0179241b695013e35d4b6d9d42736db881234441ed292b"
+      "content_hash": "2a976cc4c4f9cad4a9720670a8f5fd36f3923088855dee9b328f5a067dfe9694"
     },
     {
       "question_id": "sec-ir-resume-002",
@@ -1426,10 +1426,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e80d1bfb5cb61820fea1f3b2882db6872960f9fecc10523ca574c95b2ba18615"
+      "content_hash": "e7df1efd88d60b35672bad4fa8ee22682bd5093b5d8cba5a6bb2abc4e5e00eed"
     },
     {
       "question_id": "sec-ir-resume-003",
@@ -1453,10 +1453,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "10749578fbde678c8abfbd273058967573c6123ec9e5a0b3d63beb4508718f55"
+      "content_hash": "89f81fdbd218b5bf7f5efa089a5cf159fa5694488d04b21cf65826d2586acf5d"
     },
     {
       "question_id": "sec-ir-resume-004",
@@ -1480,10 +1480,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0d8871e287032a5b362c99542a70fbc65a996273f80cbeacb22049f3488cf005"
+      "content_hash": "956283b12f6e3c7e19fe8b1f4f8cd594a28e93bf7f45ec3ccb005c93478146df"
     },
     {
       "question_id": "sec-ir-resume-005",
@@ -1508,10 +1508,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7d1580ccaad0bd39e37c5bcf7cb569bbfb3cdebb68e777eabaf7e7046d671337"
+      "content_hash": "e566a14d5bf7539916e2958cf9f76c311632976f76c85ed81c49547f825ea772"
     },
     {
       "question_id": "sec-ir-scenario-001",
@@ -1537,10 +1537,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "10d196e3c612b7dc75133133fbc88a5f4a28a57da39a0faa853691b8f64bb962"
+      "content_hash": "5bd70cfc6c03f257cf93d18153edd36d5b4a5e230364a6a0ea8b0e51396f05f3"
     },
     {
       "question_id": "sec-ir-scenario-002",
@@ -1565,10 +1565,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "53704dd148ee7a03e4ef97bf4a0c5783f164a9a0f156077a2f7244140d831fdf"
+      "content_hash": "5c326e8d62fc3a4354ae12b96444bdfa78da3ab03a73b7fa11363e3348f5fc64"
     },
     {
       "question_id": "sec-off-knowledge-001",
@@ -1595,10 +1595,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bf8cd493ba457244dfd1c4772521f62a0156d988d75c89e8a376a2a0bfa4f380"
+      "content_hash": "f1c57150f5abdb4cb26682ded5de3ef360c7ee5b27aef8212f00421ea0d5e313"
     },
     {
       "question_id": "sec-off-knowledge-002",
@@ -1625,10 +1625,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9f04ef33514a17d0c39ea5b9bdab050d648c2b52f51fbb9d2b280662a6b36723"
+      "content_hash": "b4209c05075953a5f90e2aa7f8dc1db25e6ff2c16a9b266186cee06f063e8e07"
     },
     {
       "question_id": "sec-off-knowledge-003",
@@ -1655,10 +1655,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7f2f032a0b6893153a84f376a97a1ddbac20c14faa1da3275ba58394035aad45"
+      "content_hash": "f7fc546c49de30960af284a351c39acf143d30c5fa60524c660f4c4b305c6e56"
     },
     {
       "question_id": "sec-off-knowledge-004",
@@ -1685,10 +1685,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9801f092880e58c7c234efc7913f9255dbf040e34c21eb4eacb1320d327ec3e7"
+      "content_hash": "7293f5166e08bc1a497f80be8e0febe1fefb42e448e1628d338b41f488bf20ed"
     },
     {
       "question_id": "sec-off-knowledge-005",
@@ -1715,10 +1715,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7fa48797bca4267cb231d521fb83333c0b94d36fc162e45b2161a947c300e02e"
+      "content_hash": "03311cb923eb574b37a8f78f143fb1419294385700bd061e2e56a577bbcd4ead"
     },
     {
       "question_id": "sec-off-knowledge-006",
@@ -1747,10 +1747,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "79bc059e138c803931b7c99dfc8c112fb31f22b982bbc8336b56fabce4f353de"
+      "content_hash": "38bb7695f6c1522cf9e2414edcd7454d6cc76f42c4196fe1a0c766773056ab8f"
     },
     {
       "question_id": "sec-off-knowledge-007",
@@ -1779,10 +1779,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b6f15cad8a3c4821524918a8289bfd7f978c41266fe88e6a5786744347a28c07"
+      "content_hash": "971b76d8656902b3dd977a177c4a782da61ebd9815e5bff02f1d6d8e2be5ef59"
     },
     {
       "question_id": "sec-off-knowledge-008",
@@ -1811,10 +1811,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "398937bb05a9023a453751e0b8d931b1dd81177e9d89e996cd22c4afd1dfc84c"
+      "content_hash": "9602d93bd8cec13ef1e2aa7fb874ae826dfe29fe3ebff8ac372840bab3adf1ee"
     },
     {
       "question_id": "sec-off-knowledge-009",
@@ -1843,10 +1843,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "da42e455c925af906fa3af8e8b77826aef93dc016a1005a63a03a5418a18a686"
+      "content_hash": "f842230f4612ddd0db6e040a146f08206405c52ee765bddb2915f74d9c33b774"
     },
     {
       "question_id": "sec-off-knowledge-010",
@@ -1875,10 +1875,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7e8712b924281fcc6e1037b94730fbac3842f2786eafbd0a2f4cc81d61775d2e"
+      "content_hash": "44e6e3c23e239f69c0d472e6d98725aee7062f92d981f9e6c7d373eb5d58b4ca"
     },
     {
       "question_id": "sec-off-knowledge-011",
@@ -1907,10 +1907,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3a0a21067dbb8bde35450f650139b9c2342a1c8e239ea0ba4db18b36729e5399"
+      "content_hash": "f5ceccc9ceff739d09d6375393eeac263451eed6c41dccefd27d00531fcfaf43"
     },
     {
       "question_id": "sec-off-knowledge-012",
@@ -1939,10 +1939,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "285dd436d4c1896499bcfdc24e8f5448ad25fc94da7de67252ac62b42c49c255"
+      "content_hash": "52a25498ea624fb7cb0f812db26b13109a392488e9c7c5aa08881f65fc2ab84d"
     },
     {
       "question_id": "sec-off-knowledge-013",
@@ -1971,10 +1971,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "743e7d3828da51a025cad8d3a614eb007fad90d6fe793d39176d9cd275caa3de"
+      "content_hash": "11352e054fc8f80d58704631d65ceb7bcddaf5373722caf6b0059672d0681d9a"
     },
     {
       "question_id": "sec-off-knowledge-014",
@@ -2003,10 +2003,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d7ccc12c4308da1bfbc546ce3f8b35f743f512a9c4e131e36e59b78f6b532c9f"
+      "content_hash": "e6b4a108f8115279705041b5d327491baf569fb744b8391bb479bb4a2a62f25d"
     },
     {
       "question_id": "sec-off-knowledge-015",
@@ -2035,10 +2035,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "af8f7f84d521e5dacb292641a8cfbe496ae42d354a74097a74fcfff2b7cd1176"
+      "content_hash": "35d8c0b4fd4196e92cfd046c4e3de9511b3e0763d4b4a1e5583cd4dd85017d7d"
     },
     {
       "question_id": "sec-off-knowledge-016",
@@ -2067,10 +2067,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "75aff4e8e5f413d72bc4c4e989703a76ac187c565d4406d0fe846d196822a67c"
+      "content_hash": "d5bf925ddd008c3bf955e9f07f3c06c627a8d44b7b4cba8c9ee6972eec78b144"
     },
     {
       "question_id": "sec-off-knowledge-017",
@@ -2078,7 +2078,7 @@
       "level": "lead",
       "dimension": "组件风险",
       "kind": "knowledge",
-      "prompt": "如果由你负责“外部组件、依赖和供应链风险”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "prompt": "如果由你负责“依赖组件、供应链和漏洞风险”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
       "expected_evidence": [
         "职责分工",
         "度量方式",
@@ -2099,10 +2099,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c5a45d8e21009f551333c289a90b4cd8257824a37b63f28ef26044279b3a2f7c"
+      "content_hash": "681ed66ae3892a28b9ab4ac8316c0bb0023318d4f899fcfbe0f13e7878022061"
     },
     {
       "question_id": "sec-off-knowledge-018",
@@ -2131,10 +2131,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b3cbce5a7b4b697a2f93357892bf144edc82989994124d20dcd847a5a488cbe0"
+      "content_hash": "9acc20121e1d618a3a2e465ef992943e11dc00ef7506f26a015377ce9ab1904d"
     },
     {
       "question_id": "sec-off-knowledge-019",
@@ -2163,10 +2163,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "69c8870a00ed87d88b3d193abc8b63c005d9290d7cebdf1c2373f86f46c0dc97"
+      "content_hash": "67bbc402114a6b5385a63e0075854516d2055008e1b00097d3fd06cceab36d76"
     },
     {
       "question_id": "sec-off-knowledge-020",
@@ -2195,10 +2195,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b12e4aa7b2aa40c61db9b5c3b45eb6600180690346e18e957919875677122e91"
+      "content_hash": "ee2ab4c5af8be1d479b915e651501b06424e549190f4cc6b433572d2630fdbc4"
     },
     {
       "question_id": "sec-off-resume-001",
@@ -2223,10 +2223,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ec72a4fe6fe493db6cf5052c9f30c66e91adb4d15a31a0f95bdae317db1bfc3f"
+      "content_hash": "ca777e7fd51299aba54b25c62883ae4d40a5b13e4e0fc358cceeafb86a9c4aba"
     },
     {
       "question_id": "sec-off-resume-002",
@@ -2250,10 +2250,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3d44076907c59a47ec879576620293facc16654c8af3f513b672183a72ea7392"
+      "content_hash": "c98613d9799b79339501bc82df8b1978a312bcecc8d21e4ea07ca51c519fffc7"
     },
     {
       "question_id": "sec-off-resume-003",
@@ -2278,10 +2278,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "689dbb1a870c568c4abbdeca4325fc46bc3c3fc7bb8e3bb1ecd39c819d0719a0"
+      "content_hash": "0fac7a38516d80010d27525371d1ef9abf967a851ec32fa2005ec467f4dceb68"
     },
     {
       "question_id": "sec-off-resume-004",
@@ -2304,10 +2304,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8c07a986f46a61f308b0022f3823f2f61049c2929d6a31b4b8e87793a6c72805"
+      "content_hash": "feb8597491408c7de92d56131ead5436aba9e4b5b408cadf72290543e4f29f76"
     },
     {
       "question_id": "sec-off-resume-005",
@@ -2330,10 +2330,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "156423ab0ac76da0236943d7a49bd4791e0b32543aa5c82537d3a0edb50dc64a"
+      "content_hash": "b61d53e3d64522072fd00210b1bcd2571765071e561c940c8c6b139bde953118"
     },
     {
       "question_id": "sec-off-scenario-001",
@@ -2361,10 +2361,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 30,
       "freshness_label": "current",
-      "content_hash": "b2b83725b05ffbf837a1b934e8511bcc598d413620d629a208b4a4aa07091c5b"
+      "content_hash": "28b401d703f8ca53c6bf697a2de7401e15793c70bcfc8ba1b3742a3260c2add6"
     },
     {
       "question_id": "sec-off-scenario-002",
@@ -2391,10 +2391,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 30,
       "freshness_label": "current",
-      "content_hash": "fab6f7cb916e982e997cdf616d8b0fa693a91e184045a214e74ac0085987c50e"
+      "content_hash": "dc19a86474faa7efe05c9dfe87e3060ecc6ebc3ba13c664da56cd7651a5d75d1"
     },
     {
       "question_id": "sec-appsec-knowledge-001",
@@ -2420,10 +2420,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "12be5ebfb805422307177241c843705a4ea3aba9a79e780dba4f9a7911e06c0c"
+      "content_hash": "706948e82965ed03eb72cb61c367009c54dca4b91af563ad83c37a1a8bb55ff4"
     },
     {
       "question_id": "sec-appsec-knowledge-002",
@@ -2449,10 +2449,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "df33f123049be58dd68d430ccdb4574e758b06c107f943594d577ffcf6b3195a"
+      "content_hash": "dc996a69e36447975a14d99d735c6af2206ee5accc695a568906ef95f00e7984"
     },
     {
       "question_id": "sec-appsec-knowledge-003",
@@ -2478,10 +2478,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1bd337a15942ad50b15da7ce835eb882779a13632cac5abb0193c5b0ffade3cf"
+      "content_hash": "3db33da360d1296135993c07d1c94c832707f43a656ab59da5e20a1a7844f15e"
     },
     {
       "question_id": "sec-appsec-knowledge-004",
@@ -2507,10 +2507,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bb4a400a423fadad10e3d770db6e17309bafd17607744869bb5a3ee46246d383"
+      "content_hash": "bcf81fb65072ad61e35ba91cd11e186c9c7e3bf464880c2180e301d8b1275d2b"
     },
     {
       "question_id": "sec-appsec-knowledge-005",
@@ -2536,10 +2536,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3d034d5acebadfbbe5de3a146bf891efba27efec81fa14c81c128cf8c8514352"
+      "content_hash": "6d669900791754b518e909a2f89c9ee1647a64ddb57fcad97b713cc9af96916f"
     },
     {
       "question_id": "sec-appsec-knowledge-006",
@@ -2567,10 +2567,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ff5af16caa029f5a5b5d8421d606c54d214d1062622e604d983c4fff47aa8290"
+      "content_hash": "f2d2e6952c08a3912eb6e8565ab63c10bad39335ae28b1d1e38b5e047b138e07"
     },
     {
       "question_id": "sec-appsec-knowledge-007",
@@ -2598,10 +2598,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ee99b113c3028c395e90096a2ad55ad3acde1208dcad758029ff8feb1415bf7f"
+      "content_hash": "76a8adad7071375ed9032ff93677fb9666333fdbf7ea50f7b687ab1f10577087"
     },
     {
       "question_id": "sec-appsec-knowledge-008",
@@ -2629,10 +2629,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "57f3f0a92b82a8ccc396daed71acbca145d097a0bf581edb361a39c0eda4a830"
+      "content_hash": "259d5728b23d82d7f1e2b521ed17bc17d7176fd00d58c3aec482ae4efe09a0b1"
     },
     {
       "question_id": "sec-appsec-knowledge-009",
@@ -2660,10 +2660,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "480ecddf6049875fc455dad5b6fa3978033ff9323fbc9bddf5bbf0c76c2ef581"
+      "content_hash": "bc97d536473e7011ec6a5ea586360d1034db7bcba35c613b2c991c1cdc48a180"
     },
     {
       "question_id": "sec-appsec-knowledge-010",
@@ -2691,10 +2691,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "942b3c61c3a30e165fb0a7cc9edf7b0971dff5194ee54bfc875f5a2608bf869b"
+      "content_hash": "d06c896b5b6e9f2a749c36d66cd7497d377591bc78784b6c02acbbd3bc470748"
     },
     {
       "question_id": "sec-appsec-knowledge-011",
@@ -2722,10 +2722,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d0dce6ac0cf76b5edf4f7597e4b3592e8804ebff377aba039b61813cf34de703"
+      "content_hash": "e873e5c85bc7b264a25bc612b3d2966544c511d2de043dd7a71c15d231070c3b"
     },
     {
       "question_id": "sec-appsec-knowledge-012",
@@ -2753,10 +2753,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a053bf67170a42e147eb31dd025f65da1ebe7f402a1efcf5a1dd58cebc5812fa"
+      "content_hash": "eb67c8c4cd9cd8eecb7657a72a1ed6fc753f0045715a132ad1de81fe69e0a310"
     },
     {
       "question_id": "sec-appsec-knowledge-013",
@@ -2784,10 +2784,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "99afd08572e6e173f223784d575d8edf29e8dd361347908f48c87cdb7424044b"
+      "content_hash": "cd6ca5cb1776f6e6334eb78fef49cc54f9a314ebb19c1232712201d36b97ac29"
     },
     {
       "question_id": "sec-appsec-knowledge-014",
@@ -2815,10 +2815,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9cf6d9ef25525ffc2ff8aa7bd24e7167c2cfee5658545f788f51f18320f62791"
+      "content_hash": "7c4dbb29222f513b158a9259358195c8c82a1ef6050b8dac8f7b12ad90d73be4"
     },
     {
       "question_id": "sec-appsec-knowledge-015",
@@ -2846,10 +2846,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e2c86b69ad8a05c04258beb60ba5a9b2b75842b35948bb124bb38662e8305f19"
+      "content_hash": "9c4d4300a26037b0b7bb9a82398c6da6eb1de3bf9d11f2cd0de559e5197610a5"
     },
     {
       "question_id": "sec-appsec-knowledge-016",
@@ -2877,10 +2877,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6d6086d0622d730a771eac56762334c44308724b6de363469c1dab7ec0b03143"
+      "content_hash": "cdfd6eec71316300996088f4794f1e3e3373f3728d50471794988c41086a6c30"
     },
     {
       "question_id": "sec-appsec-knowledge-017",
@@ -2908,10 +2908,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "eaff6c2dfb8b94ca810d13f6cf1522652bf2efb78db04c03a9d248cc5114770e"
+      "content_hash": "8b748138dfc46c279643ab3e7b9d455d3e2026962786f95749b1d4b7549d9af2"
     },
     {
       "question_id": "sec-appsec-knowledge-018",
@@ -2939,10 +2939,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0de1d28b69dee301ddc935846938892b2853fedea37d4d2dabcd0e8366332416"
+      "content_hash": "305316c738ea84b2b1410b16690e34c1d5635590d6ed8207e674bbba96f2b269"
     },
     {
       "question_id": "sec-appsec-knowledge-019",
@@ -2970,10 +2970,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "dbd0d7d073ee62dcfafda5d3906f448f0f91bedf273dab717418d601ec5e39b6"
+      "content_hash": "fcab188c802d6377ff852c2beb7f8cb3761d7ae46bed3a1abd50a28b7425cece"
     },
     {
       "question_id": "sec-appsec-knowledge-020",
@@ -3001,10 +3001,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4d950b791fe3017fa73ea1a5a7539db59a17c3946288ed8f9eaa42835d20c8c9"
+      "content_hash": "d964782dd0b721ad6b75f1925abf46a440a956fc801e8a19a197f17da63a66c7"
     },
     {
       "question_id": "sec-appsec-resume-001",
@@ -3028,10 +3028,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b9e97fa292b693abbabe009b5bae494ceceeab0ad35b1e61b19ee02520fcf6e2"
+      "content_hash": "47b0bf84dca9ea95e7055b5eba2d6acd89e56b03f371cf35d6767adc55aadc4a"
     },
     {
       "question_id": "sec-appsec-resume-002",
@@ -3055,10 +3055,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3f2aaff7072c29acdb00fc0232f0011adfab43cbbc4397266159d43dd9ea102b"
+      "content_hash": "a03131d9dc75d32b83b8fe00b03637c7a10d53ebf72a5674e0957d2c984ffb39"
     },
     {
       "question_id": "sec-appsec-resume-003",
@@ -3083,10 +3083,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "54f07417208409b081984796d196c97aad5980721a5bc9624c3157548ec94805"
+      "content_hash": "df935906f6061987ffb2cbc9703564cccca81faf7b0d768db152d3a6165786e8"
     },
     {
       "question_id": "sec-appsec-resume-004",
@@ -3110,10 +3110,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "cc5d93001871a30fb9a14ac17e53b6e81e92ebfa4af738c6ecc8255448bcead0"
+      "content_hash": "bf69fdcb9ea1207f8b7f67fdeb5021cd6dce60792f3e8ca7e21710761ddd1d9a"
     },
     {
       "question_id": "sec-appsec-resume-005",
@@ -3137,10 +3137,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ce3a67591f7eb4c2773632454a16a5b05e92cf3e37708448730a7a46aa4459d6"
+      "content_hash": "6f9ebfa9f2e21543e739cb102e7bbb86b29d7c6e104daedbd5941bc7bb5c99eb"
     },
     {
       "question_id": "sec-appsec-scenario-001",
@@ -3167,10 +3167,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "64931fabff5e167dd2d128689af0ef7de23c87afbb6748cc2c25eed3745274af"
+      "content_hash": "ae856807f02cff7b689abffe57162220d26497d212ab7021f8176d016aa2289a"
     },
     {
       "question_id": "sec-appsec-scenario-002",
@@ -3197,10 +3197,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "294352e5ee3f2750688dd4f6f18998115dc295bf83c90e095d4d783722c32cb0"
+      "content_hash": "6de7657efc743f035cfc0eb9a0336b12314cea2e422246c2a89494168e79da74"
     },
     {
       "question_id": "sec-seceng-knowledge-001",
@@ -3226,10 +3226,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7d17bc550954271f7c9ededb8df2f6d2f3a8e2a90a7571d3f2da7f011ba428a2"
+      "content_hash": "72ab252a01fcd33fef9d61c89bcd1f01f4ff39aa4f250eb3d896ec2fe1da7468"
     },
     {
       "question_id": "sec-seceng-knowledge-002",
@@ -3255,10 +3255,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bc751f2f1e582b54a47b612893c6d306a422a09670096cd392615b28bdea8abc"
+      "content_hash": "b1e866991ec82e0309bfcb2b429a3c218c78fdee4ac8b3e42418559d7eea598f"
     },
     {
       "question_id": "sec-seceng-knowledge-003",
@@ -3284,10 +3284,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "81b6e44d915bc4665fa200d9f5ba98b92ba06b094c69b9d6ae50cc652b4ebeb3"
+      "content_hash": "cba3c28329b5942a63f516db68cad2d235e056baf5221c33827d6f4bbbe4dc7f"
     },
     {
       "question_id": "sec-seceng-knowledge-004",
@@ -3313,10 +3313,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d768bc612c5c8cd75e3a0790aacdc7c0bb860e32f60ead70ada3fafd166f9fb6"
+      "content_hash": "9f81f3a33f20a476a364d50efb910a571662aeaa807848390c15604d78c3c634"
     },
     {
       "question_id": "sec-seceng-knowledge-005",
@@ -3342,10 +3342,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ccb8913951d1a41744f91586e626925e90d2620be93a3419a57858f084f60c52"
+      "content_hash": "8d0bf46fc403209eb18399fa8e93facc12d1739ad57614f3eb29590ea073f891"
     },
     {
       "question_id": "sec-seceng-knowledge-006",
@@ -3373,10 +3373,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7494c8f88398f5933bbfa96753b63194806382d92aa14b0a83d9a9330847b132"
+      "content_hash": "cec4c5e1c8525a6eba44fa198a3a808fbe2c46ffa2dad9a629b59d471b856805"
     },
     {
       "question_id": "sec-seceng-knowledge-007",
@@ -3404,10 +3404,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c3d6e7b690c425a46bd3caecff60c89699d5b9049dcacd2508043bd5d228a77e"
+      "content_hash": "b38a944da938ead47f3919d801311048d8538882134256d579fc1643fef03ba8"
     },
     {
       "question_id": "sec-seceng-knowledge-008",
@@ -3435,10 +3435,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "93959db7f5b6302ab336978e49a75aeb8f1d1b44338c78c2baaa8a0b6b9d1975"
+      "content_hash": "ffe0d217bf3929d05be93bbbe8c0595d6533b4336e9bc842117229e14e2377ee"
     },
     {
       "question_id": "sec-seceng-knowledge-009",
@@ -3466,10 +3466,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "76d9215d2acc4ff5d00172f1caf0d7275c7392a792a7e9d8499aaf11804440a1"
+      "content_hash": "7176ac4edcfb6c30eadc696487e1c6db04b6e038d384bff16c3610856364b9c8"
     },
     {
       "question_id": "sec-seceng-knowledge-010",
@@ -3497,10 +3497,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ddbd0547733838f8f6e542bc0cf0a8018b1d21711135b9649b06d77ea218deda"
+      "content_hash": "0a9478cc2fc94698a82164b6602b76410582a37e618467d1445ccc312e06a446"
     },
     {
       "question_id": "sec-seceng-knowledge-011",
@@ -3528,10 +3528,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7a9ec6f4c8b261cf87805a9a3fbd57d3cdfb9f2db0f32b97dbb4f3d462485c7e"
+      "content_hash": "539d2828e3dd3c80d1ff783d3a6c0dfaeffe0cafa3b55efb09c37b36abcc1b16"
     },
     {
       "question_id": "sec-seceng-knowledge-012",
@@ -3559,10 +3559,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "de89335d45917969a250a788c6b737b0a099601b965f4f23cad422cc676e0a0c"
+      "content_hash": "88f7c4c2de91232c2b052a289654472985d59f6dabe1fa4a30a4e318635cc2b6"
     },
     {
       "question_id": "sec-seceng-knowledge-013",
@@ -3590,10 +3590,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e15c154d43c9ebaef4039c80842ba0548aaceb075a1c71b6a6d0aa10d166ac61"
+      "content_hash": "d373a9e8955bfc3bd661183959e3ec07b60b0f15f145359eb45a794acd810424"
     },
     {
       "question_id": "sec-seceng-knowledge-014",
@@ -3621,10 +3621,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ff299405c0f20ea9e5e78e974ee7b2340d7e581999536e25b994113413ef9406"
+      "content_hash": "7c242a06e4984643bfd167e7a39161215f51e66519d6e825afc4d59f59fe76a5"
     },
     {
       "question_id": "sec-seceng-knowledge-015",
@@ -3652,10 +3652,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "098ca962aa904e5344a223e89e51d82165937874e02d5640c2a205c765436cf0"
+      "content_hash": "a385450bfb9698e40fbf632d9f2803b40e0395b01679adf09ff0a677740168f9"
     },
     {
       "question_id": "sec-seceng-knowledge-016",
@@ -3683,10 +3683,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ca5f15bfd460ac1bcd9f0987a1bf87a377b706f3691ac616dcd50b059219b921"
+      "content_hash": "81a691c5bede347e6b0a71a90f0bc60eb088526dd5f380d12ab7b677d75802fe"
     },
     {
       "question_id": "sec-seceng-knowledge-017",
@@ -3714,10 +3714,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "772411074e5457330aff3d1c30a9721e4368adea40d0fc9fb89a5fc7c8e8712c"
+      "content_hash": "e614d43d4ae87dba6a51edc654c45e4434b4fc9fcf6db5e90ff83a8d7a5baf73"
     },
     {
       "question_id": "sec-seceng-knowledge-018",
@@ -3745,10 +3745,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c81d50bba73f7a0699fedf0dfbefc05be4a62e58ef2b41cc0266a7be95f58bb7"
+      "content_hash": "6f8108288dbb3937876fc2bb5da7f9094a79111c9555991cab6ebf929449afcd"
     },
     {
       "question_id": "sec-seceng-knowledge-019",
@@ -3776,10 +3776,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "104911e0792db65cc1b3de3d2c074ea3bcc02d82d00ad23a146284c43bbbd8cb"
+      "content_hash": "03799b359e81536cfb5b2474decbab1198810ceefe78a621497bf55d3d29ed03"
     },
     {
       "question_id": "sec-seceng-knowledge-020",
@@ -3807,10 +3807,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f3014f30e2c75d5406387da23799d2bcc407115a32f5976c122521d943b95f6a"
+      "content_hash": "ef58796dfe111bdf23c34e181ca33e0b64baad976ed95d620913e065cb4baa8f"
     },
     {
       "question_id": "sec-seceng-resume-001",
@@ -3834,10 +3834,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "af39844b978f915d25595ce213231758278aa7279ab5d8e4d95d9c80ad38073a"
+      "content_hash": "90cf81ad4e97f4fb66f5a2ae4d12681a7740d9c52f97db504efef3d100d71dbc"
     },
     {
       "question_id": "sec-seceng-resume-002",
@@ -3860,10 +3860,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3f044b9c5b86b1b66caf63b4bbdbff0917b35dba83096cca8c56d71b16c76b8a"
+      "content_hash": "ca543d227eab618de527b257bf6745fd7d8697c78401aed52cd5238cbaeca5f9"
     },
     {
       "question_id": "sec-seceng-resume-003",
@@ -3887,10 +3887,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c30570f4cc3aa528c124bf52d2574a5856c5e0576bcea182ce44275d1e1d46f7"
+      "content_hash": "b5d943602aff349c88b7b0678be274689514d34dc76fc0f28e0f105fd59d8514"
     },
     {
       "question_id": "sec-seceng-resume-004",
@@ -3914,10 +3914,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "43ad0a7bfd9a13270897ff59f2ba09084f22775ca913afb26e0491e796b5b5bc"
+      "content_hash": "52e692e46d7bd4f2ed9ed1b8f19d0edec212e0b9c3435d2a8e158db90bbd743a"
     },
     {
       "question_id": "sec-seceng-resume-005",
@@ -3940,10 +3940,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3944aca1ef5e10a357ed4a2afcecd473f8292b19210318b97f41fcd95e666a22"
+      "content_hash": "f84e360d89f16e7f2ff471f3306b9f14513a92f8b61f0febe938459628558849"
     },
     {
       "question_id": "sec-seceng-scenario-001",
@@ -3970,10 +3970,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "5984172ea9ddb27c986b062b82f92eda01632c2bcfbfd93a5f1bc7588d0062f4"
+      "content_hash": "163915a84c21f047d5c7accdbcfa07681ff0dc600b3d5bfc3ab7206ed37260f8"
     },
     {
       "question_id": "sec-seceng-scenario-002",
@@ -4000,10 +4000,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "091a647370f68d130457e8132de460d09b864a1c7d3b30d7f7215a00fa92b5b6"
+      "content_hash": "500bc90e35f61098e3597b6866eb2e8a072a7eaf0adf1af93761d76dcd89be9c"
     },
     {
       "question_id": "sec-grc-knowledge-001",
@@ -4027,10 +4027,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9c14dc280a742661edcdbcfda5d0664dd97b9b872b2764c23ea19d1a7f323408"
+      "content_hash": "a58e7a49ae8e3a1003d0813f1cac497be16185b0b5e49c6e4d2bbc72c4f19c9e"
     },
     {
       "question_id": "sec-grc-knowledge-002",
@@ -4054,10 +4054,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f8750ee3c04765a563ebb5c56fa4c7f4f61a60f9e674d542b8df71b9c7e19780"
+      "content_hash": "014fef58e1b7304da4cae38ba8c12e73b9140c07d7edba954bfc3e817d738586"
     },
     {
       "question_id": "sec-grc-knowledge-003",
@@ -4081,10 +4081,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "65767b10ae73d520e8d34c2001d6e9870f4866decea724fcdddc5a6c06d0bb0a"
+      "content_hash": "1f4c0a10743cb02d5aaa5ba8b3824e1c01af46da802ff2d6fd0796a7663af301"
     },
     {
       "question_id": "sec-grc-knowledge-004",
@@ -4108,10 +4108,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a0ae09af545ab3b9ac7eda05a9befc15744b7754ba214782f681b002a25e921c"
+      "content_hash": "b778f3c3ae20963efedc170e20b1ccc888b1f653fe8e6076604b24db94248704"
     },
     {
       "question_id": "sec-grc-knowledge-005",
@@ -4135,10 +4135,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "dceabf2846b74b1e04e433ce77a8cc63fcfea61b9cd25eebc07f4cf49f77af2f"
+      "content_hash": "d0397bd9691a8959648a46c6dab1ea8ee1ab7412090d247cc6df0b901d454513"
     },
     {
       "question_id": "sec-grc-knowledge-006",
@@ -4164,10 +4164,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9bfff542b18e7e21f848ad399646c33b7744693bb7e8ca72815f2d1e5aea468d"
+      "content_hash": "88556a0dcb90d274cbf3e86ee6950e688fea0f1dd018ebeb6854410b27380903"
     },
     {
       "question_id": "sec-grc-knowledge-007",
@@ -4193,10 +4193,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d048cfd19405f1971ac7073b0b5d79c422879fec764923e9d2ad93aadf2ae7fb"
+      "content_hash": "cac74b57b5868371fd68cfafac32d8eb1c927c155a6191a2fc6ec82263798e6a"
     },
     {
       "question_id": "sec-grc-knowledge-008",
@@ -4222,10 +4222,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f1f01d8993c94104bb8351457fa8fd5a8bab56e3ed90439d35b04dae8c1b9f3a"
+      "content_hash": "cf11257efa7fcfaacfa44918b74cf2705bfa81c3b048dfdc2b6f781c123e5486"
     },
     {
       "question_id": "sec-grc-knowledge-009",
@@ -4251,10 +4251,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5cc223e14d390e19c759a5e314ac03a124fb7da2e90aa4226758e90ffb82b949"
+      "content_hash": "2e63e72944403d3d19f7caed8600fc0a754c6ecea480b2ad6cec0744e07b949f"
     },
     {
       "question_id": "sec-grc-knowledge-010",
@@ -4280,10 +4280,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4137e6f6f82eb564169f80094cc2f8e089ae7cc1699215617cc98b653316c38e"
+      "content_hash": "075207a4828adee205ecbc6619bf969f547d6ccff8513fc0473c8ce025f3f738"
     },
     {
       "question_id": "sec-grc-knowledge-011",
@@ -4309,10 +4309,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e8458bc45779b6849fe0b423281f792d4b2c7f168a5e39e413c08f155daad070"
+      "content_hash": "2c9a214fdd6229b3736e286fc09afbc5d0de4238e6ddee4907f46bbeb5922338"
     },
     {
       "question_id": "sec-grc-knowledge-012",
@@ -4338,10 +4338,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4402782693809ea4218763a1b1f9df5875b4135c1847cd150b8b594af74d02d4"
+      "content_hash": "d732cdf320a67602e9a62be3158f696a82b9b3c3d1fa24c310a3d19c62e082b7"
     },
     {
       "question_id": "sec-grc-knowledge-013",
@@ -4367,10 +4367,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "deba6e43aa8ec1d73b72008786141c60b92341cb249abf638556c9b837150fbe"
+      "content_hash": "d6cc51e08657abecf8ded4cd78fb545dda63eb020361be800bcf6f67c40235fe"
     },
     {
       "question_id": "sec-grc-knowledge-014",
@@ -4396,10 +4396,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6c62241dd7791000eaef6414621986f26ea5481b39c51b9df63741dcf4832c9d"
+      "content_hash": "7c17622f0e02b36b2af910cca986195124ca057075cd9fd63e7fd9ad679d0a62"
     },
     {
       "question_id": "sec-grc-knowledge-015",
@@ -4425,10 +4425,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bcf0861b5cdb06d29ba58870904a7bc1b47dfcda11c8d9e4df57f3c4b32ded8b"
+      "content_hash": "d41708be0d797f495d4de3c1e2fd4a8284bcba32e632b83e3aa43fbc6d307a3f"
     },
     {
       "question_id": "sec-grc-knowledge-016",
@@ -4454,10 +4454,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c013583c1f47bedc2ac2edf0d241e2b42f06f369654859798ddcd2bc7d04242b"
+      "content_hash": "4470158d6f5a869d559a1eed67c7101c9bde4aebeae8ac1ad04f2c886e480ea8"
     },
     {
       "question_id": "sec-grc-knowledge-017",
@@ -4483,10 +4483,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "358016fcb3f4a3901fc3290584dbf089ac84541824709396c96a3afbea98368b"
+      "content_hash": "e84a8db9bb0e82441d9a83f635d19dc29fa83eb54a67e4d4fa140fcbede32496"
     },
     {
       "question_id": "sec-grc-knowledge-018",
@@ -4512,10 +4512,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4686e4440afae34e41111228555be7e5d344dd2a32c7633f499c0bc61a3f8043"
+      "content_hash": "f8b9b131b622af373bd55f85826645cb7ebfafe1f0799d25af8796ae9d13befa"
     },
     {
       "question_id": "sec-grc-knowledge-019",
@@ -4541,10 +4541,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "07253cf11cacbc1c9605dd2364cb03b936a24316c127e8b277045666adad865c"
+      "content_hash": "87ecbd460e43ba06174da6de90f4d222cf59b4eab6e46fddf8a3285688686c23"
     },
     {
       "question_id": "sec-grc-knowledge-020",
@@ -4570,10 +4570,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7508ee4df16d45d73d056eb9bc566d8f89e1eded4dc012d2976c527f7237cd85"
+      "content_hash": "eb7bc9867a0e1bc11838822cf68b5ae4f262bbf74c808f2b7c9a1500041bafbe"
     },
     {
       "question_id": "sec-grc-resume-001",
@@ -4596,10 +4596,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "032083088510e77f39fb9ea69e9e332d85433380707f1f23c082213c9a3d6c3e"
+      "content_hash": "4fff6df25189ea199f617b75b1d317f3678430c263b0fe24ce4795eb0208d843"
     },
     {
       "question_id": "sec-grc-resume-002",
@@ -4623,10 +4623,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "97f1eb7013d6faf6ef8659211a4d742c76089b2bdb68d224790aee0dd57bc2b5"
+      "content_hash": "d81d14e6f24cffd4072b0c577442c6e6af084239b28486d9e13c114e69b774b3"
     },
     {
       "question_id": "sec-grc-resume-003",
@@ -4650,10 +4650,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f63bad9b64aa55e2800862cbe4a2e7dab3124faea039f14e9bdca45ff22427d9"
+      "content_hash": "6451869864733fde3e39c600e7ada74a835f458a44324572cc05415fc436fe3c"
     },
     {
       "question_id": "sec-grc-resume-004",
@@ -4677,10 +4677,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9c6f9e967fb0bb3125217c6bd400cb8212fdd4b4b29e9f1fd99923da99c7aa2b"
+      "content_hash": "1b153f4f2fedd6c6d68f1c86035ba922afe94ed15df21d24b341feb98bacb17e"
     },
     {
       "question_id": "sec-grc-resume-005",
@@ -4704,10 +4704,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1c97670c650151495ed6301f1ddbe72ab1f089c91202ad02743d8410c3860ac0"
+      "content_hash": "8d1c580297b49d96829c9e893fc01b837cda83e80f78391d3bf1050a0c53e824"
     },
     {
       "question_id": "sec-grc-scenario-001",
@@ -4732,10 +4732,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "ee5a06080ebab6207554f2c8d0dd5c223029a7e8a12ae759db0a5e29aa45c78f"
+      "content_hash": "52b470db7d75f7a80113935fe246391f003fbf51ff625f33a79991b6e8539de9"
     },
     {
       "question_id": "sec-grc-scenario-002",
@@ -4759,10 +4759,745 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-22",
+      "last_verified_at": "2026-11-23",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "db310abc6bd61cb0ed272ab2417f5d55340f6e426947907732626c5cfe32c238"
+      "content_hash": "3469e4e82a4ac79607467671aa42e6a55a85008390eb8f1691fe87b417a74048"
+    },
+    {
+      "question_id": "sec-generic-knowledge-001",
+      "role_family": "generic",
+      "level": "junior",
+      "dimension": "目标与范围",
+      "kind": "knowledge",
+      "prompt": "请解释“项目目标、范围和不包含事项”的目标、基本步骤、常见误区和至少两项验证证据。",
+      "expected_evidence": [
+        "目标与边界",
+        "基本步骤",
+        "常见误区",
+        "验证证据"
+      ],
+      "followups": [
+        "哪些结论不能只凭工具输出，需要人工确认？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "ed5a485dd10589f64341df012237284b81eb09d0a8c36648824d76046fbbe96a"
+    },
+    {
+      "question_id": "sec-generic-knowledge-002",
+      "role_family": "generic",
+      "level": "junior",
+      "dimension": "个人责任",
+      "kind": "knowledge",
+      "prompt": "请解释“个人负责、共同负责和协助事项的边界”的目标、基本步骤、常见误区和至少两项验证证据。",
+      "expected_evidence": [
+        "目标与边界",
+        "基本步骤",
+        "常见误区",
+        "验证证据"
+      ],
+      "followups": [
+        "哪些结论不能只凭工具输出，需要人工确认？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "cbe69c5854d398c5e47b9f998aad7c20d3beb60bb34819f65fe7018cd504eeb6"
+    },
+    {
+      "question_id": "sec-generic-knowledge-003",
+      "role_family": "generic",
+      "level": "junior",
+      "dimension": "事实与证据",
+      "kind": "knowledge",
+      "prompt": "请解释“可核验材料、原始记录和证据强度”的目标、基本步骤、常见误区和至少两项验证证据。",
+      "expected_evidence": [
+        "目标与边界",
+        "基本步骤",
+        "常见误区",
+        "验证证据"
+      ],
+      "followups": [
+        "哪些结论不能只凭工具输出，需要人工确认？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "73450e92d552a50dea23bf8b28404dbb957e7dc7cab06395c441b2f729e0d18f"
+    },
+    {
+      "question_id": "sec-generic-knowledge-004",
+      "role_family": "generic",
+      "level": "junior",
+      "dimension": "结构化表达",
+      "kind": "knowledge",
+      "prompt": "请解释“情境、任务、动作、结果和复盘”的目标、基本步骤、常见误区和至少两项验证证据。",
+      "expected_evidence": [
+        "目标与边界",
+        "基本步骤",
+        "常见误区",
+        "验证证据"
+      ],
+      "followups": [
+        "哪些结论不能只凭工具输出，需要人工确认？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "01b02a9275fc9ddcbddb1f6e879172a5e453f7bf27d6879a4bd694e91128e5db"
+    },
+    {
+      "question_id": "sec-generic-knowledge-005",
+      "role_family": "generic",
+      "level": "junior",
+      "dimension": "量化指标",
+      "kind": "knowledge",
+      "prompt": "请解释“指标定义、基线、时间窗和统计口径”的目标、基本步骤、常见误区和至少两项验证证据。",
+      "expected_evidence": [
+        "目标与边界",
+        "基本步骤",
+        "常见误区",
+        "验证证据"
+      ],
+      "followups": [
+        "哪些结论不能只凭工具输出，需要人工确认？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "121e227f9b3d48c9889f15f381038423f12101f0879aa6da42d6304403c28791"
+    },
+    {
+      "question_id": "sec-generic-knowledge-006",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "结果归因",
+      "kind": "knowledge",
+      "prompt": "请围绕“个人贡献、团队成果和环境因素”给出一次真实项目中的处理流程，说明输入、关键判断、交付物、失败降级和复核证据。",
+      "expected_evidence": [
+        "场景范围",
+        "关键判断",
+        "处理流程",
+        "交付物",
+        "失败降级",
+        "复核证据"
+      ],
+      "followups": [
+        "如果关键输入缺失，你会如何降级而不是猜测？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "6c743ad667d7ceaf763bf359179c25596b31f88b5bb35bc08b2848c2b1627548"
+    },
+    {
+      "question_id": "sec-generic-knowledge-007",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "协作与冲突",
+      "kind": "knowledge",
+      "prompt": "请围绕“跨团队协作、分歧处理和决策记录”给出一次真实项目中的处理流程，说明输入、关键判断、交付物、失败降级和复核证据。",
+      "expected_evidence": [
+        "场景范围",
+        "关键判断",
+        "处理流程",
+        "交付物",
+        "失败降级",
+        "复核证据"
+      ],
+      "followups": [
+        "如果关键输入缺失，你会如何降级而不是猜测？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "01cec76253c7ff7868308c47110dceb713d41696e990b8c9fff6db087d069ad5"
+    },
+    {
+      "question_id": "sec-generic-knowledge-008",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "失败与复盘",
+      "kind": "knowledge",
+      "prompt": "请围绕“失败事实、根因、修复和复发防护”给出一次真实项目中的处理流程，说明输入、关键判断、交付物、失败降级和复核证据。",
+      "expected_evidence": [
+        "场景范围",
+        "关键判断",
+        "处理流程",
+        "交付物",
+        "失败降级",
+        "复核证据"
+      ],
+      "followups": [
+        "如果关键输入缺失，你会如何降级而不是猜测？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "1497c57a0bd45b2dae7e1997a01717183f9e7e05d9e64e93a359e6c7a605ea57"
+    },
+    {
+      "question_id": "sec-generic-knowledge-009",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "风险与合规",
+      "kind": "knowledge",
+      "prompt": "请围绕“风险识别、批准链和不可越过的边界”给出一次真实项目中的处理流程，说明输入、关键判断、交付物、失败降级和复核证据。",
+      "expected_evidence": [
+        "场景范围",
+        "关键判断",
+        "处理流程",
+        "交付物",
+        "失败降级",
+        "复核证据"
+      ],
+      "followups": [
+        "如果关键输入缺失，你会如何降级而不是猜测？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "98665d5ece6387c93b3877a725974628d1cb92a9bad62faa32eb754f3c2e3998"
+    },
+    {
+      "question_id": "sec-generic-knowledge-010",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "隐私与敏感信息",
+      "kind": "knowledge",
+      "prompt": "请围绕“最小披露、脱敏和授权范围”给出一次真实项目中的处理流程，说明输入、关键判断、交付物、失败降级和复核证据。",
+      "expected_evidence": [
+        "场景范围",
+        "关键判断",
+        "处理流程",
+        "交付物",
+        "失败降级",
+        "复核证据"
+      ],
+      "followups": [
+        "如果关键输入缺失，你会如何降级而不是猜测？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "c6242ea94e30cd2f950fdf86eb62cd03afd0d0dc0e94df6d2e9b6cc0c8058ecb"
+    },
+    {
+      "question_id": "sec-generic-knowledge-011",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "资源约束",
+      "kind": "knowledge",
+      "prompt": "请设计一套覆盖“时间、预算、人力和技术约束下的取舍”的可验证方案，说明适用范围、风险取舍、监控指标、回滚条件和改进机制。",
+      "expected_evidence": [
+        "适用范围",
+        "风险取舍",
+        "监控指标",
+        "回滚条件",
+        "验证证据",
+        "改进机制"
+      ],
+      "followups": [
+        "如果监控指标改善但风险信号没有下降，你会如何调整方案？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "b5d78c4f9efe163653707485286aa1ec14b15c9db27e323918d5f09c2f07b889"
+    },
+    {
+      "question_id": "sec-generic-knowledge-012",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "优先级",
+      "kind": "knowledge",
+      "prompt": "请设计一套覆盖“多目标冲突、影响评估和排序依据”的可验证方案，说明适用范围、风险取舍、监控指标、回滚条件和改进机制。",
+      "expected_evidence": [
+        "适用范围",
+        "风险取舍",
+        "监控指标",
+        "回滚条件",
+        "验证证据",
+        "改进机制"
+      ],
+      "followups": [
+        "如果监控指标改善但风险信号没有下降，你会如何调整方案？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "996ea6f3099c47dc5c2d76dff10099fea86436cafeb29e6452ef99702a1a39e9"
+    },
+    {
+      "question_id": "sec-generic-knowledge-013",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "沟通与汇报",
+      "kind": "knowledge",
+      "prompt": "请设计一套覆盖“受众、事实口径、风险和待确认项”的可验证方案，说明适用范围、风险取舍、监控指标、回滚条件和改进机制。",
+      "expected_evidence": [
+        "适用范围",
+        "风险取舍",
+        "监控指标",
+        "回滚条件",
+        "验证证据",
+        "改进机制"
+      ],
+      "followups": [
+        "如果监控指标改善但风险信号没有下降，你会如何调整方案？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "65f82f72084fdbc0c3ffa638b17518ccb6073aab3890dfe3c38f30be96e7789e"
+    },
+    {
+      "question_id": "sec-generic-knowledge-014",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "交付质量",
+      "kind": "knowledge",
+      "prompt": "请设计一套覆盖“验收标准、抽样检查和缺陷闭环”的可验证方案，说明适用范围、风险取舍、监控指标、回滚条件和改进机制。",
+      "expected_evidence": [
+        "适用范围",
+        "风险取舍",
+        "监控指标",
+        "回滚条件",
+        "验证证据",
+        "改进机制"
+      ],
+      "followups": [
+        "如果监控指标改善但风险信号没有下降，你会如何调整方案？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "fdc8b7214f150e1556c08f24c506dce813d4fba7739e3e1843d4ed98cd73f734"
+    },
+    {
+      "question_id": "sec-generic-knowledge-015",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "变更与回滚",
+      "kind": "knowledge",
+      "prompt": "请设计一套覆盖“灰度、监控、回滚和失败降级”的可验证方案，说明适用范围、风险取舍、监控指标、回滚条件和改进机制。",
+      "expected_evidence": [
+        "适用范围",
+        "风险取舍",
+        "监控指标",
+        "回滚条件",
+        "验证证据",
+        "改进机制"
+      ],
+      "followups": [
+        "如果监控指标改善但风险信号没有下降，你会如何调整方案？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "76948ea54299b22b449ad57df6a7377f46a9f51a1de6c6fdbdc3c6f6a992c663"
+    },
+    {
+      "question_id": "sec-generic-knowledge-016",
+      "role_family": "generic",
+      "level": "lead",
+      "dimension": "用户反馈",
+      "kind": "knowledge",
+      "prompt": "如果由你负责“反馈来源、处理优先级和结果验证”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "expected_evidence": [
+        "职责分工",
+        "度量方式",
+        "例外审批",
+        "审计留痕",
+        "改进闭环",
+        "决策依据"
+      ],
+      "followups": [
+        "你如何证明例外项在到期前被重新评审？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "687aac79c1cffaa5f3995a6397549e331a764697c43a48934258262cdf9ec8f3"
+    },
+    {
+      "question_id": "sec-generic-knowledge-017",
+      "role_family": "generic",
+      "level": "lead",
+      "dimension": "学习迁移",
+      "kind": "knowledge",
+      "prompt": "如果由你负责“新知识来源、实践验证和可复用方法”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "expected_evidence": [
+        "职责分工",
+        "度量方式",
+        "例外审批",
+        "审计留痕",
+        "改进闭环",
+        "决策依据"
+      ],
+      "followups": [
+        "你如何证明例外项在到期前被重新评审？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "60e4a4aed16cdacecbfb5af06348e2d9c054b2fc51f94a02058e8db6947c8c89"
+    },
+    {
+      "question_id": "sec-generic-knowledge-018",
+      "role_family": "generic",
+      "level": "lead",
+      "dimension": "文档与交接",
+      "kind": "knowledge",
+      "prompt": "如果由你负责“文档结构、责任人和交接完整性”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "expected_evidence": [
+        "职责分工",
+        "度量方式",
+        "例外审批",
+        "审计留痕",
+        "改进闭环",
+        "决策依据"
+      ],
+      "followups": [
+        "你如何证明例外项在到期前被重新评审？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "ad0cd4e76f07c7c9242286ea8bde49bbb450096b0dc8c9754b5fc3e005966bc7"
+    },
+    {
+      "question_id": "sec-generic-knowledge-019",
+      "role_family": "generic",
+      "level": "lead",
+      "dimension": "自动化与效率",
+      "kind": "knowledge",
+      "prompt": "如果由你负责“重复劳动识别、自动化边界和人工复核”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "expected_evidence": [
+        "职责分工",
+        "度量方式",
+        "例外审批",
+        "审计留痕",
+        "改进闭环",
+        "决策依据"
+      ],
+      "followups": [
+        "你如何证明例外项在到期前被重新评审？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "b6edfc97f75357e2329d1a85f7d49205effdbe80b7bd587798dfed1f1d4bf460"
+    },
+    {
+      "question_id": "sec-generic-knowledge-020",
+      "role_family": "generic",
+      "level": "lead",
+      "dimension": "决策记录",
+      "kind": "knowledge",
+      "prompt": "如果由你负责“假设、证据、备选方案和后续复审”的标准与治理，请说明职责分工、度量方式、例外审批、审计留痕和持续改进。",
+      "expected_evidence": [
+        "职责分工",
+        "度量方式",
+        "例外审批",
+        "审计留痕",
+        "改进闭环",
+        "决策依据"
+      ],
+      "followups": [
+        "你如何证明例外项在到期前被重新评审？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "0b7659476f45394530e6a977f8cea0dd9b496fb7e7da337152328b7717267bc4"
+    },
+    {
+      "question_id": "sec-generic-resume-001",
+      "role_family": "generic",
+      "level": "junior",
+      "dimension": "项目与责任",
+      "kind": "resume_followup",
+      "prompt": "请把简历中的一项项目经历改写为背景、目标、个人职责、协作边界和交付物。",
+      "expected_evidence": [
+        "背景",
+        "目标",
+        "个人职责",
+        "协作边界",
+        "交付物"
+      ],
+      "followups": [
+        "哪些数据尚未经你确认，不能写入简历？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "751f08f0e35fb49af96d7d8649fa2781389ed8151d45d15beba4310330451dce"
+    },
+    {
+      "question_id": "sec-generic-resume-002",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "指标口径",
+      "kind": "resume_followup",
+      "prompt": "请说明一个量化结果的定义、基线、统计时间窗和数据来源，避免把团队成果写成本人结果。",
+      "expected_evidence": [
+        "指标定义",
+        "基线",
+        "时间窗",
+        "数据来源",
+        "个人贡献"
+      ],
+      "followups": [
+        "哪些数据尚未经你确认，不能写入简历？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "ad3958e952e080bb3081f52d596bdbe60e9a2b8e38ed7c422bebec9125afa0d4"
+    },
+    {
+      "question_id": "sec-generic-resume-003",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "冲突与协作",
+      "kind": "resume_followup",
+      "prompt": "请说明一次跨团队分歧：分歧点、各方约束、你的动作、决策依据和最终结果。",
+      "expected_evidence": [
+        "分歧点",
+        "各方约束",
+        "个人动作",
+        "决策依据",
+        "结果"
+      ],
+      "followups": [
+        "哪些数据尚未经你确认，不能写入简历？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "6845e6c815f6f273604430fc43c3439d1fb53f24a03a52726ab59ffe9fa0daad"
+    },
+    {
+      "question_id": "sec-generic-resume-004",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "失败复盘",
+      "kind": "resume_followup",
+      "prompt": "请说明一次未达预期的经历：事实、根因、你承担的改进动作和复发验证。",
+      "expected_evidence": [
+        "事实",
+        "根因",
+        "改进动作",
+        "复发验证"
+      ],
+      "followups": [
+        "哪些数据尚未经你确认，不能写入简历？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "f80391738ceb2168aba74dd1f20d93313305ab88c0c8b626980fa484fbce15e4"
+    },
+    {
+      "question_id": "sec-generic-resume-005",
+      "role_family": "generic",
+      "level": "lead",
+      "dimension": "结果证据",
+      "kind": "resume_followup",
+      "prompt": "请列出可以证明你工作结果的原始材料，并说明哪些信息需要脱敏或不能披露。",
+      "expected_evidence": [
+        "证据材料",
+        "结果口径",
+        "脱敏边界"
+      ],
+      "followups": [
+        "哪些数据尚未经你确认，不能写入简历？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 180,
+      "freshness_label": "current",
+      "content_hash": "bb7c9d017e76dd8bd2e2ea52e4bdd9bfb49faffaaddb217c661fcefdf05d86cc"
+    },
+    {
+      "question_id": "sec-generic-scenario-001",
+      "role_family": "generic",
+      "level": "mid",
+      "dimension": "多目标冲突",
+      "kind": "scenario",
+      "prompt": "业务要求尽快交付，但现有证据不足以证明质量和风险可控。请说明你如何澄清目标、拆分风险、设置停止条件和向相关方汇报。",
+      "expected_evidence": [
+        "目标澄清",
+        "风险拆分",
+        "停止条件",
+        "汇报口径"
+      ],
+      "followups": [
+        "哪些决定必须由业务负责人或更高权限角色确认？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 90,
+      "freshness_label": "current",
+      "content_hash": "fbbf211ce3460365cfd97514437813efa8a6321da124d00a6cf786e6ef60ba06"
+    },
+    {
+      "question_id": "sec-generic-scenario-002",
+      "role_family": "generic",
+      "level": "senior",
+      "dimension": "信息不完整",
+      "kind": "scenario",
+      "prompt": "关键资料缺失，但相关方要求你立即给出结论。请说明你如何区分事实、假设和待确认项，并设计最小可验证行动。",
+      "expected_evidence": [
+        "事实",
+        "假设",
+        "待确认项",
+        "最小验证",
+        "沟通边界"
+      ],
+      "followups": [
+        "你如何避免把临时判断写成最终承诺？"
+      ],
+      "answer_boundary": "只讨论候选人可验证的事实、个人责任、结果口径和协作边界，不得猜测受保护属性，不编造经历或数字。",
+      "source_refs": [
+        "yotta-evidence-interview-v1"
+      ],
+      "status": "active",
+      "last_verified_at": "2026-11-23",
+      "stale_after_days": 90,
+      "freshness_label": "current",
+      "content_hash": "569110b4f49f358a2a1d517904e3974c85f683c56a9f7a4c6d47225604f94418"
     }
   ]
 }
