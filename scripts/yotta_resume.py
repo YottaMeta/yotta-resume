@@ -1513,12 +1513,14 @@ def _commit_export_outputs(staged, backup_dir):
 
     backups = []
     committed = []
+    backup_dir = Path(backup_dir)
+    backup_dir.mkdir(parents=True, exist_ok=True)
     try:
         for index, (label, staged_path, target) in enumerate(staged):
             target.parent.mkdir(parents=True, exist_ok=True)
             backup = None
             if target.exists():
-                backup = Path(backup_dir) / "{}-{}.bak".format(index, target.name)
+                backup = backup_dir / "{}-{}.bak".format(index, target.name)
                 move_path(target, backup)
             backups.append((target, backup))
             move_path(staged_path, target)

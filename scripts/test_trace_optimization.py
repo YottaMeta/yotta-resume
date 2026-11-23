@@ -198,6 +198,32 @@ class ExportTransactionTest(unittest.TestCase):
             self.assertEqual(docx.read_bytes(), b"old-docx")
             self.assertEqual(html.read_bytes(), b"old-html")
 
+    def test_successful_export_replaces_existing_outputs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "resume.md"
+            docx = root / "resume.docx"
+            html = root / "resume.html"
+            source.write_text(RESUME, encoding="utf-8")
+            docx.write_bytes(b"old-docx")
+            html.write_bytes(b"old-html")
+            completed = self.run_cli(
+                [
+                    "export",
+                    "--input",
+                    str(source),
+                    "--docx",
+                    str(docx),
+                    "--html",
+                    str(html),
+                ]
+            )
+            self.assertEqual(completed.returncode, 0, completed.stderr)
+            self.assertNotEqual(docx.read_bytes(), b"old-docx")
+            self.assertNotEqual(html.read_bytes(), b"old-html")
+            self.assertTrue(docx.read_bytes().startswith(b"PK"))
+            self.assertIn(b"<!doctype html>", html.read_bytes())
+
     def test_duplicate_output_paths_are_rejected_before_writing(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
