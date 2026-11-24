@@ -365,8 +365,8 @@ class CliTest(unittest.TestCase):
     def test_version(self):
         code, out, _ = self.run_cli(["--version"])
         self.assertEqual(code, 0)
-        self.assertEqual(yr.VERSION, "0.2.2-dev.1")
-        self.assertIn("0.2.2-dev.1", out)
+        self.assertEqual(yr.VERSION, "0.2.2")
+        self.assertIn("0.2.2", out)
 
     def test_audit_json(self):
         with tempfile.TemporaryDirectory() as tmp:

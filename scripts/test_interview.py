@@ -365,10 +365,10 @@ class InterviewCliTest(unittest.TestCase):
             check=False,
         )
 
-    def test_version_is_final_r2(self):
+    def test_version_is_final_r4_1(self):
         completed = self.run_cli(["--version"])
         self.assertEqual(completed.returncode, 0)
-        self.assertIn("0.2.2-dev.1", completed.stdout)
+        self.assertIn("0.2.2", completed.stdout)
 
     def test_start_answer_review_cli_flow(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -511,7 +511,7 @@ class InterviewBundleTest(unittest.TestCase):
             self.assertTrue((SKILL_DIR / relative).is_file(), relative)
         session = ie.load_session(
             SKILL_DIR / "examples" / "interview-session.example.json",
-            bank_version="0.2.2-dev.1",
+            bank_version="0.2.2",
         )
         self.assertEqual(session["schema_version"], "1.0")
         self.assertEqual(session["inputs"]["role_family"], "soc")

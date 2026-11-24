@@ -13,7 +13,7 @@ from typing import Any
 SKILL_DIR = Path(__file__).resolve().parents[1]
 OUTPUT = SKILL_DIR / "data" / "question-bank.json"
 GENERATED_AT = "2026-11-24"
-BANK_VERSION = "0.2.2-dev.1"
+BANK_VERSION = "0.2.2"
 LEVELS = ("junior", "mid", "senior", "lead")
 
 

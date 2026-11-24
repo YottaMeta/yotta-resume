@@ -108,8 +108,8 @@ DOCX / HTML / PDF 成品样例见 [examples/export-samples](examples/export-samp
 ### 方式一：npm 一行装（推荐）
 
 ```text
-npx -y @yottameta/yotta-resume@0.2.2-dev.1 --agent <智能体名称>
-npx -y @yottameta/yotta-resume@0.2.2-dev.1 --dir <智能体的技能目录>
+npx -y @yottameta/yotta-resume@0.2.2 --agent <智能体名称>
+npx -y @yottameta/yotta-resume@0.2.2 --dir <智能体的技能目录>
 ```
 
 - `--agent <name>` 安装到该智能体默认用户级技能目录。
