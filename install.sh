@@ -49,10 +49,10 @@ dirs_for() {
 }
 
 codex_dir() {
-  if [ -n "${CODEX_HOME:-}" ]; then printf '%s' "$CODEX_HOME/skills"; else printf '%s' "$HOME/.codex/skills"; fi
+  printf '%s' "$HOME/.codex/skills"
 }
 opencode_dir() {
-  if [ -n "${XDG_CONFIG_HOME:-}" ]; then printf '%s' "$XDG_CONFIG_HOME/opencode/skills"; else printf '%s' "$HOME/.config/opencode/skills"; fi
+  printf '%s' "$HOME/.config/opencode/skills"
 }
 resolve_user() {
   case "$1" in
@@ -125,21 +125,12 @@ assert_safe_target() {
   return 0
 }
 
-is_managed_hub_link() {
-  local p="$1" real parent
-  [ -L "$p" ] || return 1
-  real="$(resolve_path "$p")" || return 1
-  [ "$(basename "$real")" = "$SKILL_NAME" ] || return 1
-  parent="$(dirname "$real")"
-  [ -f "$parent/.yotta-hub.json" ] || [ -f "$parent/.yotta-links.json" ]
-}
-
 assert_no_nested_links() {
   local dest="$1"
   [ -d "$dest" ] || return 0
   if find "$dest" -mindepth 1 -type l -print -quit 2>/dev/null | grep -q .; then
     echo "安装失败：目标目录包含符号链接，拒绝写入：$dest" >&2
-    return 1
+    return 4
   fi
   return 0
 }
@@ -169,12 +160,12 @@ copy_tree() {
   local src="$1" dst="$2" top="$3" entry base
   if [ "$top" != "1" ] && [ -L "$dst" ]; then
     echo "安装失败：目标目录包含符号链接，拒绝写入：$dst" >&2
-    return 1
+    return 4
   fi
   mkdir -p "$dst" || return 1
   if [ "$top" != "1" ] && [ -L "$dst" ]; then
     echo "安装失败：目标目录包含符号链接，拒绝写入：$dst" >&2
-    return 1
+    return 4
   fi
   for entry in "$src"/* "$src"/.[!.]* "$src"/..?*; do
     [ -e "$entry" ] || [ -L "$entry" ] || continue
@@ -190,16 +181,16 @@ copy_tree() {
     if [ -d "$entry" ] && [ ! -L "$entry" ]; then
       if [ -L "$dst/$base" ]; then
         echo "安装失败：目标目录包含符号链接，拒绝写入：$dst/$base" >&2
-        return 1
+        return 4
       fi
-      copy_tree "$entry" "$dst/$base" 0 || return 1
+      copy_tree "$entry" "$dst/$base" 0 || return $?
     else
       case "$base" in
         *.pyc|*.pyo) continue ;;
       esac
       if [ -L "$dst/$base" ]; then
         echo "安装失败：目标文件是符号链接，拒绝写入：$dst/$base" >&2
-        return 1
+        return 4
       fi
       cp -RP "$entry" "$dst/$base" || return 1
     fi
@@ -211,33 +202,33 @@ install_to() {
   dest="$base/$SKILL_NAME"
   if [ -L "$base" ]; then
     echo "安装失败：目标目录是符号链接，拒绝跟随：$base" >&2
-    return 1
+    return 4
   fi
   if [ -e "$base" ] && [ ! -d "$base" ]; then
     echo "安装失败：目标路径已存在且不是目录：$base" >&2
-    return 1
+    return 4
   fi
-  if [ -L "$dest" ] && ! is_managed_hub_link "$dest"; then
+  if [ -L "$dest" ]; then
     echo "安装失败：技能目录是符号链接，拒绝跟随：$dest" >&2
-    return 1
+    return 4
   fi
   if [ -e "$dest" ] && [ ! -d "$dest" ]; then
     echo "安装失败：技能路径已存在且不是目录：$dest" >&2
-    return 1
+    return 4
   fi
   assert_safe_target "$dest" || return 1
-  assert_no_nested_links "$dest" || return 1
+  assert_no_nested_links "$dest" || return $?
   if [ "$dry" = "1" ]; then
     echo "[dry-run] 将安装到 -> $dest"
     return 0
   fi
   clean_residue "$dest"
   mkdir -p "$dest" || return 1
-  if [ -L "$dest" ] && ! is_managed_hub_link "$dest"; then
+  if [ -L "$dest" ]; then
     echo "安装失败：技能目录在安装期间变成了链接，拒绝写入：$dest" >&2
-    return 1
+    return 4
   fi
-  copy_tree "$SOURCE_DIR" "$dest" 1 || return 1
+  copy_tree "$SOURCE_DIR" "$dest" 1 || return $?
   if [ ! -f "$dest/SKILL.md" ]; then
     echo "安装失败：结果缺少 SKILL.md" >&2
     return 1
@@ -263,7 +254,7 @@ list() {
     printf '  %-10s %s\n' "$a" "$first"
   done
   echo '说明：Windows 用 %USERPROFILE%，Linux/macOS 用 ~；仅收录有官方默认目录的智能体。'
-  echo '改了目录的请用 --dir <路径>，不要依赖默认位置；若设置了 CODEX_HOME / XDG_CONFIG_HOME，安装自动以该变量为准。'
+  echo '改了目录的请用 --dir <路径>，不要依赖默认位置；自定义宿主目录必须显式指定。'
 }
 
 main() {
@@ -320,7 +311,7 @@ main() {
   fi
 
   if [ -n "$dir" ]; then
-    install_to "$dir" "$dry" || exit 1
+    install_to "$dir" "$dry" || return $?
     [ "$dry" = "1" ] || echo "完成。"
     return 0
   fi
@@ -331,7 +322,7 @@ main() {
       exit 2
     fi
     first="${dirs%% *}"
-    install_to "$(resolve_user "$first")" "$dry" || exit 1
+    install_to "$(resolve_user "$first")" "$dry" || return $?
     [ "$dry" = "1" ] || echo "完成。"
     return 0
   fi
@@ -344,7 +335,7 @@ main() {
           *" $rel "*) continue ;;
         esac
         seen="$seen$rel "
-        install_to "$(resolve_user "$rel")" "$dry" || exit 1
+        install_to "$(resolve_user "$rel")" "$dry" || return $?
       done
     done
     [ "$dry" = "1" ] || echo "完成。"
@@ -353,7 +344,7 @@ main() {
   local installed=0 d
   for d in .claude/skills .cursor/skills .codex/skills .config/goose/skills .config/agents/skills .opencode/skills .codeium/windsurf/skills .workbuddy/skills .kiro/skills .traecli/skills .gemini/skills .trae-cn/skills .qwen/skills .comate/skills .codebuddy/skills .kimi/skills .agents/skills; do
     if [ -d "$d" ]; then
-      install_to "$d" "$dry" || exit 1
+      install_to "$d" "$dry" || return $?
       installed=1
     fi
   done

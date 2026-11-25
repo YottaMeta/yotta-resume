@@ -117,15 +117,15 @@ Choose one of the methods below. Skill files are distributed through **npm**; Gi
 ### Method 1: npm one-liner (recommended)
 
 ```text
-npx -y @yottameta/yotta-resume@0.2.3 --agent <agent-name>
-npx -y @yottameta/yotta-resume@0.2.3 --dir <agent-skills-dir>
+npx -y @yottameta/yotta-resume@0.2.4 --agent <agent-name>
+npx -y @yottameta/yotta-resume@0.2.4 --dir <agent-skills-dir>
 ```
 
 - `--agent <name>` installs to that agent's default user-level skills directory.
 - `--dir <path>` installs to a specified skills directory.
 - `--list` shows supported agent defaults.
-- The installer writes only `<target>/yotta-resume`, removes known development residue and caches inside that target, and refuses ordinary symlink or junction targets.
-- `--dry-run` prints destinations without writing files. The core resume workflow is local; npm / npx network access occurs only when you explicitly run the install command.
+- The installer writes only `<target>/yotta-resume`, removes known development residue and caches inside that target, and rejects any symlink or junction in the install root, target, or nested target entries.
+- `--dry-run` prints destinations without writing files. The core resume workflow is local; package download and registry access occur only when you explicitly run the pinned install command.
 - If a China mirror has not synced the package, append `--registry=https://registry.npmjs.org/`.
 
 ### Method 2: git clone

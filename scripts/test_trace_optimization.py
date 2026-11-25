@@ -78,7 +78,7 @@ class DoctorTest(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         payload = json.loads(completed.stdout)
         self.assertTrue(payload["ok"])
-        self.assertEqual(payload["version"], "0.2.3")
+        self.assertEqual(payload["version"], "0.2.4")
         checks = {item["id"]: item for item in payload["checks"]}
         for check_id in (
             "contracts",
@@ -387,7 +387,7 @@ class BundledContentTest(unittest.TestCase):
             (SKILL_DIR / "data" / "question-bank.json").read_text(encoding="utf-8")
         )
         questions = bank["questions"]
-        self.assertEqual(bank["bank_version"], "0.2.3")
+        self.assertEqual(bank["bank_version"], "0.2.4")
         self.assertEqual(len(questions), 270)
         self.assertEqual(
             {

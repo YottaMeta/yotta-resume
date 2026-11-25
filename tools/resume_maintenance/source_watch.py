@@ -16,7 +16,7 @@ from urllib.parse import urlsplit
 
 
 SCHEMA_VERSION = "1.0"
-SKILL_VERSION = "0.2.3"
+SKILL_VERSION = "0.2.4"
 MAX_SNAPSHOT_BYTES = 2 * 1024 * 1024
 DEFAULT_TIMEOUT_SECONDS = 15
 _HASH_RE = re.compile(r"^[a-f0-9]{64}$")
@@ -304,7 +304,7 @@ def _fetch_one(source, opener, today, timeout, max_bytes):
     request = urllib.request.Request(
         url,
         headers={
-        "User-Agent": "yotta-resume-source-watch/0.2.3",
+        "User-Agent": "yotta-resume-source-watch/0.2.4",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.1",
         },
         method="GET",

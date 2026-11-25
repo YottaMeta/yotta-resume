@@ -3,14 +3,14 @@
  * yotta-resume 跨平台安装器（YottaSkills）
  *
  * 用法:
- *   npx -y @yottameta/yotta-resume@0.2.3 --agent <name>   # 按智能体默认用户级目录安装（推荐）
- *   npx -y @yottameta/yotta-resume@0.2.3 --dir <path>     # 装到指定目录（用户改了目录的智能体）
- *   npx -y @yottameta/yotta-resume@0.2.3 -g               # 安装到全部已知智能体用户级目录
- *   npx -y @yottameta/yotta-resume@0.2.3                  # 安装到检测到的项目级目录
- *   npx -y @yottameta/yotta-resume@0.2.3 --list           # 列出智能体 -> 默认目录
- *   npx -y @yottameta/yotta-resume@0.2.3 --dry-run        # 只显示将写入的目标，不写文件
- *   npx -y @yottameta/yotta-resume@0.2.3 --version        # 显示版本
- *   npx -y @yottameta/yotta-resume@0.2.3 --help           # 显示帮助
+ *   npx -y @yottameta/yotta-resume@0.2.4 --agent <name>   # 按智能体默认用户级目录安装（推荐）
+ *   npx -y @yottameta/yotta-resume@0.2.4 --dir <path>     # 装到指定目录（用户改了目录的智能体）
+ *   npx -y @yottameta/yotta-resume@0.2.4 -g               # 安装到全部已知智能体用户级目录
+ *   npx -y @yottameta/yotta-resume@0.2.4                  # 安装到检测到的项目级目录
+ *   npx -y @yottameta/yotta-resume@0.2.4 --list           # 列出智能体 -> 默认目录
+ *   npx -y @yottameta/yotta-resume@0.2.4 --dry-run        # 只显示将写入的目标，不写文件
+ *   npx -y @yottameta/yotta-resume@0.2.4 --version        # 显示版本
+ *   npx -y @yottameta/yotta-resume@0.2.4 --help           # 显示帮助
  *
  * 退出码: 0 成功 / 1 安装失败 / 2 用法错误 / 4 目标错误
  */
@@ -43,11 +43,11 @@ class InstallError extends Error {}
 const AGENT_DIRS = {
   claude:    { label: 'Claude Code',      dirs: ['.claude/skills'] },
   cursor:    { label: 'Cursor',           dirs: ['.cursor/skills', '.agents/skills'] },
-  codex:     { label: 'Codex',            dirs: ['.codex/skills'] }, // 特判：$CODEX_HOME/skills
+  codex:     { label: 'Codex',            dirs: ['.codex/skills'] }, // 固定 ~/.codex/skills，不读取环境变量
   gemini:    { label: 'Gemini CLI',       dirs: ['.gemini/skills', '.agents/skills'] },
   goose:     { label: 'Goose',            dirs: ['.config/goose/skills', '.agents/skills'] },
   amp:       { label: 'Amp',              dirs: ['.config/agents/skills', '.agents/skills'] },
-  opencode:  { label: 'OpenCode',         dirs: ['.config/opencode/skills'] }, // 特判：$XDG_CONFIG_HOME
+  opencode:  { label: 'OpenCode',         dirs: ['.config/opencode/skills'] }, // 固定 ~/.config/opencode/skills
   windsurf:  { label: 'Windsurf',         dirs: ['.codeium/windsurf/skills'] },
   workbuddy: { label: 'WorkBuddy',        dirs: ['.workbuddy/skills'] },
   kiro:      { label: 'Kiro',             dirs: ['.kiro/skills'] },
@@ -80,16 +80,14 @@ const PROJECT_DIRS = [
   '.agents/skills',
 ];
 
-// Codex 用户级目录特判：优先 $CODEX_HOME/skills，否则 ~/.codex/skills
+// Codex 用户级目录：固定使用系统用户主目录，不读取宿主环境变量。
 function codexUserDir() {
-  const base = process.env.CODEX_HOME || path.join(os.homedir(), '.codex');
-  return path.join(base, 'skills');
+  return path.join(os.homedir(), '.codex', 'skills');
 }
 
-// OpenCode 用户级目录特判：优先 $XDG_CONFIG_HOME/opencode/skills，否则 ~/.config/opencode/skills
+// OpenCode 用户级目录：固定使用系统用户主目录，不读取宿主环境变量。
 function opencodeUserDir() {
-  const base = process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config');
-  return path.join(base, 'opencode', 'skills');
+  return path.join(os.homedir(), '.config', 'opencode', 'skills');
 }
 
 function resolveUserDir(rel) {
@@ -175,7 +173,7 @@ function printList() {
     console.log('  ' + key.padEnd(10) + value.label.padEnd(18) + resolved.join('、'));
   }
   console.log('\n说明：Windows 用 %USERPROFILE%，Linux/macOS 用 ~；仅收录有官方默认目录的智能体。');
-  console.log('改了目录的请用 --dir <路径>，不要依赖默认位置；若设置了 CODEX_HOME / XDG_CONFIG_HOME，安装自动以该变量为准。');
+  console.log('改了目录的请用 --dir <路径>，不要依赖默认位置；自定义宿主目录必须显式指定。');
 }
 
 function assertSafeTarget(target) {
@@ -183,7 +181,10 @@ function assertSafeTarget(target) {
   if (rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel))) {
     throw new UsageError('目标目录不能在技能源目录内（防止自装自毁）');
   }
-  if (isDirectLink(target) && !isManagedHubTarget(target)) {
+  if (isDirectLink(path.dirname(target))) {
+    throw new TargetError('安装根目录是符号链接或 junction，拒绝跟随: ' + path.dirname(target));
+  }
+  if (isDirectLink(target)) {
     throw new TargetError('目标目录是符号链接或 junction，拒绝跟随: ' + target);
   }
 }
@@ -191,30 +192,7 @@ function assertSafeTarget(target) {
 function isDirectLink(target) {
   let stat = null;
   try { stat = fs.lstatSync(target); } catch (_) { return false; }
-  if (stat.isSymbolicLink()) return true;
-  try {
-    const real = fs.realpathSync(target);
-    const parentReal = fs.realpathSync(path.dirname(target));
-    const norm = (value) => process.platform === 'win32'
-      ? path.resolve(value).toLowerCase()
-      : path.resolve(value);
-    return norm(real) !== norm(path.join(parentReal, path.basename(target)));
-  } catch (_) {
-    return false;
-  }
-}
-
-function isManagedHubTarget(target) {
-  if (!isDirectLink(target)) return false;
-  try {
-    const real = fs.realpathSync(target);
-    if (path.basename(real) !== SKILL_NAME) return false;
-    const parent = path.dirname(real);
-    return fs.existsSync(path.join(parent, '.yotta-hub.json'))
-      || fs.existsSync(path.join(parent, '.yotta-links.json'));
-  } catch (_) {
-    return false;
-  }
+  return stat.isSymbolicLink();
 }
 
 function removeLink(target) {
@@ -278,14 +256,13 @@ function copyDir(src, dst, topLevel) {
 // 不整目录删除、不跟随符号链接。
 function cleanResidue(target) {
   const removed = [];
-  const workTarget = isManagedHubTarget(target) ? fs.realpathSync(target) : target;
   let stat = null;
-  try { stat = fs.lstatSync(workTarget); } catch (_) { return removed; }
+  try { stat = fs.lstatSync(target); } catch (_) { return removed; }
   if (!stat.isDirectory()) return removed;
-  if (isDirectLink(workTarget)) return removed;
-  if (!fs.existsSync(path.join(workTarget, 'SKILL.md'))) return removed;
+  if (isDirectLink(target)) return removed;
+  if (!fs.existsSync(path.join(target, 'SKILL.md'))) return removed;
   for (const name of TOP_SKIP) {
-    const p = path.join(workTarget, name);
+    const p = path.join(target, name);
     let entry = null;
     try { entry = fs.lstatSync(p); } catch (_) { continue; }
     if (entry.isSymbolicLink() || isDirectLink(p)) continue;
@@ -309,7 +286,7 @@ function cleanResidue(target) {
       }
     }
   };
-  walk(workTarget);
+  walk(target);
   return removed;
 }
 
@@ -324,7 +301,8 @@ function installTo(dest, opts) {
   try {
     for (const rel of cleanResidue(target)) console.log('已清理残留: ' + rel);
     fs.mkdirSync(target, { recursive: true });
-    if (isDirectLink(target) && !isManagedHubTarget(target)) {
+    assertSafeTarget(target);
+    if (isDirectLink(target)) {
       throw new TargetError('目标目录在安装期间变成了链接，拒绝写入: ' + target);
     }
     copyDir(PKG_ROOT, target, true);
