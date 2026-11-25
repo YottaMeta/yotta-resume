@@ -108,13 +108,15 @@ DOCX / HTML / PDF 成品样例见 [examples/export-samples](examples/export-samp
 ### 方式一：npm 一行装（推荐）
 
 ```text
-npx -y @yottameta/yotta-resume@0.2.2 --agent <智能体名称>
-npx -y @yottameta/yotta-resume@0.2.2 --dir <智能体的技能目录>
+npx -y @yottameta/yotta-resume@0.2.3 --agent <智能体名称>
+npx -y @yottameta/yotta-resume@0.2.3 --dir <智能体的技能目录>
 ```
 
 - `--agent <name>` 安装到该智能体默认用户级技能目录。
 - `--dir <path>` 安装到指定技能目录。
 - `--list` 查看已支持的智能体默认目录。
+- 安装器只写入 `<目标>/yotta-resume`，仅在该目标内清理已知开发残留和缓存；普通符号链接或 junction 目标会被拒绝。
+- `--dry-run` 只显示目标，不写文件。核心简历流程在本地运行；只有用户主动执行安装命令时才会发生 npm / npx 网络访问。
 - 国内镜像未同步新包时，可追加 `--registry=https://registry.npmjs.org/`。
 
 ### 方式二：git clone

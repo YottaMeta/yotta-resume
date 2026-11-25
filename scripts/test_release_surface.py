@@ -118,11 +118,11 @@ class ReleaseSurfaceTest(unittest.TestCase):
             self.assertFalse((installed / "scripts" / "source_watch.py").exists())
             self.assertFalse((installed / "scripts" / "bank_pipeline.py").exists())
 
-    def test_readme_npx_install_examples_use_an_exact_version(self):
+    def test_all_npx_install_examples_use_an_exact_version(self):
         version = json.loads(
             (SKILL_DIR / "package.json").read_text(encoding="utf-8")
         )["version"]
-        for name in ("README.md", "README.zh-CN.md"):
+        for name in ("README.md", "README.zh-CN.md", "bin/install.js"):
             text = (SKILL_DIR / name).read_text(encoding="utf-8")
             self.assertNotRegex(
                 text,
@@ -134,6 +134,16 @@ class ReleaseSurfaceTest(unittest.TestCase):
                 text,
                 name,
             )
+
+    def test_skill_declares_minimal_tools_and_installer_boundary(self):
+        text = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        self.assertRegex(
+            text,
+            r"(?m)^allowed-tools:\s*Read,\s*Write,\s*Bash\s*$",
+        )
+        self.assertIn("安装器权限与边界", text)
+        self.assertIn("复制到用户指定的智能体技能目录", text)
+        self.assertIn("只在目标 `yotta-resume` 目录内", text)
 
 
 if __name__ == "__main__":

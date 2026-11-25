@@ -70,7 +70,7 @@ python tools/resume_maintenance/yotta_resume_maintenance.py sources check \
 python tools/resume_maintenance/yotta_resume_maintenance.py bank propose \
   --source-candidate source-candidate \
   --patches question-patches.json \
-  --target-version 0.2.2 \
+  --target-version 0.2.3 \
   --out bank-candidate \
   --format json
 ```

@@ -32,7 +32,7 @@ except Exception:
 
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
-VERSION = "0.2.2"
+VERSION = "0.2.3"
 SCHEMA_VERSION = "1.1"
 JD_LEXICON_VERSION = "2026-11-21.2"
 
@@ -1434,24 +1434,84 @@ def find_pdf_browser():
     return None
 
 
+_PDF_BROWSER_NAMES = {
+    "msedge",
+    "msedge.exe",
+    "chrome",
+    "chrome.exe",
+    "chromium",
+    "chromium-browser",
+    "google-chrome",
+}
+_PDF_FILE_WAIT_SECONDS = 3.0
+_PDF_FILE_POLL_SECONDS = 0.05
+
+
+def _validate_pdf_browser(browser):
+    candidate = Path(browser).expanduser()
+    try:
+        resolved = candidate.resolve(strict=True)
+    except OSError as error:
+        raise RuntimeError(
+            "浏览器路径不可信或不存在；仅支持本机 Edge、Chrome 或 Chromium。"
+        ) from error
+    if not resolved.is_file() or resolved.name.lower() not in _PDF_BROWSER_NAMES:
+        raise RuntimeError(
+            "浏览器路径不可信；仅支持本机 Edge、Chrome 或 Chromium。"
+        )
+    return str(resolved)
+
+
+def _wait_for_pdf_file(output_path):
+    deadline = time.monotonic() + _PDF_FILE_WAIT_SECONDS
+    while time.monotonic() < deadline:
+        try:
+            if (
+                output_path.is_file()
+                and output_path.read_bytes().startswith(b"%PDF")
+            ):
+                return True
+        except OSError:
+            pass
+        time.sleep(_PDF_FILE_POLL_SECONDS)
+    return False
+
+
+def _cleanup_pdf_temp(path):
+    for attempt in range(5):
+        try:
+            shutil.rmtree(path)
+            return
+        except FileNotFoundError:
+            return
+        except OSError:
+            time.sleep(0.1 * (attempt + 1))
+    shutil.rmtree(path, ignore_errors=True)
+
+
 def export_pdf(model, output_path, browser_path=None, retries=2):
     """Render the resume to PDF with a local Chromium-compatible browser."""
     browser = browser_path or find_pdf_browser()
     if not browser:
         raise RuntimeError("未找到本机 Chromium/Edge/Chrome，无法导出 PDF；请安装浏览器或改用 DOCX/HTML。")
+    browser = _validate_pdf_browser(browser)
     if isinstance(retries, bool) or not isinstance(retries, int) or retries < 1:
         raise RuntimeError("PDF 重试次数必须是大于等于 1 的整数。")
     output = Path(output_path).resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.TemporaryDirectory(prefix="yotta-resume-") as tmp:
-        page = Path(tmp) / "resume.html"
+    temp_root = Path(tempfile.mkdtemp(prefix="yotta-resume-"))
+    try:
+        page = temp_root / "resume.html"
         export_html(model, page)
         last_detail = ""
         for attempt in range(1, retries + 1):
             if output.exists():
                 output.unlink()
             profile_dir = Path(
-                tempfile.mkdtemp(prefix="yotta-resume-profile-", dir=tmp)
+                tempfile.mkdtemp(
+                    prefix="yotta-resume-profile-",
+                    dir=temp_root,
+                )
             )
             command = [
                 browser,
@@ -1464,21 +1524,19 @@ def export_pdf(model, output_path, browser_path=None, retries=2):
                 page.as_uri(),
             ]
             try:
+                # The executable is allowlisted above and arguments stay a list.
                 completed = subprocess.run(
                     command,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     timeout=90,
                     check=False,
+                    shell=False,
                 )
                 detail = completed.stderr.decode("utf-8", errors="replace").strip()
-                if (
-                    completed.returncode == 0
-                    and output.is_file()
-                    and output.read_bytes().startswith(b"%PDF")
-                ):
+                if completed.returncode == 0 and _wait_for_pdf_file(output):
                     return output
-                last_detail = detail or "未生成有效 PDF"
+                last_detail = detail or "浏览器返回成功，但未生成有效 PDF"
             except subprocess.TimeoutExpired:
                 last_detail = "浏览器渲染超时"
             except OSError as error:
@@ -1493,7 +1551,8 @@ def export_pdf(model, output_path, browser_path=None, retries=2):
                 last_detail or "浏览器未生成有效 PDF",
             )
         )
-    return output
+    finally:
+        _cleanup_pdf_temp(temp_root)
 
 
 class ExportPlanError(ValueError):
@@ -2389,6 +2448,17 @@ def _write_action_pack(output_dir, files):
 
 
 def cmd_quickstart(args):
+    output_path = Path(args.out).expanduser().resolve() if args.out else None
+    for source in (getattr(args, "resume", None), getattr(args, "jd", None)):
+        if source and output_path == Path(source).expanduser().resolve():
+            print(
+                format_controlled_error(
+                    "YRS-EXPORT-004",
+                    "输出路径不能与输入文件相同：{}".format(source),
+                ),
+                file=sys.stderr,
+            )
+            return 2
     doctor_report = _doctor_checks(args.root, args.today)
     if not doctor_report["ok"]:
         detail = "元简自检未通过：{}".format(

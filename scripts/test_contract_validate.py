@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline contract tests for yotta-resume 0.2.2."""
+"""Offline contract tests for yotta-resume 0.2.3."""
 
 import hashlib
 import json

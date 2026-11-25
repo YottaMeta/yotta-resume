@@ -7,6 +7,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import unittest
 import zipfile
 from contextlib import redirect_stderr, redirect_stdout
@@ -292,6 +293,8 @@ class PdfRetryTest(unittest.TestCase):
         calls = []
 
         def fake_run(command, **kwargs):
+            self.assertIsInstance(command, list)
+            self.assertIs(kwargs.get("shell"), False)
             calls.append(command)
             target_arg = next(
                 item for item in command if item.startswith("--print-to-pdf=")
@@ -309,12 +312,14 @@ class PdfRetryTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp) / "resume.pdf"
+            browser = Path(tmp) / "chrome.exe"
+            browser.write_text("", encoding="utf-8")
             with mock.patch.object(yr.subprocess, "run", side_effect=fake_run), \
                     mock.patch.object(yr.time, "sleep", return_value=None):
                 yr.export_pdf(
                     model,
                     target,
-                    browser_path="fake-browser",
+                    browser_path=str(browser),
                     retries=2,
                 )
             self.assertTrue(target.read_bytes().startswith(b"%PDF"))
@@ -328,6 +333,53 @@ class PdfRetryTest(unittest.TestCase):
             self.assertEqual(len(matches), 1)
             profiles.append(matches[0])
         self.assertNotEqual(profiles[0], profiles[1])
+
+    def test_export_pdf_rejects_untrusted_browser_executable(self):
+        model = yr.parse_markdown_resume(RESUME)
+        with tempfile.TemporaryDirectory() as tmp:
+            fake_browser = Path(tmp) / "not-a-browser.py"
+            fake_browser.write_text("#!/usr/bin/env python3\n", encoding="utf-8")
+            target = Path(tmp) / "resume.pdf"
+            with mock.patch.object(yr.subprocess, "run") as run:
+                with self.assertRaisesRegex(RuntimeError, "浏览器路径不可信"):
+                    yr.export_pdf(
+                        model,
+                        target,
+                        browser_path=str(fake_browser),
+                        retries=1,
+                    )
+            run.assert_not_called()
+
+    def test_export_pdf_waits_for_file_created_after_browser_exit(self):
+        model = yr.parse_markdown_resume(RESUME)
+
+        def fake_run(command, **kwargs):
+            target_arg = next(
+                item for item in command if item.startswith("--print-to-pdf=")
+            )
+            target = Path(target_arg.split("=", 1)[1])
+            timer = threading.Timer(
+                0.15,
+                lambda: target.write_bytes(b"%PDF-1.4\n%%EOF\n"),
+            )
+            timer.start()
+            self.addCleanup(timer.join)
+            return subprocess.CompletedProcess(
+                command, 0, stdout=b"", stderr=b""
+            )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "resume.pdf"
+            browser = Path(tmp) / "chrome.exe"
+            browser.write_text("", encoding="utf-8")
+            with mock.patch.object(yr.subprocess, "run", side_effect=fake_run):
+                yr.export_pdf(
+                    model,
+                    target,
+                    browser_path=str(browser),
+                    retries=1,
+                )
+            self.assertTrue(target.read_bytes().startswith(b"%PDF"))
 
     def test_export_pdf_retry_exhaustion_removes_partial_file(self):
         model = yr.parse_markdown_resume(RESUME)
@@ -343,13 +395,15 @@ class PdfRetryTest(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp) / "resume.pdf"
+            browser = Path(tmp) / "chrome.exe"
+            browser.write_text("", encoding="utf-8")
             with mock.patch.object(yr.subprocess, "run", side_effect=fake_run), \
                     mock.patch.object(yr.time, "sleep", return_value=None):
                 with self.assertRaises(RuntimeError):
                     yr.export_pdf(
                         model,
                         target,
-                        browser_path="fake-browser",
+                        browser_path=str(browser),
                         retries=2,
                     )
             self.assertFalse(target.exists())
@@ -365,8 +419,8 @@ class CliTest(unittest.TestCase):
     def test_version(self):
         code, out, _ = self.run_cli(["--version"])
         self.assertEqual(code, 0)
-        self.assertEqual(yr.VERSION, "0.2.2")
-        self.assertIn("0.2.2", out)
+        self.assertEqual(yr.VERSION, "0.2.3")
+        self.assertIn("0.2.3", out)
 
     def test_audit_json(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -449,6 +503,22 @@ class CliTest(unittest.TestCase):
         self.assertTrue(payload["doctor"]["ok"])
         self.assertEqual(payload["audit"]["schema_version"], "1.1")
         self.assertTrue(payload["next_steps"])
+
+    def test_quickstart_rejects_output_overwriting_resume_input(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            resume = Path(tmp) / "resume.md"
+            original = RESUME
+            resume.write_text(original, encoding="utf-8")
+            code, _, err = self.run_cli([
+                "quickstart",
+                "--resume",
+                str(resume),
+                "--out",
+                str(resume),
+            ])
+            self.assertEqual(code, 2)
+            self.assertIn("[YRS-EXPORT-004]", err)
+            self.assertEqual(resume.read_text(encoding="utf-8"), original)
 
     def test_export_docx_and_html(self):
         with tempfile.TemporaryDirectory() as tmp:

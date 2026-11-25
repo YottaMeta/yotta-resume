@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "contract_version": "1.0",
-  "bank_version": "0.2.2",
-  "generated_at": "2026-11-24",
+  "bank_version": "0.2.3",
+  "generated_at": "2026-11-25",
   "questions": [
     {
       "question_id": "sec-soc-knowledge-001",
@@ -27,10 +27,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "36c3a0b18a464ed86df09fdfaefb6b5c4d36e06249c79944269c45a72c53628c"
+      "content_hash": "985c34711c697a89acee1cf194f46d6ff125e5282bbe2fcd4b4883071b0715a0"
     },
     {
       "question_id": "sec-soc-knowledge-002",
@@ -55,10 +55,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f84aef8dcbe0fd4f7a55dad0d457ffaf51493f4c41660075014e17d3e0b95402"
+      "content_hash": "ca947e5b5663ab4ecf46fce950eba1799608ea96d279af26417fef99d4c0d237"
     },
     {
       "question_id": "sec-soc-knowledge-003",
@@ -83,10 +83,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "975df84a83736336588c78129a18570492e3280f10ce5f4edb10f6666a61bb28"
+      "content_hash": "cd2de329ec53663415bf60b63ae4024c1980e18dd130ec512720f9205c94e70c"
     },
     {
       "question_id": "sec-soc-knowledge-004",
@@ -111,10 +111,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0ffc4eeb2c7bbdcc4c29c714f9f473bc79faf1697d9add8410173b5efa09a2c6"
+      "content_hash": "e1ff4a386c26e19960367d1eff6294e9f3a8b5c70147211bbdf22b25ad0eb811"
     },
     {
       "question_id": "sec-soc-knowledge-005",
@@ -139,10 +139,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "221a2d447a7ffc8c57ddccd433b57d01682419e8b1b70d26902ffabe353671df"
+      "content_hash": "f33207753caf824c3ddc9b576b945caea0b903179c57939ee82684363c583799"
     },
     {
       "question_id": "sec-soc-knowledge-006",
@@ -169,10 +169,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e5b3a36e8155748f3c01bcd592a44a73eab3844f562f3e27ad5d6449923ef625"
+      "content_hash": "5dbda94471062ea03d66729d0a7da9ecb9184e8b1a128bb0dfe2be115c6cefcd"
     },
     {
       "question_id": "sec-soc-knowledge-007",
@@ -199,10 +199,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2aeff9530d177a504af9e0c0ddb96a52b5a6a4bc91c77e307412ab0c24c8dd38"
+      "content_hash": "0d0480fddc59f4ec7d303dfc9b8515097634db2ee2bb3c679c8c65c639bdc3a6"
     },
     {
       "question_id": "sec-soc-knowledge-008",
@@ -229,10 +229,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5016b8e8f8b2eba977dbf7622ffae2d9a892482a7a58e2b0c2ca193f435143bd"
+      "content_hash": "9951d952ac911b1427dbace9b6f1e3506b0dc7d29297ed78913b21a6598fc92c"
     },
     {
       "question_id": "sec-soc-knowledge-009",
@@ -259,10 +259,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5cd5e02c174685eab09698e4ae9db3114c97d62cd961d6f41a7c56b159a31199"
+      "content_hash": "5803775ddaebdecb0b3928b4c281d85edae88c7b28d6ad44d3f0af1d04be0cc1"
     },
     {
       "question_id": "sec-soc-knowledge-010",
@@ -289,10 +289,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d44f878f9c50c1e0cfd77b926567970e73ef2c83cfaf1c7ec3737d93f0046c93"
+      "content_hash": "e08c922ba6079a651cdc0aca98eda6a0dfa0eb8e42e261127707a942244c4008"
     },
     {
       "question_id": "sec-soc-knowledge-011",
@@ -319,10 +319,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3da8755927169b88a34750c26ed0826f9cdd177da9a7f27be2b192aa2b7d6b61"
+      "content_hash": "a0a2c3ee145846f6b92d76e51794555909797a422e2adb0eafa9e14deaef4ddb"
     },
     {
       "question_id": "sec-soc-knowledge-012",
@@ -349,10 +349,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ac4e636c1daffbb71be80f54f9df374f886623cad8268f831317e283dc834790"
+      "content_hash": "7a7e3ae65492537eb035cbf68d53a898a013f80073fbbcc79d1a8468f48f6458"
     },
     {
       "question_id": "sec-soc-knowledge-013",
@@ -379,10 +379,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3bbf3a2e8707db0002341321ba4f6053401ac6cc20723e9fa66c51e9312db675"
+      "content_hash": "957adbc91decef377550e33e122987ea27eeae6b5b4a5cf46d4c357b8a09009e"
     },
     {
       "question_id": "sec-soc-knowledge-014",
@@ -409,10 +409,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "222cfa85e73f4f24a1b78fc1df5b82cbf40d2be394f78eb494a37ab02cfa8b1f"
+      "content_hash": "47ca57c4a00ff16f1e673f131e216c58d1f0151f8f1d7d27a25a0cb7205e9162"
     },
     {
       "question_id": "sec-soc-knowledge-015",
@@ -439,10 +439,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "aef95b6e83ca66307be539fdee8cbfeaa2ea9a7186f6abef760795157d973b16"
+      "content_hash": "ba0937bc10a01058b52f8519a48aec02ee24de3b9aae472de2e928bdad7001af"
     },
     {
       "question_id": "sec-soc-knowledge-016",
@@ -469,10 +469,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e664f9de9bf20778dc469515177e45636602d04658bed8132292a2ccf3756d73"
+      "content_hash": "df90e432c2c083d8ed108626bd2a3ab1fb78fa3d7badfeae8571ccc824bb3bf8"
     },
     {
       "question_id": "sec-soc-knowledge-017",
@@ -499,10 +499,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "779e57f1b857d508e33bd2dbf910cbf1b054a00a9756f8cd0ce7fa7a7065eb0b"
+      "content_hash": "9dff7b3caeb4af2d0113e6deee3b9516798414de64762374291959f4d2c6cb34"
     },
     {
       "question_id": "sec-soc-knowledge-018",
@@ -529,10 +529,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "38eeb1c4c61988b42165dea0c2d8ac3d910aaa1e1eac6c5d5c0e7637a84de728"
+      "content_hash": "5634ccbdbae6994e9f21312da56d2318123dc518f77e595a1d2a34425ac6298a"
     },
     {
       "question_id": "sec-soc-knowledge-019",
@@ -559,10 +559,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "22bb011fc35db98a693d9cde3bb9c29a06717a473a4926f972d285f63aa4dc93"
+      "content_hash": "0b587ed1796108272f4d2ba6402fa25ab64704a64f000603a94bd9e3fbb2d989"
     },
     {
       "question_id": "sec-soc-knowledge-020",
@@ -589,10 +589,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7045975ecdb3d030b16a35b91bf27b957866d9f1499b8d659c616374a7c9392c"
+      "content_hash": "788db68382d51c687a1eeb0a87ca7440c8bd0fe4761b84b28c4591af1b9943f7"
     },
     {
       "question_id": "sec-soc-resume-001",
@@ -617,10 +617,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "55350b028bf39791d6681c4a62af4a8801a9dcef5de26a7feb77ceaaf070c90e"
+      "content_hash": "52f00aeb3f17e9015db10bb28c9ccf641b75d34981939b64a77297086140e280"
     },
     {
       "question_id": "sec-soc-resume-002",
@@ -644,10 +644,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3dbf4dab21403c1f46535d844ac73ccbc130cb8c29365d949abcc2015d8668a1"
+      "content_hash": "a1b156ee45dcd0d9fa16265d2dc28340144e8a0cf8b5d6f23bdb894c0eb90bf3"
     },
     {
       "question_id": "sec-soc-resume-003",
@@ -671,10 +671,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "213d0e7b6e6a76bd1459f9b15ef4c8912fa45f7335d5469ff7a9f2d3603c4838"
+      "content_hash": "89b320575321e9065278fbd2f8a95d5df89439406541dd7f553e1edf2ac1ddb3"
     },
     {
       "question_id": "sec-soc-resume-004",
@@ -699,10 +699,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f106bccb58f2bcf038dd80a93b5368d58f9adba2873441909e284509a5397272"
+      "content_hash": "ac7e8810288bc019933f3bc22dd2accaa9b2c24cfa42ac27788f90e9da9214ba"
     },
     {
       "question_id": "sec-soc-resume-005",
@@ -726,10 +726,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a6edd483f1283455d00196cace0b1058c184b0a96dbce513519f716c6b8b4c7d"
+      "content_hash": "0348e64de8c9e56f321bc06752d348a23bf666f291de65d794b53f23e3748478"
     },
     {
       "question_id": "sec-soc-scenario-001",
@@ -754,10 +754,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "5364ae951011a679d2d97b3c3be430f1fdc29dcac5047df2332704bd9e19bca4"
+      "content_hash": "1541e6937edfd053297b12410ba9c7f7ae773eed3d1a35a47d2b37053131f62d"
     },
     {
       "question_id": "sec-soc-scenario-002",
@@ -782,10 +782,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "3ee10af12b1e91dca58afb5a939d6ea320a2acc0d0526d3507e4c26660499cf7"
+      "content_hash": "b00ab9a6ef283f3e98eb584d20bde85b2926bc805096c6ea47b808bcfdc584b0"
     },
     {
       "question_id": "sec-ir-knowledge-001",
@@ -810,10 +810,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c2590ef764d1d2897d2140292cf328b3635b9a339d4d59d075312723a0d78bdc"
+      "content_hash": "53141207b83297606c907799a5cb27a23943b8e1651cf588985153b8944403e6"
     },
     {
       "question_id": "sec-ir-knowledge-002",
@@ -838,10 +838,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f8722787695df33e14d3fb71f7bfc3dcdc48eee3f0ba37c8ced89d8386387b8c"
+      "content_hash": "2b0ef30f54ff00369f69fb77354de45453877a7e44e555a790e3f01dc778f1ba"
     },
     {
       "question_id": "sec-ir-knowledge-003",
@@ -866,10 +866,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "34f48a5741a690c6108c7d1d93f39ea3a63f616f3910f026584054030e20fc43"
+      "content_hash": "31c0b3dc7b0f71b39a5b1efb81d69bcee6cd17de013d6742922223364b5ea16d"
     },
     {
       "question_id": "sec-ir-knowledge-004",
@@ -894,10 +894,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3dbc8868ae8c474082a90a3eddb2507eae51a2cf75899d0ffd88069814d23564"
+      "content_hash": "d8166ad1365cbb04a084cd013b57064190742acc37d04d21ecc5dcfe49abaabc"
     },
     {
       "question_id": "sec-ir-knowledge-005",
@@ -922,10 +922,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "45931683408fe067cd106f02c938bf3488aaa7de4d3a0509b160c67400a01c1f"
+      "content_hash": "dd7e510821a4e1da83551c62ae5a799dbe09b0c314e660629ea59739a5769946"
     },
     {
       "question_id": "sec-ir-knowledge-006",
@@ -952,10 +952,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "be9cbad41b799677f4a78d17e7689564a26718a8f7f5144954bf1246d61f2ecd"
+      "content_hash": "f4f2dfafbc669311443c9812e62c55a45c28ca8a1d893c907a1c89ebaaf0ed0a"
     },
     {
       "question_id": "sec-ir-knowledge-007",
@@ -982,10 +982,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4de46c35a9fa935b0e705141dfa618ea2713e9574ce4d46c535993c5792ca2c8"
+      "content_hash": "c696fb46100f6c7e77ff2805016371af26c0fbc552244fa7a02335d6d22373f9"
     },
     {
       "question_id": "sec-ir-knowledge-008",
@@ -1012,10 +1012,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2b854ad6466b8685bf116e4fdcee773c167395bbe8d46714c1a6282ae45b1e9c"
+      "content_hash": "f0da1e395d75a8b312ab3f54cbef127ff826f8f1b5c4410b03548ea05ff4e040"
     },
     {
       "question_id": "sec-ir-knowledge-009",
@@ -1042,10 +1042,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "af3ae70c5460e768d4950cb4b4cd57a07bdf6afcbe6520acdd3fe401dacbe706"
+      "content_hash": "c853424c8d2646effeb599600e45eeff9efbc00aecc7efb9c08dac8899281e3d"
     },
     {
       "question_id": "sec-ir-knowledge-010",
@@ -1072,10 +1072,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1c6f46db9ee0f3f0d41a38e238d4b58664517829c35027ee640d7060b32175ff"
+      "content_hash": "e3abe750533736d78acd94816d7a0a83ed0ed4eebce4ffa27bdd04cd9602f844"
     },
     {
       "question_id": "sec-ir-knowledge-011",
@@ -1102,10 +1102,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e094a5c842b07c0d8c018ac4d610587f1a0a9efde1e12ecca7e8a85dfae62f6a"
+      "content_hash": "73af4dfc4993f8e92fc960fef6368d7a949d953c3af57192e62dc8ffb1d2ab18"
     },
     {
       "question_id": "sec-ir-knowledge-012",
@@ -1132,10 +1132,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0b80764bb085183e9e2d99ff95470c2b15f0ee90dc5711323795f2e706c6467d"
+      "content_hash": "17e3e7c09ad331e45adb78db0f2aab5c27dbc3a995317aac963573d5dd56f1b1"
     },
     {
       "question_id": "sec-ir-knowledge-013",
@@ -1162,10 +1162,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "50672a1a5b356f0860e8bcd54d13c3c7184eeda3776c1ecbf1bb993e12e6b15a"
+      "content_hash": "669d143c7adc16c9df633849123f602f70b1de17873d7f6743fab635b9e6f63a"
     },
     {
       "question_id": "sec-ir-knowledge-014",
@@ -1192,10 +1192,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2862dff0978828e253fa0301bdc34a5da916f530cea411477a9544d1477a5f84"
+      "content_hash": "6ca972f5729317d2d4a90fd5abe130901a2aff106568e097012c9bd18378a033"
     },
     {
       "question_id": "sec-ir-knowledge-015",
@@ -1222,10 +1222,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b8db2b70dde525ec23a9efbe48d7a48b183b1128aaca3e8c0c192a0a7196915b"
+      "content_hash": "3bbbd227d51226f5140124d337cb741a9c78a00b4e93d55db912a1d2875dcb9e"
     },
     {
       "question_id": "sec-ir-knowledge-016",
@@ -1252,10 +1252,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "df493af059d0e12db937ee315b92d623d758d2255e0587641179ce8adfb34c56"
+      "content_hash": "55b09a38f76fd5c2e3a025182fdcdc51d8ceb662b629696ca7bb963eed3933ef"
     },
     {
       "question_id": "sec-ir-knowledge-017",
@@ -1282,10 +1282,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ead14780eb6d19b1a5e86e848ffb3f4a9ca4d7ea5fa8b17222a4300faf6ca208"
+      "content_hash": "b97cb92644881cd72f41cd3a24aac515c9f12150cca059f81e51129bbfd9e5e6"
     },
     {
       "question_id": "sec-ir-knowledge-018",
@@ -1312,10 +1312,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2d88d02af901cb2ab2581c636f1ace37b0ed8933e60a46d7348dcf16c682db89"
+      "content_hash": "b8310fc10bfd5bc5dad34b9b3ec88e8894613884c117fa1b72fe4c394671b348"
     },
     {
       "question_id": "sec-ir-knowledge-019",
@@ -1342,10 +1342,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3cff6b8225b000869b1d99ef1849c83f7a8a858bd21b878fb855ffe71edf6821"
+      "content_hash": "0635e167a54e2c519d7039832d5ce1014300c5ec8fd806d7a15f7838128eaddb"
     },
     {
       "question_id": "sec-ir-knowledge-020",
@@ -1372,10 +1372,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e48139f64d1ced738c46b67c7e9b55b91e053ef032f571f2ee54900668b66d2d"
+      "content_hash": "41c4718455ea446b0288fb1b96d0aae582ef8106ce6054d97a54a8308ade8ffe"
     },
     {
       "question_id": "sec-ir-resume-001",
@@ -1399,10 +1399,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "cc90dedd67ba66144fd3c9fde96ab3ef52e82c976e5ae7cc638cb983b9e750e7"
+      "content_hash": "3488945d8538ee5ebdc2830d658e88dcc13f9387053e208a011620f0b4965e9e"
     },
     {
       "question_id": "sec-ir-resume-002",
@@ -1426,10 +1426,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b254dd56058702b72ae175e8f51c16a503b11e08a9cca420a2b3052c34d63606"
+      "content_hash": "c25dd79039df44b5219b3585307325d1169940b81d8a2ee1d8b7fa15616ea707"
     },
     {
       "question_id": "sec-ir-resume-003",
@@ -1453,10 +1453,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8397bfd35161df9eb19ef1144c788486b8668ebfb0265436e783122cae276175"
+      "content_hash": "3c4200fdeba91d13934b5e225cc1572dd56727b1da55ff4dc36a6d041d166cb3"
     },
     {
       "question_id": "sec-ir-resume-004",
@@ -1480,10 +1480,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c20586f0842e4f2fbe845786777602b6b37b4a2e70d3f2ac77042a789ab3ec2e"
+      "content_hash": "d73abebffa3bda485f7ef79c1a0c99b6af080cffa0ba552fb3d85681d3b20e4d"
     },
     {
       "question_id": "sec-ir-resume-005",
@@ -1508,10 +1508,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "db197cd3d849e4759545bff5d6373b665f295cc9ee80195fac96f41604ee200b"
+      "content_hash": "54aec630f5554ea5e7b04e9a980bce939997c65f11a36c67aae2dda1ff90c2dd"
     },
     {
       "question_id": "sec-ir-scenario-001",
@@ -1537,10 +1537,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "b4b03afc1449bafc6cdeca4d56598bfdc8117b5f0c4fd7691c7c42a3fa415ab3"
+      "content_hash": "4fe63bea6a79f70c648b2b26422ed44a9f9e38367f6ee604eee8250a89ea1e35"
     },
     {
       "question_id": "sec-ir-scenario-002",
@@ -1565,10 +1565,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "28e2a6b8841e053c9b67ff5105313dc9e83dd89379956e90e0835ba515ffdaf0"
+      "content_hash": "04018d71a62e5a60d3656ebfb68d78aa536708de20799d19b30faccc508837ad"
     },
     {
       "question_id": "sec-off-knowledge-001",
@@ -1595,10 +1595,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9d6d2ceb1ff46333e6231aa96cd77fcdfd055ff97410d05909e8fe97adf49e5b"
+      "content_hash": "ac605df3eb01f3bc4188edb8ed0d43fc5e581fab9904a82b22a2ef9975b49aa4"
     },
     {
       "question_id": "sec-off-knowledge-002",
@@ -1625,10 +1625,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "006c1974df45dc6feb4d4415d062bd7cb765ac385dc0f2c36080a002e04213a8"
+      "content_hash": "3d1656fe5028f6e59e8703039656e0c9dd78f7ad7b9efb5ade80c2d89bf1033d"
     },
     {
       "question_id": "sec-off-knowledge-003",
@@ -1655,10 +1655,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "144e604b855b8a11feaf9832742ec1d1d9f8a3aef7257b50cc340df03887cda6"
+      "content_hash": "f578d6d70e32aae8b9569272168ef29a9b91e5657337c1a4a1e57364f78a1a8b"
     },
     {
       "question_id": "sec-off-knowledge-004",
@@ -1685,10 +1685,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b6a8e1e47de14b54d977ffc11b41f73f3afb50cd8a72de32098745b5a537b8d8"
+      "content_hash": "67c4649743fee03654171545f6297a11923563cc0a2dbdddf21bac44d8fe7455"
     },
     {
       "question_id": "sec-off-knowledge-005",
@@ -1715,10 +1715,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bab7bb2827653e8a423148850eb33daa49d61fc097f69e6f32def2ca0e2eb95d"
+      "content_hash": "a7fb57153f28cab3713dfb2bf0293c769006deea06385cb5b38e27ff0dcb8f02"
     },
     {
       "question_id": "sec-off-knowledge-006",
@@ -1747,10 +1747,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4b7a3caae7d0d5833301afa7a9486a9b460dc9dd1aeb8da016d4d21c442888e7"
+      "content_hash": "e8fc99594f516cb9206559dd36ed6f23c77602e8e6845b705f80bb456f2be818"
     },
     {
       "question_id": "sec-off-knowledge-007",
@@ -1779,10 +1779,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "fe856ba5e61c917e32e8448d2c09741ddd1f3b3ed4ca6cad40d72107cacf0590"
+      "content_hash": "38e638fde327ca0701d24790cd1ec481dc41cf27414df141f8c2d0196c1fafa2"
     },
     {
       "question_id": "sec-off-knowledge-008",
@@ -1811,10 +1811,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2c0bd43b02235a88e1d2b65830c0d7fad033bd5618018053d0fd7c21003a51d9"
+      "content_hash": "6865687fb064be274eca26b72a3f1c46bd60e60950ecec72c3787691a12a6d5f"
     },
     {
       "question_id": "sec-off-knowledge-009",
@@ -1843,10 +1843,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c89833676912fdee746931c1e2417ca30178cf3f182e4e216e175b36f7612f6d"
+      "content_hash": "1e2c15cb7915693d521e6b14cd54789d86d8e68461035768786aa9cc8114d422"
     },
     {
       "question_id": "sec-off-knowledge-010",
@@ -1875,10 +1875,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bc012cd9d8f073ba80b364cc24dedd08d569c006de88926621275384f68d9afd"
+      "content_hash": "c28ded2c8446ac224ebe7e8d5693274689897539c23a96f31ecaf035c913d14d"
     },
     {
       "question_id": "sec-off-knowledge-011",
@@ -1907,10 +1907,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f66c8c521c5cee6becca0d0056cd73e69e60760fe6554b86cef46e34879f241b"
+      "content_hash": "d534710418cef5eca65529970bf094eecef24982fd44bee03bde7c8f285495c7"
     },
     {
       "question_id": "sec-off-knowledge-012",
@@ -1939,10 +1939,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "94046cbfe78179745b84d6e5598b37f0dfedd50a84b2d204183dc8adf130bd47"
+      "content_hash": "ad75807c1a399743d7d21f044b276edbc8a9e0d1ff8921409c31ead061653cad"
     },
     {
       "question_id": "sec-off-knowledge-013",
@@ -1971,10 +1971,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3e821792dae1f3d35bdca317838dd082c00d8f5caa3e9c0e43182956d7932890"
+      "content_hash": "9aaabe682478f89b35f48d7f0cc1883634b2238ac2cc92f33d00321ba57268f0"
     },
     {
       "question_id": "sec-off-knowledge-014",
@@ -2003,10 +2003,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8be03ddc24662ddaaf99cf2515db9d00887f3f0f0a62e57f3a4b0bf32da938a2"
+      "content_hash": "9a63f3963ff6e23452fc681ad655f0d4681ecb5d115945f1e43b2b19ededda73"
     },
     {
       "question_id": "sec-off-knowledge-015",
@@ -2035,10 +2035,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ffc6348c0c1ac6396d2017be188ec4da23c515d63e966a380758a09eaae18ba2"
+      "content_hash": "c5d1d126bc83526aa8315b1fd51596016cb26f893db155553718f92121fdc57b"
     },
     {
       "question_id": "sec-off-knowledge-016",
@@ -2067,10 +2067,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "16102b8f69b330ef1d234473c57cf4d666c8bccf8d08f17f8d7c7728eb667110"
+      "content_hash": "63168d73138e2d5ae2ef72c01df1e289368a01d85df74c17fe442862175381a6"
     },
     {
       "question_id": "sec-off-knowledge-017",
@@ -2099,10 +2099,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f866c72dcca7958619c216846c161840910b7c42832193c29b8500d7bb8c7105"
+      "content_hash": "ec21c9b46b91a2e6ece78a816e65544930bc3202d2428dd5524c37296c341ab9"
     },
     {
       "question_id": "sec-off-knowledge-018",
@@ -2131,10 +2131,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6770f5d9b856e5e6e93d1fd3a08143f47ca4ae4b012b8d69e55be18c8f1bd2be"
+      "content_hash": "786f428a15e3509e627349db7dbb0794afaa3313568e07d52a07ae65bef10bc8"
     },
     {
       "question_id": "sec-off-knowledge-019",
@@ -2163,10 +2163,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7fe5cc6fa15fd994b99a256bab723124c29e64c2f98810494379db32d2119baf"
+      "content_hash": "5838d31960c86e9d83601a3489f929f47b6e151fc4cee74e389ad0146ab1069e"
     },
     {
       "question_id": "sec-off-knowledge-020",
@@ -2195,10 +2195,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4aee5c68d5c02156989243135c9e84c78f67adb487e0302637c6c39c7f05d578"
+      "content_hash": "f65a276010ab52795ba8d19ddff456f0d73ecc517128e02391bc56530657832a"
     },
     {
       "question_id": "sec-off-resume-001",
@@ -2223,10 +2223,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4e0e0e2a2e37634842d932504dfeb8b39e80054eccfa6d467ddab8ab33ae90d2"
+      "content_hash": "192db7a0964e1864e3d17eff3a7131986414aada03aa877fb57b1d3cd8e0589f"
     },
     {
       "question_id": "sec-off-resume-002",
@@ -2250,10 +2250,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "08da270f92a469c2c34d745815fb7b9e0efafe44206836e82b9ba4d2b465af40"
+      "content_hash": "418fe82e344d18c7328ebbf7ebbb46a859d89618a42f11a5fc14204d46d30c2b"
     },
     {
       "question_id": "sec-off-resume-003",
@@ -2278,10 +2278,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "86022df9eeeb0c039e0e084e717c40297b3b7562925d898da286ecbef49f9c3a"
+      "content_hash": "93fbfb1bb6590b89539270d1ad66238d81837f0918c25fbdf69b5d7cf09b0405"
     },
     {
       "question_id": "sec-off-resume-004",
@@ -2304,10 +2304,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "57195312ef15a7ad8361786175f6091d1713858027f162b033116ff7c91e6437"
+      "content_hash": "ca9c73792fc87341c0a63aad38a53db90a72fe958d4b1716bd8d9c79d136cba2"
     },
     {
       "question_id": "sec-off-resume-005",
@@ -2330,10 +2330,10 @@
         "owasp-top10-2025"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c581b7cad1000fe191dd6220b3ab505fe29f6928225bafc922ce1967ee1e77cc"
+      "content_hash": "360357eb1aeefa3f34cd4cc88a711ccd77e9eef5357c6786abeaefbd8d0babdf"
     },
     {
       "question_id": "sec-off-scenario-001",
@@ -2361,10 +2361,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 30,
       "freshness_label": "current",
-      "content_hash": "6fdc2a53a46c8d3b8133f244010a7a92efef679f8ce2b0bebca3d43fe31d06c3"
+      "content_hash": "a2a6f76f51958af2d1171b5093478d5412a4770770524d6a7faf9c318c1e1168"
     },
     {
       "question_id": "sec-off-scenario-002",
@@ -2391,10 +2391,10 @@
         "cisa-kev"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 30,
       "freshness_label": "current",
-      "content_hash": "9fb93783f87766bbb1a3b523182b503493804d20f4be400c2807995d815e1219"
+      "content_hash": "677ad41ce2c334687ea93d32d1808f1cde17527a898dc3fd19c7515cd8f3e120"
     },
     {
       "question_id": "sec-appsec-knowledge-001",
@@ -2420,10 +2420,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "dc09e27c63a8d3827eda4ecb44f41c86c16a444e46d7906a7ec037462e238c7a"
+      "content_hash": "0aff93841b67b7b4c9516e711c4a51071cdd43bc69bd3d4665e63c7854ab2f67"
     },
     {
       "question_id": "sec-appsec-knowledge-002",
@@ -2449,10 +2449,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d180c40db4c96ff2682e7ee2d08d32b7949e8b9f3523bf084a7eddf2aaa10957"
+      "content_hash": "1dfa31042d387f5ab81c50cb3597bfd800d70b6bbe4e7888c8edaeab3a5a11cf"
     },
     {
       "question_id": "sec-appsec-knowledge-003",
@@ -2478,10 +2478,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "60de6e0a9437a6428636c5e518839caf6682bedb10664a29bfe82e5bb2b2588c"
+      "content_hash": "4a8b42054ba0936d9fd5acfd3720b4264d24fdd7578b0b9c7a7cbe98837e8390"
     },
     {
       "question_id": "sec-appsec-knowledge-004",
@@ -2507,10 +2507,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ec8fe959310ec4e95dcf80a990605068e3e785761f0aade403d929319455e5b5"
+      "content_hash": "08d71ca42c8c4ee70ef4e476594917c5dd9588d5d41d4a59c8f6a2e1d9dc545a"
     },
     {
       "question_id": "sec-appsec-knowledge-005",
@@ -2536,10 +2536,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9b7087b06e2bee339652042dcf44abb0bfabd81566b63d2e5d07b9d67f0644bf"
+      "content_hash": "1634a073eb740226df59ad0bfeb76fb5901fc75631f77a2ceea2a1a25246ac06"
     },
     {
       "question_id": "sec-appsec-knowledge-006",
@@ -2567,10 +2567,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "68671244ade5cad1598219496499b0b39a2c1e2297659a02c9eec9e66238d073"
+      "content_hash": "5cfb5a56bb1bfb21e365f88e4d2d72db0151833590116229ed40c5472dcbaf44"
     },
     {
       "question_id": "sec-appsec-knowledge-007",
@@ -2598,10 +2598,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "57c96d0da1708467beadbb99db3b65d85ffaee5b57bdf7fd109c9c6db2214709"
+      "content_hash": "5058607ad74336542728aa8cd9681ba345a1f5dd29cb205b7b9dac3adcf088eb"
     },
     {
       "question_id": "sec-appsec-knowledge-008",
@@ -2629,10 +2629,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "427fa758531f79674f11fa3346cd4cf1bc71ce8ec374d59bc216c687572f32f8"
+      "content_hash": "a7e44cb4d72a3e0b21bea459677226100e36b926d69dd5553c194247c34c7343"
     },
     {
       "question_id": "sec-appsec-knowledge-009",
@@ -2660,10 +2660,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7c5d9a7b30decc095074fd334fadc045662a5ca76af510dda3ce92ef8c52c63e"
+      "content_hash": "87dd7e2dea842a7dfdeca2f9f5f082904f834da5c1f103ed025c2d196c6885ed"
     },
     {
       "question_id": "sec-appsec-knowledge-010",
@@ -2691,10 +2691,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "408ff612ee08800a005b08c73de9209d5b65388f22a06e2cd7725caa352173d1"
+      "content_hash": "2c562345eb6f4d518f1d83a51ba33866a4da8b7eff994c7111768e956cbe1ab4"
     },
     {
       "question_id": "sec-appsec-knowledge-011",
@@ -2722,10 +2722,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "55c57f89706abc01521f5a668a2e60a2badc2f579061848d82075ca2f961c035"
+      "content_hash": "fea137ed63b73ea831f08042e503191caf00aaebc01eca189d5c98588ecaefb8"
     },
     {
       "question_id": "sec-appsec-knowledge-012",
@@ -2753,10 +2753,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0efe5b3e80d7ae9fcf0c0f05aeaeb05b4bdfc40abaefe42724bdde3a038a0bad"
+      "content_hash": "8daa49715f70da7e854fdb8bd4e76d7f4d35a58c6b8a9b2bbccb47a7f31a733d"
     },
     {
       "question_id": "sec-appsec-knowledge-013",
@@ -2784,10 +2784,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7d3fa0c96cd129f9fd4162f4e2fec47238a564a9335308d70794acc49d3b40cd"
+      "content_hash": "7f24f11cdc8d433494c3891cdf511b5aca8996fac54dbb950841e45ff10881e5"
     },
     {
       "question_id": "sec-appsec-knowledge-014",
@@ -2815,10 +2815,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a44df50d6821edd6a43619939290a83877077e1a30759bf0cafefcc289ee59f1"
+      "content_hash": "cabcc39b0039d0b5300a4b5da34242f0d96bc40062d0b0b145be169cf007140f"
     },
     {
       "question_id": "sec-appsec-knowledge-015",
@@ -2846,10 +2846,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1c7608969ff556b109d7d0de94de10367906f58c4c9f1332246a8880fbb2722a"
+      "content_hash": "0f4fb0dc2150235dd24a603c1a1dcda5f7d81c3d6bc3dde9714bbc97de8d5c4d"
     },
     {
       "question_id": "sec-appsec-knowledge-016",
@@ -2877,10 +2877,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "68857a666b338c1ff140cbf1f4f4d49d76b85e02d1deb68fca27a5613b6972c6"
+      "content_hash": "345a1f8c65f6a8183d7674f252729cfc7aacc2c956fe198e2b530645bdaf5854"
     },
     {
       "question_id": "sec-appsec-knowledge-017",
@@ -2908,10 +2908,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "84936d06cbae4de6450373bf5d77c404a6ada4070d08cfcade90399a211cfda4"
+      "content_hash": "72932cfe0e848b66049be7ef31ebda465262b0aa2e206094ae5f45e45a9ade38"
     },
     {
       "question_id": "sec-appsec-knowledge-018",
@@ -2939,10 +2939,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "28d280066e9b78cad253c47bd3926c4237e0ed7c6086f9dc5b0eca47dcbc1932"
+      "content_hash": "a03d1d976e2edbf5e6b27f91d703acb0460f740609b9d6df73b678e7a433c9cf"
     },
     {
       "question_id": "sec-appsec-knowledge-019",
@@ -2970,10 +2970,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1e289fec38394a2208ba97573c90f315ca8465777949e66b8110a51490b32502"
+      "content_hash": "4cb7d37c60233eda0eaf1d4e5edb07c6a8710105bc86bb123d55a4fb752e4ee4"
     },
     {
       "question_id": "sec-appsec-knowledge-020",
@@ -3001,10 +3001,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "11e78ce99ce4a1de74a33fd088f1a993ce265a428116b5312a76b411f46fee2f"
+      "content_hash": "b6851476c2e2c533913d1e829668c76453e864a1c617123a31142082ba697432"
     },
     {
       "question_id": "sec-appsec-resume-001",
@@ -3028,10 +3028,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "36f3146566e36f43c6fa5cd4e079c972a7f230faaad4c84528f4797ea6daaa61"
+      "content_hash": "0aa26637c1945fee9a87374f3f2c65b1283f714a7a6a96ecd7b67094f49e5019"
     },
     {
       "question_id": "sec-appsec-resume-002",
@@ -3055,10 +3055,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "12c6baacabfd49a349507f51d4ff74cb750b5c5121281bcddfbdfd1cfad4bf8c"
+      "content_hash": "4491d5f1877abc1f6905fcbdd271d8078c0687b64d844f651450ec8fb7afa126"
     },
     {
       "question_id": "sec-appsec-resume-003",
@@ -3083,10 +3083,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "dad8017328d666863e8d01feae338870c325fae71fa901b1c385409518fb9e31"
+      "content_hash": "5a3d1dbc806cd0122a94061ad9462a825869517106f2352d6bb2970cb51d937a"
     },
     {
       "question_id": "sec-appsec-resume-004",
@@ -3110,10 +3110,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c9d46f944d1ff96480e17d7e3a63c65b9ac07c72c757fb89c514f04f1b9ffbe6"
+      "content_hash": "ed808e0b31f428c8194127ac8ffeaff66496dcd584e3a11b761ef9f3849f7fbf"
     },
     {
       "question_id": "sec-appsec-resume-005",
@@ -3137,10 +3137,10 @@
         "owasp-wstg"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d6f2cd491bbf98ab5835ad6c93577721ee8eb2bdda753d1e8c789fe66f1cd983"
+      "content_hash": "9f8892c1626db3c86f1b6c78bffd60e99c25cef8504dce6310c6062416ec7199"
     },
     {
       "question_id": "sec-appsec-scenario-001",
@@ -3167,10 +3167,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "4db924b4a9c5d8c9df0649c54fd16ae733f02c341fc85527bbf80eb964705f1a"
+      "content_hash": "7318c00904a92ae8c4a6072621ca81293c04d02fd0ff3e369605cba8b3453447"
     },
     {
       "question_id": "sec-appsec-scenario-002",
@@ -3197,10 +3197,10 @@
         "nist-csf-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "017b896738bcf8be73817f67d0334f53ef9c2485170f6f05d15dc61837b0284b"
+      "content_hash": "dc224893faac44ccbc93ba3fc82a0ce2fe8bcc538b49a933530124df66a0bc07"
     },
     {
       "question_id": "sec-seceng-knowledge-001",
@@ -3226,10 +3226,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bf6ae709ecb883db49def504f8c364db511cba99c50b5e00b5ca4200844a9390"
+      "content_hash": "661fc86e9229ad0caf2a5300db49360b1e587c0bed31d6ac4e217dce461b833f"
     },
     {
       "question_id": "sec-seceng-knowledge-002",
@@ -3255,10 +3255,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "226b52d844ac4237bd9341dc4eb39e399e9f1b05e150e76727099c1450793a53"
+      "content_hash": "ddc8f15fa3c2fd25fb10be524e7ce8900adbd621a00d8c021bcc32709bb5ec73"
     },
     {
       "question_id": "sec-seceng-knowledge-003",
@@ -3284,10 +3284,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1e1231fa7c66fb8b1fb77b9c4de13f9c435cf26a628e0884eef0f016806106a0"
+      "content_hash": "d30cd43b54bf4561ef02ef654c98f294f7cb39ca2bfe2c90849c88c017b36d19"
     },
     {
       "question_id": "sec-seceng-knowledge-004",
@@ -3313,10 +3313,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7e1e73a5c04b4831a414b35d1bdf75a748eb425712797fb9217b3464a240d7e6"
+      "content_hash": "391b955151be2bd3337a0c98a2db002e7ea6b8f11f744f189a1b648bb0953543"
     },
     {
       "question_id": "sec-seceng-knowledge-005",
@@ -3342,10 +3342,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "08d248181e4e91241ab7003b24e0bc28f5ef4c76d439c64632e4374ff8f097f7"
+      "content_hash": "b57952005ffdb54ceda80ceadf64e07308d8848e2fcb02ace4003a4d7f4d85fc"
     },
     {
       "question_id": "sec-seceng-knowledge-006",
@@ -3373,10 +3373,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8c0fe79a0106cbe78b729fa17bd4d13a9689a7da26058293588bba574bc25fd3"
+      "content_hash": "1a744e158eeb0e26b640c165d5d40bbc413441a0f80e23b597847cd8538947f1"
     },
     {
       "question_id": "sec-seceng-knowledge-007",
@@ -3404,10 +3404,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "94a32360f9703d2af4c5f3c72aec036e8c82ef51985278c51a255b2ef2b59678"
+      "content_hash": "51bf48341d349dcdba88a01a099229cee581b160286bb683534546f074ce9ef1"
     },
     {
       "question_id": "sec-seceng-knowledge-008",
@@ -3435,10 +3435,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2f6e86581d8a70863623f9772e65f885ff17bc2b7bc40ecb403d1d3f4fc4aa48"
+      "content_hash": "11e076817d875e2d6e5cb72a6dfade5fb3c1d7959f2c494adc1dc4cfa8a793d8"
     },
     {
       "question_id": "sec-seceng-knowledge-009",
@@ -3466,10 +3466,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1c47d0f2912347e6a3704efdcad71b8f2aaec19dd983e8141d86900de0100b4c"
+      "content_hash": "d0c1fcd1ba26b043b2ee1fa26a5993785a1fd8c88270b6319478af6c2d1f77a2"
     },
     {
       "question_id": "sec-seceng-knowledge-010",
@@ -3497,10 +3497,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1de5e383d246e3295e0758bca3fdf1af8f184e7c12bf1e7067213f84db80ddd3"
+      "content_hash": "c12a6f49cd1ed6c8226ace38a056d67a2d0f34168d67a2613c7471738706faa7"
     },
     {
       "question_id": "sec-seceng-knowledge-011",
@@ -3528,10 +3528,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "624b96a415ec5f44ce74124e8e3a802509f8658aa6cf00ac54b686b70efcbd4e"
+      "content_hash": "3b3117283823eb11f398de9caee7305e31fb4b0b2870205abd39f79cc1476ebd"
     },
     {
       "question_id": "sec-seceng-knowledge-012",
@@ -3559,10 +3559,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "03ac456d0f6f122f06d4604114bbce44f01b66e1b1f80e62ffb4eb2f340e87ad"
+      "content_hash": "bcc3efdd6c63a3bcd910a80c34027daa7eae1ec9e79c1f2e3912e92d30159d75"
     },
     {
       "question_id": "sec-seceng-knowledge-013",
@@ -3590,10 +3590,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "15cd6bd92bef2bcdddda19eb564e12bbef7ad1fc8a98c8b95ee6ee969ef41350"
+      "content_hash": "608e344e7905515f627a9e38d6a5c27c7989a7c584e788cc5ed41ebe097de27b"
     },
     {
       "question_id": "sec-seceng-knowledge-014",
@@ -3621,10 +3621,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "762fc7699074cae690760fcfd81c02fa30309c2b81dab3306f057ac26ade25ac"
+      "content_hash": "5c52fe1bd1ca9b1728172e7e7d01212d40b553378906ef49257b5336e6d0626e"
     },
     {
       "question_id": "sec-seceng-knowledge-015",
@@ -3652,10 +3652,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ef8f5d83d938dd3c4971e5e8e9dcdacac02e7b136e5a6eaa61bdcc4dcab7bfaf"
+      "content_hash": "44a547bae5ef11fd59483517230f43e40ac650f9ec0debe23c46cc746e1ad394"
     },
     {
       "question_id": "sec-seceng-knowledge-016",
@@ -3683,10 +3683,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2159f97104b4022050d8f67e95513db629f29dab53cc7c3c08d7151aaaffa427"
+      "content_hash": "92aba9ce7f8bb860fbdf72e01a3ad582dc9e2eee701c9b3569902963beab8d77"
     },
     {
       "question_id": "sec-seceng-knowledge-017",
@@ -3714,10 +3714,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "318a6dd79f20adea7e268f7967af0c8eac8654c965f148db6998f1b7720a74cf"
+      "content_hash": "607d0ace05f9b004badc375cf6f5b8dd91350f07bfe00512475ba6558f319c5e"
     },
     {
       "question_id": "sec-seceng-knowledge-018",
@@ -3745,10 +3745,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0f80473832d536535727c5bc1bba7645fb5c3cc9282366a2a468851e181e9ed6"
+      "content_hash": "1274cb039d67f9300743c85615beb05f2b74508e2bbb9ef5c2d6c3ac4b0cc61d"
     },
     {
       "question_id": "sec-seceng-knowledge-019",
@@ -3776,10 +3776,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1f34e1ff51dbf2f8a12b075dcc74c7eadd512f4b580398f20f25937cb8357248"
+      "content_hash": "e248289413835af3c499e4facd501434378ee5e752d4f0ef15ac4f2b803dcd99"
     },
     {
       "question_id": "sec-seceng-knowledge-020",
@@ -3807,10 +3807,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2d9f735b2ad6d69a37ffbf45c0ca20baa0e201e815d7226b0dcb61e9d78a19a8"
+      "content_hash": "11f41e6c95965a0436b079ebebbc4424f9a0d0bd3f49e899e9864be3c65a6374"
     },
     {
       "question_id": "sec-seceng-resume-001",
@@ -3834,10 +3834,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4920358db6adb7e2cd70ae47d851bc474c49b99773b0493823e3db9fbc48c3c8"
+      "content_hash": "fc3b5cba122e35c0b4fdab291283742078a18ee6fc333066f8ebeca585ceb3fd"
     },
     {
       "question_id": "sec-seceng-resume-002",
@@ -3860,10 +3860,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b0e75c2a1f2b7aa0336f87d155a418ea1792479a12f18690f8f2a44ae0e8fdb4"
+      "content_hash": "0e370ebd33d34505d51e1bfc4993d84e231db49cb4e29f2c7ce45accd618a85b"
     },
     {
       "question_id": "sec-seceng-resume-003",
@@ -3887,10 +3887,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "aabfd090c6c63386a6e57968364325112951c98ec7567ab1ffcefdd50b439245"
+      "content_hash": "230540ba18c37b61be71945c1dde82e9f55d15f787c499c77e8e62eee2edfad5"
     },
     {
       "question_id": "sec-seceng-resume-004",
@@ -3914,10 +3914,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "aec6845710978be94d5521a4ff381c1d86471f5fab802c3bfba3f34bcf6c4f22"
+      "content_hash": "77b97c9941ec8e5f2e3dfda18fc94d519b1fa9743f9296a4960845348dc1364c"
     },
     {
       "question_id": "sec-seceng-resume-005",
@@ -3940,10 +3940,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "1757efcd6a1f9e20ea54ed9600b230e2d1058735e1ad684cedb7d6048d69e402"
+      "content_hash": "4fbd17f24a171cc18feb4b2e6bcf22906c2581e5c3dfe4887dae458ecdb16487"
     },
     {
       "question_id": "sec-seceng-scenario-001",
@@ -3970,10 +3970,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "036193b9e1a3d04e40670ec80866f4b9c9db4be357be3f068dbfa43cb4cd08d6"
+      "content_hash": "d057582861572aa7a0be78ac5118cadd3150603e1b6e4af579f9a973d971f0f7"
     },
     {
       "question_id": "sec-seceng-scenario-002",
@@ -4000,10 +4000,10 @@
         "mitre-attack-v18"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "a46156a9c7e23ee07537754c581fd7300b1161935879242858c2ab1a6f400cd8"
+      "content_hash": "f3707a3945b3c8174a8f7a505d4bb819b0e7b912055c914897c20a8b9fbef5c7"
     },
     {
       "question_id": "sec-grc-knowledge-001",
@@ -4027,10 +4027,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d4b2df8676ecc983d3cf15452030df4788d68ee1a5791ea81e77f08c6ee6b061"
+      "content_hash": "d8d73d0b0da65f4e5607b038bca058913858d767c84ceb6b2ead683ef767edc6"
     },
     {
       "question_id": "sec-grc-knowledge-002",
@@ -4054,10 +4054,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c5439a77ae9a523c6648461c8dcea3a68f5c92201b8e2b0bbfc4c2793daf72c2"
+      "content_hash": "6ab13ac8f08d67834a64a4596840f9ac770c847f2c110773394035fe7a88fe22"
     },
     {
       "question_id": "sec-grc-knowledge-003",
@@ -4081,10 +4081,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8a513392432be162914c6d83ecc378bb28a67c579ae56bf46e76e2e81a3102ac"
+      "content_hash": "5669dff4470a20c8651e00bae7cb10c33e32e63b2cbec6570a800a3d034300eb"
     },
     {
       "question_id": "sec-grc-knowledge-004",
@@ -4108,10 +4108,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c11ae10c3c45e5f3ec2c53e9ad42ce07cfa494accd4ac9738aadf6cced0a127e"
+      "content_hash": "17db5d3e23f8e23f06fb0ff3c05eaaf39b433bc60e7013db35bc9b62b060b922"
     },
     {
       "question_id": "sec-grc-knowledge-005",
@@ -4135,10 +4135,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3648f8588d5e75c36ebe754d66c547ccf733c53f39b5764fbb410c522f33e52e"
+      "content_hash": "09d81414d9b9b7fb5a1a7ea5648d83a3607bc56aa2daa408e144c3c15ad6c425"
     },
     {
       "question_id": "sec-grc-knowledge-006",
@@ -4164,10 +4164,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3c357f1d6d69a6d6096d473d45e7bd604fdeb0d9ae4dd8a17c045d87f470c92e"
+      "content_hash": "e57b3398c26a3e66290d240f1868272cb50dc5e8c00c0baa48e478d9366812a5"
     },
     {
       "question_id": "sec-grc-knowledge-007",
@@ -4193,10 +4193,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "112770e9d282315a7a8c0cec08724864c1a2b4448540e6806d629b74f1d98dbb"
+      "content_hash": "6a521423c222501b0ce28164256d681a01ffd7e3bda8b734414422ccf22de459"
     },
     {
       "question_id": "sec-grc-knowledge-008",
@@ -4222,10 +4222,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ef68d7ea9a169ccb326a2e3d5741b990c54a06383854946f3e0b0c495de663ce"
+      "content_hash": "8889234c271766dc2487b32a9858588936466438b737ed71c8e86fdfa2e22645"
     },
     {
       "question_id": "sec-grc-knowledge-009",
@@ -4251,10 +4251,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "347ab6b05d99e29589bee9ccd268cb3ef7f7548034d067ad7ace55a6f14e0ece"
+      "content_hash": "e914835cb3a835e419f9d839c7193f0fbf92e6b6e29e722d4a4253810ba3c90e"
     },
     {
       "question_id": "sec-grc-knowledge-010",
@@ -4280,10 +4280,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2039d31b4841bf465a7259eac6707e3c78da356928ec5a087a532ca87130c5c6"
+      "content_hash": "92476af819888e31a6ad93b9393cd24ae61055bdcf5a179f6087e4162ea5d647"
     },
     {
       "question_id": "sec-grc-knowledge-011",
@@ -4309,10 +4309,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "df0a4a575073c36399a844014f330a3f9189a560726d03462c7a020dac624649"
+      "content_hash": "54662ee28e6985a0a308ff432e896c00861b4f3c18a7b8b6e809c4d643a59569"
     },
     {
       "question_id": "sec-grc-knowledge-012",
@@ -4338,10 +4338,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d5b5692643b8cdcd119b335c53f08ece93a3b84da714af3e31501e9fe6225478"
+      "content_hash": "d03a11ddc9e128fd5ff74a03713cfeb8b9158fc1802eee23a3204f443f22efa2"
     },
     {
       "question_id": "sec-grc-knowledge-013",
@@ -4367,10 +4367,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "916990db254c1c7f4166351b7ba197f37246005621401788279fab85a2282806"
+      "content_hash": "d99a5e6c2b80dd4d70409f8258e0c68ac524786a44401adb83d1d368c263d079"
     },
     {
       "question_id": "sec-grc-knowledge-014",
@@ -4396,10 +4396,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d0e3b55b708b9057f617dc33878adf2f7b4ff5e5fce8de9739b0522f90f5c861"
+      "content_hash": "795f3bd8743f91f7dc499e2703c6501e66d0b64fc2d999ba1902fb3caa7084df"
     },
     {
       "question_id": "sec-grc-knowledge-015",
@@ -4425,10 +4425,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "550e02c32e555082f3c92cd2352cee1464799e39d63a0520e7f47596af27aec9"
+      "content_hash": "1782d9d4da449be6427f3c94871ef19572022f490a865811a994649740f1ae9b"
     },
     {
       "question_id": "sec-grc-knowledge-016",
@@ -4454,10 +4454,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ab8bafa3c8a4170ecee4dbc892b203a9ef2c4f7800b783f9c74b94e3c28917d4"
+      "content_hash": "b943b96da40a27f00909298ca05dd331c332ea98ff1606ffba4f2e76f9ba158a"
     },
     {
       "question_id": "sec-grc-knowledge-017",
@@ -4483,10 +4483,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0f09674989f0f48f50974e5d1ade86d96cd74fa44f67fa684f7c190a107b223a"
+      "content_hash": "98a9d07d74614ea11bbf8223cdfd82aed83e46cc8fb5a31cf779c0a28268abbc"
     },
     {
       "question_id": "sec-grc-knowledge-018",
@@ -4512,10 +4512,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "50cfc4d80ee74a8d25ef1de241e03c38298a6e85e655a6d4f6b05242bc875e32"
+      "content_hash": "3c6c6c8b4d9ef79a41d832e8f9963b2b9909a79932bb901d350365be3fee6017"
     },
     {
       "question_id": "sec-grc-knowledge-019",
@@ -4541,10 +4541,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "657e29d86955d686972915d0c61580f7697eecc97c98739b6014403a319e2346"
+      "content_hash": "ad17f512e6155aa0c9a6f478d8638ea9e6a54a52699b8f498ffcf41ec86b1694"
     },
     {
       "question_id": "sec-grc-knowledge-020",
@@ -4570,10 +4570,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "09cdd5c2797e20bf97ac3f681083b2b45f6711a8c90515654cc593c44ca9d2f8"
+      "content_hash": "bad8f3b51c1d8875966a3ce93ae8c8ef45e2a7990bfe9991f0ea4b5a5be5c8cb"
     },
     {
       "question_id": "sec-grc-resume-001",
@@ -4596,10 +4596,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bb79b8cf19351750c0d410cf3097b71532883d2b9ec05ff0c050cc602b936d4a"
+      "content_hash": "b01f0350ec8bc5f0c46ab429a475d990503574abed3d362d56f19a01fc537deb"
     },
     {
       "question_id": "sec-grc-resume-002",
@@ -4623,10 +4623,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2687452cd643ca4e9424332894d305c8e5c383bcb7fef782af772cff94e78a0d"
+      "content_hash": "bb5d4645d072f0eca51c914e84fb3ad631af78ab12f4b84b65fb3df844914445"
     },
     {
       "question_id": "sec-grc-resume-003",
@@ -4650,10 +4650,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "222ebd41dbe700770878e519502de1c23062d369ac0b73d373d296a07ddcb50a"
+      "content_hash": "c39009fa9ad3132b9d5d0b6de6673ae288958d356576e87d616ab04bad59ae32"
     },
     {
       "question_id": "sec-grc-resume-004",
@@ -4677,10 +4677,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7ca65a54173be59cb457af2d6bd0cf19c6b93d450ea88a72b6e47c310d57e895"
+      "content_hash": "c01f21c9b0551f6c7982a67a62347bb9fa1d7a2c10b08e04d0dc457dd35dd4b9"
     },
     {
       "question_id": "sec-grc-resume-005",
@@ -4704,10 +4704,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e99e219efef3a16b05587d2965af9e15e6af26b4a8282075c89976233c9ac612"
+      "content_hash": "382846b350c5bd42bcb7a94103d499f35736951105fd92d6d51542eaea56be78"
     },
     {
       "question_id": "sec-grc-scenario-001",
@@ -4732,10 +4732,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "48ca7a059d7b293da8ed96dde8e8e15c7da953c77e301834dc9f65befd7d34c8"
+      "content_hash": "ec6717bac10a174e0b37bb03b401f993b42ea0f585ac9639047d2fbdadd9f161"
     },
     {
       "question_id": "sec-grc-scenario-002",
@@ -4759,10 +4759,10 @@
         "nist-nice-2-2-0"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "ebac6c1cf352776485038d4bc3eea076e4daf96980c2654500b8c0d2c9accf0a"
+      "content_hash": "9470bee064082badb8407eea22ab4f9b0e152ad82802b511404de3204e65ae5a"
     },
     {
       "question_id": "sec-swe-knowledge-001",
@@ -4785,10 +4785,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3336c69d5947eb7837d56db33f0be587b92106a317587341b1f5ac780529bda4"
+      "content_hash": "6c710fa852e30cb5beb8e47556326329595d5dd85456972649176916dc1528f1"
     },
     {
       "question_id": "sec-swe-knowledge-002",
@@ -4811,10 +4811,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b47d0de2b9c6a17fab722c35dd62f0bebb3b90134739f304d20b1fb38eb03054"
+      "content_hash": "28610adfd53e7d8217910cac43f3da4b527b9aba2a39f76d8a02fc2da3778e03"
     },
     {
       "question_id": "sec-swe-knowledge-003",
@@ -4837,10 +4837,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9085846a420251d1c0511fa685929596058c9cd700a46c4f0a5e286204d83b01"
+      "content_hash": "bc6806a74ba6360562221aad38f3aeeee70100779e2cd1c613e1693ce7bea79b"
     },
     {
       "question_id": "sec-swe-knowledge-004",
@@ -4863,10 +4863,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0d7a5c3a46e4617342d67401797d848f8b8a6685fe0d5c09466764190aa636cf"
+      "content_hash": "765639d080fc974babc53bb084dc0be7760d9c17322520ad81729f664e9a6ee0"
     },
     {
       "question_id": "sec-swe-knowledge-005",
@@ -4889,10 +4889,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "88cae5897bb4d73c680435ad70eb54d5c7ec285c34027f42cda5c289a37a2624"
+      "content_hash": "5543c740cbb1052b089283c942f60388b206dee3d904fd7201b41e4ce561ea22"
     },
     {
       "question_id": "sec-swe-knowledge-006",
@@ -4917,10 +4917,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "337372dbb51493d5ef78da483c0d10cad5c951bc1f4818fc61d561253c9636d4"
+      "content_hash": "23b4b61b8778021f5187babcbd0e838bf0185a8e962ebef48f4b0dd6c91e8249"
     },
     {
       "question_id": "sec-swe-knowledge-007",
@@ -4945,10 +4945,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "cb46521199842aa23b20b482f65f2025495db057ede580db6d02c28c60335990"
+      "content_hash": "086e244e05e25a7924923cb075c399b535bc2867b5a84425a45019c9d11d1ba4"
     },
     {
       "question_id": "sec-swe-knowledge-008",
@@ -4973,10 +4973,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2936352fb3b4dfe6a34ea3a840fa7b627d01a6bf44d13dffde0e280b9f4939b9"
+      "content_hash": "fcccea02577ba38e717631f0a163f09754e108ed8c2537672cb856b76a4df0f1"
     },
     {
       "question_id": "sec-swe-knowledge-009",
@@ -5001,10 +5001,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5f45a32388563bf21f359401cbdbfc900fdad5b3a1eb9e13cab50541b522b021"
+      "content_hash": "cda0e3437bf53ef05c3a430afe51845e2b5256b4b3f656e85dd3fe4443695706"
     },
     {
       "question_id": "sec-swe-knowledge-010",
@@ -5029,10 +5029,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "cf95c2aa8e0ece271e7ff70a890faaf4b46da0567970f3bff38dc4e0f58ac121"
+      "content_hash": "03e72f0a2ef1264229e47dc91a1971095e250aa713b49f76526282d6353aeed1"
     },
     {
       "question_id": "sec-swe-knowledge-011",
@@ -5057,10 +5057,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "fe60dd58046c9859f12edd9380883b6acf1ccc9390510a3176119691aa5cedf3"
+      "content_hash": "eaca79d6bd8c635292ac99a9a233fb18598dfe85dc94e6aca997885e6eab90ae"
     },
     {
       "question_id": "sec-swe-knowledge-012",
@@ -5085,10 +5085,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7c1534aae5fda49d9cb726d22d0aebabdc803541959d57bd8b383bef14125ee0"
+      "content_hash": "e666ff74c2dc2c8664b63bf9543aa6afbc2d97faad679e73eaeac5feb4eaa59a"
     },
     {
       "question_id": "sec-swe-knowledge-013",
@@ -5113,10 +5113,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a9b283d6c5f0b3fcd574d8660ff1a479366289f240f055ef15fe010de9b55c82"
+      "content_hash": "4cf81df4d4243224f27dcd066ec8b2f0929a0b9f14ac21bdbbd863f72273b324"
     },
     {
       "question_id": "sec-swe-knowledge-014",
@@ -5141,10 +5141,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "910bcc0588d6b8ba820079702533656cd18bfbbd16f3dd9415877b0b02236c17"
+      "content_hash": "b31db36ea7f96fba2e01b86f09cb3ea46654b57ae0f3ba14edcacbb3dcb2c8fc"
     },
     {
       "question_id": "sec-swe-knowledge-015",
@@ -5169,10 +5169,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ccdecfd034e4228d79591c2f524b98809367088bd327ef14663520818966e7df"
+      "content_hash": "a0b992b48d778d641413c78c21b163f07f9170ff606c69419ebab1e9f98862aa"
     },
     {
       "question_id": "sec-swe-knowledge-016",
@@ -5197,10 +5197,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4b3a12e6083b5ac005d0ee56e03138fc9fd039dd960c7a2445956ed93d894cbc"
+      "content_hash": "eb37b3becd4ac353ca82688f3f9ebbe8d50f6bc0eb1ddd7be5f90c10cc04d555"
     },
     {
       "question_id": "sec-swe-knowledge-017",
@@ -5225,10 +5225,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "63e07e586d785882ae512350a48cd394737f16c312ee59441ffae7659af12e17"
+      "content_hash": "8b24998db2f0d04626b3862546aeb51b86678a01a147d8172d129b01733bd97b"
     },
     {
       "question_id": "sec-swe-knowledge-018",
@@ -5253,10 +5253,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b963ca159fed5dfe2e5d2961e97a2a002aab99e851fc686959ed885e36a28785"
+      "content_hash": "36733046e3008ce300f5800db47578a2bd74274cd992056d6bbe6194d5c8784c"
     },
     {
       "question_id": "sec-swe-knowledge-019",
@@ -5281,10 +5281,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f5324a2a95a3de033e4bfeecac92641e9e41a385c10ef064b2a0990f14f84a90"
+      "content_hash": "5c215122ae94d4eeb163d4806c4a6cd226a27d40f4912bf498f4a0dab81bb55a"
     },
     {
       "question_id": "sec-swe-knowledge-020",
@@ -5309,10 +5309,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "232e6ee0d1093d9d52e2fcd520583e1b28c571c85b4244abc6252285ba0193d2"
+      "content_hash": "8187cc864c9ba88401d3fa36f0ac6baee4a48a3c56c1f016c4f2673a5f9d4440"
     },
     {
       "question_id": "sec-swe-resume-001",
@@ -5335,10 +5335,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "802aca16375c5a3c1ecbd755b4a16faa422b079695f9f7d96e97bcbfd3d7a126"
+      "content_hash": "9d2d9924d8cc301c2a2170d353555bc86669ce788027ab8d4378fca8861322d2"
     },
     {
       "question_id": "sec-swe-resume-002",
@@ -5361,10 +5361,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ca7b673956c5a002139ec392effb4e74eb8b7a8ff5059d8de95f2a468bd36caa"
+      "content_hash": "7d9c8aeaf294621d52cf08416fa45376531c3be71d57dad949c37170ad24995b"
     },
     {
       "question_id": "sec-swe-resume-003",
@@ -5387,10 +5387,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d1a9b7894b84ecf673b32622108c183f7fc9febd74187663fbb9c3b477c96c9f"
+      "content_hash": "f2a5b5a2906196033be0c013c479a591453b1154ea2f019eceb89ab539ba48ee"
     },
     {
       "question_id": "sec-swe-resume-004",
@@ -5414,10 +5414,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b6ec7a3bdacb72fe9dacfcfc7e66cdb913d2582ae9f14c0fdc480aa166ec8713"
+      "content_hash": "8f3b2e290cf8418a8df44e88674c5aa42a5cbe8d50521ed9265ec3c71dd97dfb"
     },
     {
       "question_id": "sec-swe-resume-005",
@@ -5440,10 +5440,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "117c493c4fe2722f462e021a7d69072a2681686ca84e07432c57804c51e92876"
+      "content_hash": "1180574c19445295ad2052d45c767f31e37e85793ab6a574f1055db80d091057"
     },
     {
       "question_id": "sec-swe-scenario-001",
@@ -5467,10 +5467,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "c4dbb3747b7329ef0a3d8ef666d3fc4f5757ee7b2ceab70e21c7227d31a23ebf"
+      "content_hash": "dcc5349cae10a8ed6f6dfef21989a9c8959d0b43216a1c6984a4e2bbd7e2c061"
     },
     {
       "question_id": "sec-swe-scenario-002",
@@ -5494,10 +5494,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "be9f1fa80af8dabe4ba0421b33bb9671baa4cd441e20b9b2b48d1f2f2dec19c5"
+      "content_hash": "e80bb627fba4a2d0766d9c2bb216fdaf6e8bccc6b43cc0dc310c251b1875d370"
     },
     {
       "question_id": "sec-data-knowledge-001",
@@ -5520,10 +5520,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d881ce8b5c22bdb20ceb4f3d1c5f595a735e7074957d8ee2797f5e9f4f9ce014"
+      "content_hash": "accba8b0908204e1479c634e78766eeb8473b55e359e955383eba372c0a35fb3"
     },
     {
       "question_id": "sec-data-knowledge-002",
@@ -5546,10 +5546,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c49c1adb99468ecea9a6263348877df948d9b14072d3d0549dab48ce9ce7c222"
+      "content_hash": "03c9e60cfc31b14447f8b5bbfe0980c78bd0f249198f03f37b9b743392cb6909"
     },
     {
       "question_id": "sec-data-knowledge-003",
@@ -5572,10 +5572,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "fded2439265ecafddec29ce9307e81de47f166652c826be51e2deeea5f391ecb"
+      "content_hash": "d6c253a05015b35d9eefb68cd4ad8cbe8858133e31b955dcb0f2cb3a0f44e923"
     },
     {
       "question_id": "sec-data-knowledge-004",
@@ -5598,10 +5598,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5a218eff76360407a0297030ddda2f1d520b988047a977c2f4db3daefe794619"
+      "content_hash": "0061f9e33fc65ef92023ba5dd08e4a847f09f11c1b468edcae08db8594c8d073"
     },
     {
       "question_id": "sec-data-knowledge-005",
@@ -5624,10 +5624,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "12ef91888ff29b195437d1651b33a0de09c8c927ade3e6ef2a78e832ba476f60"
+      "content_hash": "1a2e95626cf3fc878b51cafa722f013587ef992676b1c040fea1df545ff9acbf"
     },
     {
       "question_id": "sec-data-knowledge-006",
@@ -5652,10 +5652,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4776f1adb6edf01629d57c19ed3b3359989b9ed3614afb8bf78fcfea551bfaf0"
+      "content_hash": "93c4778e1acbc8933eccec7eafa13e8aca912a0ee8a3a7a4495de0ee7490ab87"
     },
     {
       "question_id": "sec-data-knowledge-007",
@@ -5680,10 +5680,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0ffc7fc4524010d5b2510bcca4a2da0899c2534e586760bc8d93086889f933ef"
+      "content_hash": "4f302af8f59091fffd84013e46906c592111e1ebe7437a06a18a8a6b1ae4a958"
     },
     {
       "question_id": "sec-data-knowledge-008",
@@ -5708,10 +5708,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "71203bc2bf648c3cff06b36965952f543070d8374ebf9863e738e209a8be3119"
+      "content_hash": "c813e0a889128339d1408fd234916a98a6b2e3d3631b7035d55494f37c0f0649"
     },
     {
       "question_id": "sec-data-knowledge-009",
@@ -5736,10 +5736,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6a4cbc052e691328f18f9f04a9f1e34ff6c693d63c0d3dd2134f2c402711b3bf"
+      "content_hash": "f3143c34453006e06efbc04546f3fd1504829c20f2c6a977ddb913243bb2bc66"
     },
     {
       "question_id": "sec-data-knowledge-010",
@@ -5764,10 +5764,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "85e4890431921836c049b2c5b9c53dd6d5955229068410f53cfa2a9f1e35fde6"
+      "content_hash": "b82e912e61d2760d1691b427ac863849a91a7dc39a5eed05229b51ab6f2113d2"
     },
     {
       "question_id": "sec-data-knowledge-011",
@@ -5792,10 +5792,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2e7e8e2ee0a8aad8bc6d8ac6f7a2167fa0f0462fe7826ea26bf0f9e2cb4f8605"
+      "content_hash": "bf850599821383336e9ec1a11a430d614c7b3893a916b3e3175cf4385c1f303a"
     },
     {
       "question_id": "sec-data-knowledge-012",
@@ -5820,10 +5820,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e0b8d6ce13db25141e499c363a2c8808ed11eec96da3dc40c3a1fe497525a0b7"
+      "content_hash": "549cdd3ebb711adf1c72b311c294ae54384bcac64907a577b046d4bb51f5523c"
     },
     {
       "question_id": "sec-data-knowledge-013",
@@ -5848,10 +5848,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bc0159092aa7a7f33435de4aead9b7170cc177566b2b329a885cf5cadd322329"
+      "content_hash": "af454836cc9bc19b7a758f78ed519f211ab7f48350b7063fc7f64217a113dcb7"
     },
     {
       "question_id": "sec-data-knowledge-014",
@@ -5876,10 +5876,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9cefe96c262fbc3132109f5b64cf226704c351e3bdce0e8360cf86da4d8208ae"
+      "content_hash": "ea2fa4b3b558567690b357ceae783cda8a2b136231ed558351a9295bbf69e986"
     },
     {
       "question_id": "sec-data-knowledge-015",
@@ -5904,10 +5904,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "698645af4269d12167633e75ccf50c661e4ad4efb04380f23c42bc40d83c4233"
+      "content_hash": "0f58945da8cc95ca265d11ca02a1a6e793e7c0db2127dab3ec1e201a8f1a703f"
     },
     {
       "question_id": "sec-data-knowledge-016",
@@ -5932,10 +5932,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b6c034053534583eef804a465f50ab38e4c0a4a157ecb2b24f7abfd13afaa657"
+      "content_hash": "b6c7b0bd18456c4a166792af489c8d4cffd9f534d7bc7a2137235f7f9c9ae4a4"
     },
     {
       "question_id": "sec-data-knowledge-017",
@@ -5960,10 +5960,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "231b6c34a2de496bff0236df64e2e3b052156137c83eb0c154f5635bf21c3292"
+      "content_hash": "ebf7aaadc68a3519ab1b3b1bf61deb07fbea22d4bbff9a9a674e4a7643522342"
     },
     {
       "question_id": "sec-data-knowledge-018",
@@ -5988,10 +5988,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c21f2133e1b72527b89141ed69f33484bdbc10d93a12050475e6142dd3758a55"
+      "content_hash": "da7902c49ac84b3de336e0d3511c084b3b36fc1e5491c524256515f141f4051e"
     },
     {
       "question_id": "sec-data-knowledge-019",
@@ -6016,10 +6016,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0848ef83ce8b80dd2fa0fd61086eb95591aced4eb2c82bb8b950aa5a6a565e61"
+      "content_hash": "283e996ca8509f6ba6344ae0eedaeb4bd2b057b1adc7e657187c55a3e6d3460c"
     },
     {
       "question_id": "sec-data-knowledge-020",
@@ -6044,10 +6044,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2ac01a8905f3fac67b403113e3a948873280d6a0e8017dc3a2029039b7e09a4e"
+      "content_hash": "4ba8ae34cf1a2285afbbc3b65aa700e852070b774bdd028e9ce85bbc51374845"
     },
     {
       "question_id": "sec-data-resume-001",
@@ -6070,10 +6070,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "7aa10980eee42d7fa634c8e9361a4a4a067ecabbff33ee83775c6a5d8a321279"
+      "content_hash": "de4b5d468b6e6df83b9c63626c665007c2c2ecc0ecc0740dfc139acc516020fe"
     },
     {
       "question_id": "sec-data-resume-002",
@@ -6095,10 +6095,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ab5586a2ef787fe6ad8d267298ef877b69dff3f423de119c4e4c0798633603e1"
+      "content_hash": "8636f2056878e1c6cb6a957e7660ae28956e418724ae20ae43762b67ed8f7149"
     },
     {
       "question_id": "sec-data-resume-003",
@@ -6122,10 +6122,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0a02b0090813b121b40147c72fa33b52814a0415f9a58578790ded8fd4f4c40b"
+      "content_hash": "d2eb093a38e499c70f7059762fd7bc6d6c6a5ec24045aabf9b9f75b3de1e62c6"
     },
     {
       "question_id": "sec-data-resume-004",
@@ -6148,10 +6148,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "370e804ab7825ec54d7b6602f6a27b2a4e4ff3c5caa5ab9018379a4dc9f2a2d6"
+      "content_hash": "fbafa13a1f8a98494f53598fb95af582df1e2a9d25e762a65cc1a5561470e0d9"
     },
     {
       "question_id": "sec-data-resume-005",
@@ -6174,10 +6174,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "faf76e0f0f5cfe88c076feced7cb7defecda5e96d07d56d303dc8d17a9a4735c"
+      "content_hash": "2ce1dc197a626f7f6fc2f63d32a4c12bb58c3c5aa145a432afe7e244a5138a8a"
     },
     {
       "question_id": "sec-data-scenario-001",
@@ -6201,10 +6201,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "5de7428abdf388996cf155ce3f068956c039ec51d36de3bb3f27c9d56a0a7d26"
+      "content_hash": "85e83e13ce5476e229d68f212792b060a8af455d6e95d07a35d2f55979105503"
     },
     {
       "question_id": "sec-data-scenario-002",
@@ -6228,10 +6228,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "09c5033e6ac71553daa7e65cc1530a6f331c630d4946727daea422c0b0f7e603"
+      "content_hash": "cfa421097f8a2c9fc5ae04ea4da9ee3913302acb611666a601615f83c76d7421"
     },
     {
       "question_id": "sec-biz-knowledge-001",
@@ -6254,10 +6254,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "bb581cb8229c25dc15493ee1dc8d179d72dadffa24466013ea0c2f912d806b53"
+      "content_hash": "e35c44394b87ebd26dc960e32df3733e995993c419ecc092fb55cebeed2e3c47"
     },
     {
       "question_id": "sec-biz-knowledge-002",
@@ -6280,10 +6280,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5315c2d7ea0acd72bc326a44c71de5196aa75dba3f1b2bd21cc8eb888c6fe9d0"
+      "content_hash": "68fe08caee053373060ae2f516c2480a2913243a2c69b9899a78b0244ac5ef06"
     },
     {
       "question_id": "sec-biz-knowledge-003",
@@ -6306,10 +6306,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "0394c3e4604448a9b6ba94034cdbdd2be13c272ff75512610a348940c7a07d47"
+      "content_hash": "03114fc4eada74b08f03614a231f69154cfb8bccf31e42cf0f8873efb9a81ce4"
     },
     {
       "question_id": "sec-biz-knowledge-004",
@@ -6332,10 +6332,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a71f5b12fd59267066841df2fa1d67052536dc2ddabc7111578abcc3cc0c2e3b"
+      "content_hash": "1a6dc9bff46679074a9ac4a30cd2488be6433e2c4e91cdeb35dccea0f10c49aa"
     },
     {
       "question_id": "sec-biz-knowledge-005",
@@ -6358,10 +6358,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3629b4ffef3e828eecf1630e7775ed12cd07ecf2a858a65923f373557e285a68"
+      "content_hash": "6a05fb6c56994e97c7e597f49d54eab446afe5bf740855bbdcdc4f61b3afd9f9"
     },
     {
       "question_id": "sec-biz-knowledge-006",
@@ -6386,10 +6386,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f0cc081ad5f9f821cb11a0de4f39ca1ef0bfe661206ab9880f8018abb339215b"
+      "content_hash": "342914ac7337119dcc56188ef0379221a52cf4036268a9ea0fb3ccc3d51ac7d1"
     },
     {
       "question_id": "sec-biz-knowledge-007",
@@ -6414,10 +6414,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "a7bcf1641903b2054c964c7fb6865db41c09390f644ace8148169b2c4f707c2a"
+      "content_hash": "ce4bd4a42b8cb5b1cf2878baf9f2c72546c4b8f95c07fd5093cc6f77aa759992"
     },
     {
       "question_id": "sec-biz-knowledge-008",
@@ -6442,10 +6442,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "66fdd4ae3599b7b8cb738a59623622233a0223b1a9cf79d438016eeebd8bc3dc"
+      "content_hash": "52a90c909b5c386cb7edb3f5b1de8721f7e25bc84ba42d4f96199fd716c1360d"
     },
     {
       "question_id": "sec-biz-knowledge-009",
@@ -6470,10 +6470,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c7fa31dc4d61ded1a9552a1a2d60bd3a03a6b4bf4d5e177ee4cbe1a13a6e9cd4"
+      "content_hash": "eca783d308a1ddf08e397cad9fd32f5ca0491d1bae599cafd60e52028888a6bd"
     },
     {
       "question_id": "sec-biz-knowledge-010",
@@ -6498,10 +6498,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d31bba83fcb911ca98e848bb6d07d8c2a73b7ef9bd4fc4dde0c13265b912f78f"
+      "content_hash": "efda3ad32d9203e295d1380b8d097457ce1aad6b007838b0df3a10314ca06547"
     },
     {
       "question_id": "sec-biz-knowledge-011",
@@ -6526,10 +6526,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "07e37211636dd6c6d79cbf798872b475b8224be71124548efd2cdacfb90cf78a"
+      "content_hash": "14a9366d6a1daf514d3c952fedff1c28bf1e91c2f97bc92ac0698fd59aea6430"
     },
     {
       "question_id": "sec-biz-knowledge-012",
@@ -6554,10 +6554,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "91ceab42d44ef4b97554078d8725ade056bd96ba638a3fe98e9fb5b427d68720"
+      "content_hash": "41889b9cbf4b6e6d74a27d8434c2618728aa1e73b5ace3f2a143c12a9919df9f"
     },
     {
       "question_id": "sec-biz-knowledge-013",
@@ -6582,10 +6582,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "8295ce7d609899747fdd024bacf59f9b3cf99c72d563615d086e7a3a1ba0c959"
+      "content_hash": "f8af55dfa8dd3dd2e60f39215972826f8848a6f0c41ac5f8821308a75d82c7a1"
     },
     {
       "question_id": "sec-biz-knowledge-014",
@@ -6610,10 +6610,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e11e05c9f6f28015027981dc3fdd1ddd8c2cf69005997b0390eab627406f110f"
+      "content_hash": "afc4595ebc45a1c12f760668c47d8d83f30b96115c1bbf94a3217e123a791164"
     },
     {
       "question_id": "sec-biz-knowledge-015",
@@ -6638,10 +6638,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2ae46b08379dc009030c48558e86ceb8c31a1eda77805dfca19880c542d579fa"
+      "content_hash": "1180e90e1b3642f7593f7eaf1e0463dce539cb7b56fa9994525872699f9656a1"
     },
     {
       "question_id": "sec-biz-knowledge-016",
@@ -6666,10 +6666,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "9f45e2b9ca2b4bafe2b6a5628a8d006d1435386a5662a7eda2c8efd27f620f0e"
+      "content_hash": "303eccf554f2b9bf17bf4f31930df3d69a712191e0741b28058ddc710fba8cc6"
     },
     {
       "question_id": "sec-biz-knowledge-017",
@@ -6694,10 +6694,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ab9c6b7a5002b8f64fcfad0cf217f4f93cc52aa453f715052a7baa004e3a43c1"
+      "content_hash": "ef261afd4392a485e867007f793d9a7f8bb391ba9278f2ebfa42cef028c7d3c7"
     },
     {
       "question_id": "sec-biz-knowledge-018",
@@ -6722,10 +6722,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "c5415660e31b58f444a89a7526cd7af9b153491ef7affc7b22100abccab715c1"
+      "content_hash": "ec0e41fd933a7523651cf57f17a3c26b1236e6a825557bc6ec576661ed03e3d6"
     },
     {
       "question_id": "sec-biz-knowledge-019",
@@ -6750,10 +6750,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "cb1de38d521c9db8ef72bbabd86521e54048ffb8e1f150f8c80f4982eaab50ba"
+      "content_hash": "8bdb8d7d14f2f903bc1807afb75f9b036d1c0f3bb6b4024f2b332d70c377bfff"
     },
     {
       "question_id": "sec-biz-knowledge-020",
@@ -6778,10 +6778,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6723eb0785d6edac6999b901ed530abfbf4709d1d5a868be8998d9300d9a0f07"
+      "content_hash": "d9286eff9eb490fc0f8ba59fc8b8527c87ba6354e87ae8f4937e7d058dedf497"
     },
     {
       "question_id": "sec-biz-resume-001",
@@ -6805,10 +6805,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b2f5eb0095a7bf9ff14058bcc5d7b8ebfeff3dc3e6ff3af84adaaf6ae3ca2f9c"
+      "content_hash": "00385edc7fe7da897234a9deb08dbb7cd48e03a684df6453e9654a3fbaef82d5"
     },
     {
       "question_id": "sec-biz-resume-002",
@@ -6831,10 +6831,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "08c412a8a0f5894b6bcc8b34e3f7cf10afb69cc9096310e36b31269a006e9913"
+      "content_hash": "5e4bd0603bc4258e4001cf5a8dc82be4080556144fa126984df91efa8b814179"
     },
     {
       "question_id": "sec-biz-resume-003",
@@ -6858,10 +6858,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "64638d5fa10915da66b8218a8d35e5d6ec0afaff2629708275f7b2eada4896d2"
+      "content_hash": "921a16d6a8fe061504d2ebc8da8b6b8d252b889575e371e5c779b51762322c75"
     },
     {
       "question_id": "sec-biz-resume-004",
@@ -6885,10 +6885,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "e78f00df80a725e23731e3c6945e05bdb73784027d95e0f54fd971e79822f8e1"
+      "content_hash": "bada5554ee03a8b50074689fe53dcb7ee41e87d7203dbaba121b9a13b4f6b5aa"
     },
     {
       "question_id": "sec-biz-resume-005",
@@ -6912,10 +6912,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "81a8854fbd7d95ee7bdacbc91047e29278f013f354b3a2e703b48346c3ccbb6c"
+      "content_hash": "0359dc57f958e38f86662d2223735fa2d3b984a61febf8b750db1cd9ca1e455e"
     },
     {
       "question_id": "sec-biz-scenario-001",
@@ -6939,10 +6939,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "44adb376978ec2dd91772eb1b8b281189f70d1d38a8edbed0cb75c7366b56c32"
+      "content_hash": "232b0608242250a560604ee43d827da3e54c2a5e190414ea24e66d4b71a45d71"
     },
     {
       "question_id": "sec-biz-scenario-002",
@@ -6966,10 +6966,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "6de08cd859e818468c42720f2c377193a1a13a369f744932b7fb0d049960a680"
+      "content_hash": "7f313af419acaa592ebe830a8de7188194c1894256568cf01b2ad616b302a576"
     },
     {
       "question_id": "sec-generic-knowledge-001",
@@ -6992,10 +6992,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "02de0c06352a1bb06a242254877f14fac51872b012e256e15e5118d394024b1e"
+      "content_hash": "5fcd2336d47e7b8561782fea99862d3924943c2d03e61ff967c3989debbf8394"
     },
     {
       "question_id": "sec-generic-knowledge-002",
@@ -7018,10 +7018,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "4cdcbea6da01511748b0caf64135751968964f1ad98c6aaa5863b143a4ff8417"
+      "content_hash": "60b1d1b41dbccbc38367486e288e71a06edfd6eec500038c6947dd4f6c50c75d"
     },
     {
       "question_id": "sec-generic-knowledge-003",
@@ -7044,10 +7044,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d4d83a0d30d26ec86e0f892736fbdb57454c203a3a540e7a8ddaae2896fe7cc9"
+      "content_hash": "681b8a984ab6e8c3def10785050b63e9ff07f7c8f2145deb0180b79dd9813897"
     },
     {
       "question_id": "sec-generic-knowledge-004",
@@ -7070,10 +7070,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "b565eb53589e204505d8f268ef282ee9e456904c04a7b66f19260737058b00d8"
+      "content_hash": "41b466a8f2e6f34fdff7fa39bdbe79e661a035e4233097cff099de372e234b95"
     },
     {
       "question_id": "sec-generic-knowledge-005",
@@ -7096,10 +7096,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "58d38440918085c721fb0b0e35f96d5844eab850a520ea76bf8af2521cc839de"
+      "content_hash": "faa600eae886a75db6b42eadbbf221326c21b4d0a543684568f1dfcbe14d030b"
     },
     {
       "question_id": "sec-generic-knowledge-006",
@@ -7124,10 +7124,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "43bb6bd8da4d6c7b15c7577c2c0e3dcd6d8165401446ed4d86a6cbe377e6cce2"
+      "content_hash": "b40f72eb9d512ec721a84a13b33f75307548375c09582decf3dc84a27ae453c9"
     },
     {
       "question_id": "sec-generic-knowledge-007",
@@ -7152,10 +7152,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "6174b5cc3daeaae150441c26fe0193b8cfbca252c209cafab4127c0dfc0aef00"
+      "content_hash": "7f3dfb18c7f29f5f6856f236217754de738a06fbb8a5ab859ef5062be3377836"
     },
     {
       "question_id": "sec-generic-knowledge-008",
@@ -7180,10 +7180,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "58cf39cc1b4f11902e03024a517126173b47aec9734a264e20edc4b38cef3954"
+      "content_hash": "22337c8402ec1611b419e97bfc9f4c9f9bf599e0163e5f522651ac22ca550914"
     },
     {
       "question_id": "sec-generic-knowledge-009",
@@ -7208,10 +7208,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "645fd93855505873d26edb0cd47002fff79d9db1e39d9e2ad1be0b279b530b72"
+      "content_hash": "4b07f5d25775724c9e4459896da22f4bf886c1437d7639ffc45bd33aac09d7fa"
     },
     {
       "question_id": "sec-generic-knowledge-010",
@@ -7236,10 +7236,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "393853fdace1ecbdd2f9b81f7987aa054a1dd7ebced0b3e9548efddf81e65876"
+      "content_hash": "1d8393d6f8fcf92b604834d702b56a79533323f8c195e57e57c8856b338ca9a8"
     },
     {
       "question_id": "sec-generic-knowledge-011",
@@ -7264,10 +7264,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "424332f126d137da7d5a1b28c7464aa2867836069c0fdfed7835a43476ea5732"
+      "content_hash": "abc05944cfc1034a5514bf6f9547d8d8f199b85da22b5801e03e51d0395751fa"
     },
     {
       "question_id": "sec-generic-knowledge-012",
@@ -7292,10 +7292,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "d2cde146f6e5b5606f1eeee12d6f0e2ab08ad021aa0dde0503028dd34c71bdcb"
+      "content_hash": "0aa84c7fc9223fbc60040e214d3f2c4a29665405320402cca5ec60744b76f385"
     },
     {
       "question_id": "sec-generic-knowledge-013",
@@ -7320,10 +7320,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "892bde4d570e6b905f1964d447929296a9232aa8387200f83ba005c7cd38ad04"
+      "content_hash": "01697d0d86e93bd93357d079f5ccef6721d7c5e0cd0d2bc6292773f535b2207e"
     },
     {
       "question_id": "sec-generic-knowledge-014",
@@ -7348,10 +7348,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "79d6e039a0d1d34e346f028fb0c2bd31a025488ff75ba1f7ab60966cbe286966"
+      "content_hash": "c2aba1324582e3da1e0a55b0c051e4f906142976b409158fab602c22b773a74b"
     },
     {
       "question_id": "sec-generic-knowledge-015",
@@ -7376,10 +7376,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "f8be15d3b5797aaf45a6318c34f7934a0412b056681ae9a237f01f889a8bf40f"
+      "content_hash": "7dfd983552c67df18612722a1b93fd67216ea739600b55fdaec0a3a44210f8c7"
     },
     {
       "question_id": "sec-generic-knowledge-016",
@@ -7404,10 +7404,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ca81e2a6b8bbd430bec227e6010561b6c542cb5922fbbdc79e75d709db5f6bc7"
+      "content_hash": "1c9aa22155eec2aaaebd8ee62c9b6689da13ff4103c3d9b1cea69c7dfb521eda"
     },
     {
       "question_id": "sec-generic-knowledge-017",
@@ -7432,10 +7432,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "15de399b5a730289f761136d6f74e5884e018eb155dd4153757f1f956a866866"
+      "content_hash": "892c1cc470af5a72774fb1f49236b811c8e5cf7217ca8d76eff1e0a7c401880f"
     },
     {
       "question_id": "sec-generic-knowledge-018",
@@ -7460,10 +7460,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "ebc61dd3486eeca18e33a19ef3d2592139800848758aea7929ba2d18c62ac6c4"
+      "content_hash": "b41f0b68baedba52642b89293ce5aaabf9f966e87f1db7f2676780ccc9c5b6af"
     },
     {
       "question_id": "sec-generic-knowledge-019",
@@ -7488,10 +7488,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "74af808ba07347bd0b2f153d1eb8ab056039d012e5c492df58987bf5c38e0c23"
+      "content_hash": "73f80f0fbfe94aa446a09d1eafc510f76664034df6b46775df8d3fdf21a1224f"
     },
     {
       "question_id": "sec-generic-knowledge-020",
@@ -7516,10 +7516,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "3222675b1244274a12439218300cc961954f9e06f63d1a1576c14d5f38c04cf7"
+      "content_hash": "afb2036b57eac7fbee6c518a273108f21f85bcb04d15990e2f2f011ad8726517"
     },
     {
       "question_id": "sec-generic-resume-001",
@@ -7543,10 +7543,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "15f6cbbf1a09724b03bec3bbf5b33dc66e1db957c43135fd149e87a23ba1e7de"
+      "content_hash": "200c2565d2fcccac564758630b2903f18eb804d687efd5566629bc09264e3fd7"
     },
     {
       "question_id": "sec-generic-resume-002",
@@ -7570,10 +7570,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "04395bcf9a6e25cf0dc90c00f4fe4483ec7828ecd082b051c6e0183b19ca2324"
+      "content_hash": "f90d1d4d2afe5c2d6db866e6a58b39ba1b6d53c39d2f8b1aa7156056d2cba190"
     },
     {
       "question_id": "sec-generic-resume-003",
@@ -7597,10 +7597,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "2b2d36d11d2c8e174c3417f243d7aa7d8fe1a85abce482071c349c8ec0ac8c0e"
+      "content_hash": "d27ea8cd3e6d861eafe598afbbe2cc6b150001b3d65b1b72e2c309567cbc5125"
     },
     {
       "question_id": "sec-generic-resume-004",
@@ -7623,10 +7623,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "51d8faaebe829746414c7fff07319d3998b2d5251761aa0f4ddc046bfcaf008f"
+      "content_hash": "c4f17f302aa9d0fb6574b729faa74198b2d6a1f7d71dfcdc608982bd5bc21f3e"
     },
     {
       "question_id": "sec-generic-resume-005",
@@ -7648,10 +7648,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 180,
       "freshness_label": "current",
-      "content_hash": "5f0ff452e6187050302220776396734db9b8aa0b36ef287540ae780e10bb6c49"
+      "content_hash": "e8cb61a31fc63cd48070b142439b0d7c6349fbbe67a7e6c4e01b8fa1e31f7ef5"
     },
     {
       "question_id": "sec-generic-scenario-001",
@@ -7674,10 +7674,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "711d192d18477f84090401c7d17c12281429c843453c805621032afc4fc6411e"
+      "content_hash": "7f626790acbc8b531698d7d498c7291fa9ac40ebaf093acb4717029a911441c8"
     },
     {
       "question_id": "sec-generic-scenario-002",
@@ -7701,10 +7701,10 @@
         "yotta-evidence-interview-v1"
       ],
       "status": "active",
-      "last_verified_at": "2026-11-24",
+      "last_verified_at": "2026-11-25",
       "stale_after_days": 90,
       "freshness_label": "current",
-      "content_hash": "780bac4d5d1b804a37c05c4ca0cc10041b34109c601e5d91aaed4c6ed34da4a8"
+      "content_hash": "6e25ec621ab5952f1bb7cd793672834fc1496f28e89fb1905c6bae9822fd19db"
     }
   ]
 }

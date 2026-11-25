@@ -501,7 +501,7 @@ class BankPipelineFixture(unittest.TestCase):
             self.source_candidate,
             patch_path,
             self.bank_candidate,
-            target_version="0.2.3",
+            target_version="0.2.4",
             today=TODAY,
         )
 
@@ -533,7 +533,7 @@ class BankProposeTest(BankPipelineFixture):
             self.source_candidate,
             patch_path,
             self.bank_candidate,
-            target_version="0.2.3",
+            target_version="0.2.4",
             today=TODAY,
         )
 
@@ -547,7 +547,7 @@ class BankProposeTest(BankPipelineFixture):
                 encoding="utf-8"
             )
         )
-        self.assertEqual(candidate_bank["bank_version"], "0.2.3")
+        self.assertEqual(candidate_bank["bank_version"], "0.2.4")
         candidate_question = next(
             item
             for item in candidate_bank["questions"]
@@ -740,7 +740,7 @@ class BankValidateTest(BankPipelineFixture):
         official = json.loads(
             (self.data / "question-bank.json").read_text(encoding="utf-8")
         )
-        official["bank_version"] = "0.2.3"
+        official["bank_version"] = "0.2.2"
         self.write_json(self.data / "question-bank.json", official)
 
         with self.assertRaisesRegex(bank_pipeline.BankPipelineError, "基线版本"):
@@ -793,7 +793,7 @@ class BankApplyRollbackTest(BankPipelineFixture):
         updated_bank = json.loads(
             (self.data / "question-bank.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(updated_bank["bank_version"], "0.2.3")
+        self.assertEqual(updated_bank["bank_version"], "0.2.4")
         snapshot_dir = (
             self.data / "history" / applied["snapshot_id"]
         )
@@ -820,8 +820,8 @@ class BankApplyRollbackTest(BankPipelineFixture):
         official_before = (self.data / "question-bank.json").read_bytes()
         bank_path = self.bank_candidate / "question-bank.candidate.json"
         raw = bank_path.read_bytes()
-        self.assertIn(b"0.2.3", raw)
-        bank_path.write_bytes(raw.replace(b"0.2.3", b"0.2.4", 1))
+        self.assertIn(b"0.2.4", raw)
+        bank_path.write_bytes(raw.replace(b"0.2.4", b"0.2.5", 1))
 
         with self.assertRaisesRegex(
             bank_pipeline.BankPipelineError,
@@ -851,8 +851,8 @@ class BankApplyRollbackTest(BankPipelineFixture):
             self.data / "history" / applied["snapshot_id"] / "question-bank.json"
         )
         raw = snapshot_bank.read_bytes()
-        self.assertIn(b"0.2.2", raw)
-        snapshot_bank.write_bytes(raw.replace(b"0.2.2", b"0.2.3", 1))
+        self.assertIn(b"0.2.3", raw)
+        snapshot_bank.write_bytes(raw.replace(b"0.2.3", b"0.2.4", 1))
 
         with self.assertRaisesRegex(
             bank_pipeline.BankPipelineError,
@@ -970,7 +970,7 @@ class BankApplyRollbackTest(BankPipelineFixture):
             "--root", str(self.data),
             "--source-candidate", str(self.source_candidate),
             "--patches", str(patch_path),
-            "--target-version", "0.2.3",
+            "--target-version", "0.2.4",
             "--out", str(self.bank_candidate),
             "--today", TODAY,
             "--format", "json",

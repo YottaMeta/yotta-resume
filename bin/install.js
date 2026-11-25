@@ -3,14 +3,14 @@
  * yotta-resume 跨平台安装器（YottaSkills）
  *
  * 用法:
- *   npx -y @yottameta/yotta-resume --agent <name>   # 按智能体默认用户级目录安装（推荐）
- *   npx -y @yottameta/yotta-resume --dir <path>     # 装到指定目录（用户改了目录的智能体）
- *   npx -y @yottameta/yotta-resume -g               # 安装到全部已知智能体用户级目录
- *   npx -y @yottameta/yotta-resume                  # 安装到检测到的项目级目录
- *   npx -y @yottameta/yotta-resume --list           # 列出智能体 -> 默认目录
- *   npx -y @yottameta/yotta-resume --dry-run        # 只显示将写入的目标，不写文件
- *   npx -y @yottameta/yotta-resume --version        # 显示版本
- *   npx -y @yottameta/yotta-resume --help           # 显示帮助
+ *   npx -y @yottameta/yotta-resume@0.2.3 --agent <name>   # 按智能体默认用户级目录安装（推荐）
+ *   npx -y @yottameta/yotta-resume@0.2.3 --dir <path>     # 装到指定目录（用户改了目录的智能体）
+ *   npx -y @yottameta/yotta-resume@0.2.3 -g               # 安装到全部已知智能体用户级目录
+ *   npx -y @yottameta/yotta-resume@0.2.3                  # 安装到检测到的项目级目录
+ *   npx -y @yottameta/yotta-resume@0.2.3 --list           # 列出智能体 -> 默认目录
+ *   npx -y @yottameta/yotta-resume@0.2.3 --dry-run        # 只显示将写入的目标，不写文件
+ *   npx -y @yottameta/yotta-resume@0.2.3 --version        # 显示版本
+ *   npx -y @yottameta/yotta-resume@0.2.3 --help           # 显示帮助
  *
  * 退出码: 0 成功 / 1 安装失败 / 2 用法错误 / 4 目标错误
  */
