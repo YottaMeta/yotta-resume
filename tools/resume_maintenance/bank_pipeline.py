@@ -14,7 +14,7 @@ from contract_validate import validate_contracts
 
 
 SCHEMA_VERSION = "1.0"
-SKILL_VERSION = "0.2.4"
+SKILL_VERSION = "0.2.5"
 REQUIRED_CONFIRMATIONS = ("facts", "role", "level", "boundary", "rights")
 _SEMVER_RE = re.compile(
     r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"

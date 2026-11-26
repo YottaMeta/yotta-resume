@@ -317,6 +317,87 @@ class ReleaseSurfaceTest(unittest.TestCase):
             self.assertIn("链接", completed.stderr)
             self.assertEqual(before, _snapshot_tree(victim))
 
+    def test_javascript_installer_rejects_unrelated_nested_link(self):
+        node = shutil.which("node")
+        self.assertTrue(node, "node executable not found")
+        with tempfile.TemporaryDirectory(
+            prefix="yotta-resume-unrelated-link-"
+        ) as temp:
+            root = Path(temp)
+            install_root = root / "install"
+            target = install_root / "yotta-resume"
+            victim = root / "victim-local-notes"
+            target.mkdir(parents=True)
+            victim.mkdir()
+            (target / "SKILL.md").write_text("# existing\n", encoding="utf-8")
+            (victim / "outside.txt").write_text(
+                "outside-unrelated-sentinel\n",
+                encoding="utf-8",
+            )
+            before = _snapshot_tree(victim)
+            _make_directory_link(victim, target / "local-notes")
+
+            completed = subprocess.run(
+                [
+                    node,
+                    str(SKILL_DIR / "bin" / "install.js"),
+                    "--dir",
+                    str(install_root),
+                ],
+                cwd=str(SKILL_DIR),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                check=False,
+            )
+
+            self.assertEqual(4, completed.returncode, completed.stderr)
+            self.assertIn("链接", completed.stderr)
+            self.assertEqual(before, _snapshot_tree(victim))
+
+    def test_javascript_installer_dry_run_rejects_unrelated_nested_link(self):
+        node = shutil.which("node")
+        self.assertTrue(node, "node executable not found")
+        with tempfile.TemporaryDirectory(
+            prefix="yotta-resume-unrelated-dry-link-"
+        ) as temp:
+            root = Path(temp)
+            install_root = root / "install"
+            target = install_root / "yotta-resume"
+            victim = root / "victim-local-notes"
+            target.mkdir(parents=True)
+            victim.mkdir()
+            (target / "SKILL.md").write_text("# existing\n", encoding="utf-8")
+            (victim / "outside.txt").write_text(
+                "outside-unrelated-sentinel\n",
+                encoding="utf-8",
+            )
+            before = _snapshot_tree(victim)
+            _make_directory_link(victim, target / "local-notes")
+
+            completed = subprocess.run(
+                [
+                    node,
+                    str(SKILL_DIR / "bin" / "install.js"),
+                    "--dir",
+                    str(install_root),
+                    "--dry-run",
+                ],
+                cwd=str(SKILL_DIR),
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                check=False,
+            )
+
+            self.assertEqual(4, completed.returncode, completed.stderr)
+            self.assertIn("链接", completed.stderr)
+            self.assertEqual(before, _snapshot_tree(victim))
+
     def test_shell_installer_rejects_fake_managed_hub_junction(self):
         bash = shutil.which("bash")
         self.assertTrue(bash, "bash executable not found")
